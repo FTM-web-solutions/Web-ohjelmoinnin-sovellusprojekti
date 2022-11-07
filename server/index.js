@@ -11,10 +11,13 @@ app.use(express.urlencoded({extended: false}))
 
 const port = 3001
 
-app.get("/", (req,res) => {
-    res.status(200).json({message: "KKonapa kkona"})
+app.get("/",async function (req,res)    {
+    try {
+        const connection = await mysql.createConnection(config.db)
+        res.status(200).send('KKonapa kkona')
+    }   catch(err) {
+        res.status(500).send(err.message)
+    }
 })
 
-app.listen(port,() => {
-    console.log(`Server running on port ${port}`)
-})
+app.listen(port)
