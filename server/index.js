@@ -14,9 +14,12 @@ const port = 3001
 app.get("/",async function (req,res)    {
     try {
         const connection = await mysql.createConnection(config.db)
-        res.status(200).send('KKonapa kkona')
+        const[result,] = await connection.execute('select * from hadcrut')
+        
+        if (!result) result=[]
+        res.status(200).json(result)
     }   catch(err) {
-        res.status(500).send(err.message)
+        res.status(500).json({error: err.message})
     }
 })
 

@@ -4,4 +4,3 @@ create database climate;
 
 use climate;
 
-
