@@ -15,7 +15,6 @@ function App() {
     <>
     <Navbar />
     <Header />
-    <HadcrutLinechart/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
