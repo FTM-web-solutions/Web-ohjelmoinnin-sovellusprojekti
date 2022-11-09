@@ -24,8 +24,8 @@ function HadcrutLinechart() {
         {
             label: "Monthly Global Degrees",
             data: crutData.map(hadcrut=>hadcrut.MonthlyGlobalC),
-            borderColor: "rgb(255, 0, 0)",
-            backgroundColor: "rgba(255, 0, 0, 0.5)",
+            borderColor: "black",
+            backgroundColor: "white",
             yAxisID: "co2",
             parsing: {
                 xAxisKey: "TimeYrBP",
@@ -37,8 +37,8 @@ function HadcrutLinechart() {
         {
             label: "Monthly Northern Degreens",
             data: crutData.map(hadcrut=>hadcrut.MonthlyNorthC),
-            borderColor: "rgb(0, 255, 0)",
-            backgroundColor: "rgba(0, 255, 0, 0.5)",
+            borderColor: "blue",
+            backgroundColor: "white",
             yAxisID: "co2",
             parsing: {
                 xAxisKey: "TimeYrBP",
@@ -50,8 +50,8 @@ function HadcrutLinechart() {
         {
             label: "Monthly Southern Degrees",
             data: crutData.map(hadcrut=>hadcrut.MonthlySouthC),
-            borderColor: "rgb(0, 0, 255)",
-            backgroundColor: "rgba(0, 0, 255, 0.5)",
+            borderColor: "red",
+            backgroundColor: "white",
             yAxisID: "co2",
             parsing: {
                 xAxisKey: "TimeYrBP",
@@ -69,7 +69,7 @@ function HadcrutLinechart() {
       },
       title: {
         display: true,
-        text: "Demo Co2 plot",
+        text: "Temperature Anomalies From 1850",
       },
     },
     scales: {
@@ -82,10 +82,12 @@ function HadcrutLinechart() {
   };
     
   return (
-    <div>
-        <Line options={options} data={data}/>
+    <div className="App">
+      <div style={{ width: "1500px" }}>
+        <Line options={options} data={data} />
+      </div>
     </div>
-  )
+  );
 }
 
 export default HadcrutLinechart
