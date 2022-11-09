@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import './App.css';
 
+const URL = 'http://localhost:3001/'
+
 function App() {
+  const [crut, setcrut] = useState([])
+
+  useEffect(() => {
+    axios.get(URL)
+    .then((response)=>{
+      setcrut(response.data)
+      console.log(response.data)
+    }).catch(error=>{
+      alert(error.response.data.error)
+    })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>FTM web proujekt</h1>
+      <ol>{crut.map(hadcrut=>(
+          <li key={hadcrut.Years}>{hadcrut.Years}{hadcrut.AnnualGlobalC}{hadcrut.AnnualNorthC}{hadcrut.AnnualSouthC}</li>
+        ))}
+      </ol>
     </div>
   );
 }
