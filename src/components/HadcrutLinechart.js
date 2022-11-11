@@ -59,6 +59,44 @@ function HadcrutLinechart() {
         },
         pointRadius: 1,
         },
+        {
+          label: "Annual Global Degrees",
+          data: crutData.map(hadcrut=>hadcrut.AnnualGlobalC),
+          borderColor: "black",
+          backgroundColor: "white",
+          yAxisID: "co2",
+          parsing: {
+              xAxisKey: "TimeYrBP",
+              yAxisKey: "Co2ppm",
+      },
+      pointRadius: 1,
+      },
+
+      {
+          label: "Annual Northern Degreens",
+          data: crutData.map(hadcrut=>hadcrut.AnnualNorthC),
+          borderColor: "blue",
+          backgroundColor: "white",
+          yAxisID: "co2",
+          parsing: {
+              xAxisKey: "TimeYrBP",
+              yAxisKey: "Co2ppm",
+      },
+      pointRadius: 1,
+      },
+
+      {
+          label: "Annual Southern Degrees",
+          data: crutData.map(hadcrut=>hadcrut.AnnualSouthC),
+          borderColor: "red",
+          backgroundColor: "white",
+          yAxisID: "co2",
+          parsing: {
+              xAxisKey: "TimeYrBP",
+              yAxisKey: "Co2ppm",
+      },
+      pointRadius: 1,
+      },
     ],
   };
   const options = {
