@@ -5,138 +5,175 @@ import { Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
 
 const URL = 'http://localhost:3001/'
+const URL2 = 'http://localhost:3001/v2'
 
 function V1() {
-    const [crutData, setcrutData] = useState([])
+  const [crutData, setcrutData] = useState([])
+  const [nhemisphereData, setnhemisphereData] = useState([])
 
   useEffect(() => {
     axios.get(URL)
-    .then((response)=>{
-      setcrutData(response.data)
-    }).catch(error=>{
-      alert(error.response.data.error)
-    })
+      .then((response) => {
+        setcrutData(response.data)
+      }).catch(error => {
+        alert(error.response.data.error)
+      })
   }, [])
 
-  const data = {
-    labels: crutData.map(hadcrut=>hadcrut.Months),
+  useEffect(() => {
+    axios.get(URL2)
+      .then((response) => {
+        setnhemisphereData(response.data)
+      }).catch(error => {
+        alert(error.response.data.error)
+      })
+  }, [])
+
+  const ShowVisual = () => {
+    const Show = () => {
+      alert(nhdata);
+    }
+    return <button onClick={Show}>Show V2</button>;
+  }
+
+  const nhdata = {
+    labels: crutData.map(hadcrut => hadcrut.Months),
     datasets: [
       {
-        label: "Annual Global Degrees",
-        data: crutData.map(hadcrut=>hadcrut.AnnualGlobalC),
+        label: "Northern Hemisphere 2,000-year temperature reconstruction",
+        data: nhemisphereData.map(v2 => v2.T),
         spanGaps: true,
-        borderColor: "black",
+        borderColor: "green",
         backgroundColor: "white",
         yAxisID: "C",
         parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-    },
-    pointRadius: 1,
-    },
-
-    {
-        label: "Annual Northern Degrees",
-        data: crutData.map(hadcrut=>hadcrut.AnnualNorthC),
-        spanGaps: true,
-        borderColor: "blue",
-        backgroundColor: "white",
-        yAxisID: "C",
-        parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-    },
-    pointRadius: 1,
-    },
-
-    {
-        label: "Annual Southern Degrees",
-        data: crutData.map(hadcrut=>hadcrut.AnnualSouthC),
-        spanGaps: true,
-        borderColor: "red",
-        backgroundColor: "white",
-        yAxisID: "C",
-        parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-    },
-    pointRadius: 1,
-    },
-    {
-        label: "Monthly Global Degrees",
-        data: crutData.map(hadcrut=>hadcrut.MonthlyGlobalC),
-        borderColor: "black",
-        backgroundColor: "white",
-        yAxisID: "C",
-        parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-    },
-    pointRadius: 1,
-    },
-    {
-        label: "Monthly Northern Degreens",
-        data: crutData.map(hadcrut=>hadcrut.MonthlyNorthC),
-        borderColor: "blue",
-        backgroundColor: "white",
-        yAxisID: "C",
-        parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-    },
-    pointRadius: 1,
-    },
-    {
-        label: "Monthly Southern Degrees",
-        data: crutData.map(hadcrut=>hadcrut.MonthlySouthC),
-        borderColor: "red",
-        backgroundColor: "white",
-        yAxisID: "C",
-        parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-    },
-    pointRadius: 1,
-    },
+          xAxisKey: "Months",
+          yAxisKey: "Celsius",
+        },
+        pointRadius: 1,
+      },
     ],
   };
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Temperature Anomalies From 1850",
-      },
-    },
-    scales: {
-      C: {
-        type: "linear",
-        min: -2.0,
-        max: 2.0,
-        display: true,
-        position: "right",
+
+  const data = {
+      labels: crutData.map(hadcrut => hadcrut.Months),
+      datasets: [
+        {
+          label: "Annual Global Degrees",
+          data: crutData.map(hadcrut => hadcrut.AnnualGlobalC),
+          spanGaps: true,
+          borderColor: "black",
+          backgroundColor: "white",
+          yAxisID: "C",
+          parsing: {
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
+          },
+          pointRadius: 1,
+        },
+
+        {
+          label: "Annual Northern Degrees",
+          data: crutData.map(hadcrut => hadcrut.AnnualNorthC),
+          spanGaps: true,
+          borderColor: "blue",
+          backgroundColor: "white",
+          yAxisID: "C",
+          parsing: {
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
+          },
+          pointRadius: 1,
+        },
+
+        {
+          label: "Annual Southern Degrees",
+          data: crutData.map(hadcrut => hadcrut.AnnualSouthC),
+          spanGaps: true,
+          borderColor: "red",
+          backgroundColor: "white",
+          yAxisID: "C",
+          parsing: {
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
+          },
+          pointRadius: 1,
+        },
+        {
+          label: "Monthly Global Degrees",
+          data: crutData.map(hadcrut => hadcrut.MonthlyGlobalC),
+          borderColor: "black",
+          backgroundColor: "white",
+          yAxisID: "C",
+          parsing: {
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
+          },
+          pointRadius: 1,
+        },
+        {
+          label: "Monthly Northern Degreens",
+          data: crutData.map(hadcrut => hadcrut.MonthlyNorthC),
+          borderColor: "blue",
+          backgroundColor: "white",
+          yAxisID: "C",
+          parsing: {
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
+          },
+          pointRadius: 1,
+        },
+        {
+          label: "Monthly Southern Degrees",
+          data: crutData.map(hadcrut => hadcrut.MonthlySouthC),
+          borderColor: "red",
+          backgroundColor: "white",
+          yAxisID: "C",
+          parsing: {
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
+          },
+          pointRadius: 1,
+        },
+      ],
+    };
+    const options = {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+        },
         title: {
           display: true,
-          text: "Degrees (°C)"
+          text: "Temperature Anomalies From 1850",
         },
       },
-      x: {
-        type: "time",
-        time: {
-          unit: "month",
+      scales: {
+        C: {
+          type: "linear",
+          min: -2.0,
+          max: 2.0,
+          display: true,
+          position: "right",
+          title: {
+            display: true,
+            text: "Degrees (°C)"
+          },
+        },
+        x: {
+          type: "time",
+          time: {
+            unit: "month",
+          },
         },
       },
-    },
-  };
-    
-  return (
-    <div className="V1" style={{ width: "65%" }}>
+    };
+
+    return(
+    <div className = "V1" style = {{ width: "65%" }} >
         <Line options={options} data={data} />
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br/>
-    </div>
+    </div >
   );
 }
 
