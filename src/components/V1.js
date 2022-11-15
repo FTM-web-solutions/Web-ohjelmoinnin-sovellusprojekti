@@ -6,14 +6,13 @@ import "chartjs-adapter-luxon";
 
 const URL = 'http://localhost:3001/'
 
-function HadcrutLinechart() {
+function V1() {
     const [crutData, setcrutData] = useState([])
 
   useEffect(() => {
     axios.get(URL)
     .then((response)=>{
       setcrutData(response.data)
-      console.log(response.data)
     }).catch(error=>{
       alert(error.response.data.error)
     })
@@ -28,24 +27,24 @@ function HadcrutLinechart() {
         spanGaps: true,
         borderColor: "black",
         backgroundColor: "white",
-        yAxisID: "co2",
+        yAxisID: "C",
         parsing: {
-            xAxisKey: "TimeYrBP",
-            yAxisKey: "Co2ppm",
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
     },
     pointRadius: 1,
     },
 
     {
-        label: "Annual Northern Degreens",
+        label: "Annual Northern Degrees",
         data: crutData.map(hadcrut=>hadcrut.AnnualNorthC),
         spanGaps: true,
         borderColor: "blue",
         backgroundColor: "white",
-        yAxisID: "co2",
+        yAxisID: "C",
         parsing: {
-            xAxisKey: "TimeYrBP",
-            yAxisKey: "Co2ppm",
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
     },
     pointRadius: 1,
     },
@@ -56,10 +55,10 @@ function HadcrutLinechart() {
         spanGaps: true,
         borderColor: "red",
         backgroundColor: "white",
-        yAxisID: "co2",
+        yAxisID: "C",
         parsing: {
-            xAxisKey: "TimeYrBP",
-            yAxisKey: "Co2ppm",
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
     },
     pointRadius: 1,
     },
@@ -68,10 +67,10 @@ function HadcrutLinechart() {
         data: crutData.map(hadcrut=>hadcrut.MonthlyGlobalC),
         borderColor: "black",
         backgroundColor: "white",
-        yAxisID: "co2",
+        yAxisID: "C",
         parsing: {
-            xAxisKey: "TimeYrBP",
-            yAxisKey: "Co2ppm",
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
     },
     pointRadius: 1,
     },
@@ -80,10 +79,10 @@ function HadcrutLinechart() {
         data: crutData.map(hadcrut=>hadcrut.MonthlyNorthC),
         borderColor: "blue",
         backgroundColor: "white",
-        yAxisID: "co2",
+        yAxisID: "C",
         parsing: {
-            xAxisKey: "TimeYrBP",
-            yAxisKey: "Co2ppm",
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
     },
     pointRadius: 1,
     },
@@ -92,10 +91,10 @@ function HadcrutLinechart() {
         data: crutData.map(hadcrut=>hadcrut.MonthlySouthC),
         borderColor: "red",
         backgroundColor: "white",
-        yAxisID: "co2",
+        yAxisID: "C",
         parsing: {
-            xAxisKey: "TimeYrBP",
-            yAxisKey: "Co2ppm",
+            xAxisKey: "Months",
+            yAxisKey: "Celsius",
     },
     pointRadius: 1,
     },
@@ -113,10 +112,16 @@ function HadcrutLinechart() {
       },
     },
     scales: {
-      co2: {
+      C: {
         type: "linear",
+        min: -2.0,
+        max: 2.0,
         display: true,
         position: "right",
+        title: {
+          display: true,
+          text: "Degrees (°C)"
+        },
       },
       x: {
         type: "time",
@@ -128,12 +133,11 @@ function HadcrutLinechart() {
   };
     
   return (
-    <div className="App">
-      <div style={{ width: "1500px" }}>
+    <div className="V1" style={{ width: "65%" }}>
         <Line options={options} data={data} />
-      </div>
+        <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br/>
     </div>
   );
 }
 
-export default HadcrutLinechart
+export default V1

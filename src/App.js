@@ -6,7 +6,6 @@ import About from './components/About';
 import Contact from './components/Contact';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
-import HadcrutLinechart from './components/HadcrutLinechart';
 import { Routes, Route } from 'react-router-dom';
 import Login from './components/LoginHome';
 import LoginHome from './components/LoginHome';
@@ -30,7 +29,7 @@ function App() {
           <Route path="/login/protected" element={ <ProtectedView />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    <Footer />
+    {/* <Footer /> */}
     </>
   );
 }
