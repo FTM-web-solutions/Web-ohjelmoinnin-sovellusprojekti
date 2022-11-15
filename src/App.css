@@ -27,3 +27,7 @@ footer {
   width: 100%;
   background-size: cover;
 }
+
+.protected {
+  background-color: red;
+}
