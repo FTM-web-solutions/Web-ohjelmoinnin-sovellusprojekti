@@ -25,9 +25,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginHome/>} />
-          <Route path="/loginforuser" element={ <LoginView />} />
-          <Route path="/signup" element={ <SignupView />} />
-          <Route path="/protected" element={ <ProtectedView />} />
+          <Route path="/login/loginforuser" element={ <LoginView />} />
+          <Route path="/login/signup" element={ <SignupView />} />
+          <Route path="/login/protected" element={ <ProtectedView />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     <Footer />
