@@ -1,12 +1,12 @@
 import React from 'react'
-import LoginView from './LoginView'
-import SignupView from './SignupView'
-import ProtectedView from './ProtectedView'
+
 
 export default function LoginHome() {
   return (
     <div>
-        Home page where is the logic for signing up
+      <h1>Home page where is the logic for signing up</h1>
     </div>
   )
 }
+
+//<Route path="/login" element={ <LoginHome />} />
