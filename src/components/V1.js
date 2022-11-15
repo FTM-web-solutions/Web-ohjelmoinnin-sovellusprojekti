@@ -30,11 +30,17 @@ function V1() {
   }, [])
 
   const ShowVisual = () => {
-    const Show = () => {
-      alert(nhdata);
-    }
-    return <button onClick={Show}>Show V2</button>;
-  }
+    const handleClick = () => {
+      nhdata()
+    };
+    return (
+      <div>
+        <button type="button" onClick={handleClick}>
+          Show v2
+        </button>
+      </div>
+    );
+  };
 
   const nhdata = {
     labels: crutData.map(hadcrut => hadcrut.Months),
@@ -56,123 +62,124 @@ function V1() {
   };
 
   const data = {
-      labels: crutData.map(hadcrut => hadcrut.Months),
-      datasets: [
-        {
-          label: "Annual Global Degrees",
-          data: crutData.map(hadcrut => hadcrut.AnnualGlobalC),
-          spanGaps: true,
-          borderColor: "black",
-          backgroundColor: "white",
-          yAxisID: "C",
-          parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-          },
-          pointRadius: 1,
+    labels: crutData.map(hadcrut => hadcrut.Months),
+    datasets: [
+      {
+        label: "Annual Global Degrees",
+        data: crutData.map(hadcrut => hadcrut.AnnualGlobalC),
+        spanGaps: true,
+        borderColor: "black",
+        backgroundColor: "white",
+        yAxisID: "C",
+        parsing: {
+          xAxisKey: "Months",
+          yAxisKey: "Celsius",
         },
+        pointRadius: 1,
+      },
 
-        {
-          label: "Annual Northern Degrees",
-          data: crutData.map(hadcrut => hadcrut.AnnualNorthC),
-          spanGaps: true,
-          borderColor: "blue",
-          backgroundColor: "white",
-          yAxisID: "C",
-          parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-          },
-          pointRadius: 1,
+      {
+        label: "Annual Northern Degrees",
+        data: crutData.map(hadcrut => hadcrut.AnnualNorthC),
+        spanGaps: true,
+        borderColor: "blue",
+        backgroundColor: "white",
+        yAxisID: "C",
+        parsing: {
+          xAxisKey: "Months",
+          yAxisKey: "Celsius",
         },
+        pointRadius: 1,
+      },
 
-        {
-          label: "Annual Southern Degrees",
-          data: crutData.map(hadcrut => hadcrut.AnnualSouthC),
-          spanGaps: true,
-          borderColor: "red",
-          backgroundColor: "white",
-          yAxisID: "C",
-          parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-          },
-          pointRadius: 1,
+      {
+        label: "Annual Southern Degrees",
+        data: crutData.map(hadcrut => hadcrut.AnnualSouthC),
+        spanGaps: true,
+        borderColor: "red",
+        backgroundColor: "white",
+        yAxisID: "C",
+        parsing: {
+          xAxisKey: "Months",
+          yAxisKey: "Celsius",
         },
-        {
-          label: "Monthly Global Degrees",
-          data: crutData.map(hadcrut => hadcrut.MonthlyGlobalC),
-          borderColor: "black",
-          backgroundColor: "white",
-          yAxisID: "C",
-          parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-          },
-          pointRadius: 1,
+        pointRadius: 1,
+      },
+      {
+        label: "Monthly Global Degrees",
+        data: crutData.map(hadcrut => hadcrut.MonthlyGlobalC),
+        borderColor: "black",
+        backgroundColor: "white",
+        yAxisID: "C",
+        parsing: {
+          xAxisKey: "Months",
+          yAxisKey: "Celsius",
         },
-        {
-          label: "Monthly Northern Degreens",
-          data: crutData.map(hadcrut => hadcrut.MonthlyNorthC),
-          borderColor: "blue",
-          backgroundColor: "white",
-          yAxisID: "C",
-          parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-          },
-          pointRadius: 1,
+        pointRadius: 1,
+      },
+      {
+        label: "Monthly Northern Degreens",
+        data: crutData.map(hadcrut => hadcrut.MonthlyNorthC),
+        borderColor: "blue",
+        backgroundColor: "white",
+        yAxisID: "C",
+        parsing: {
+          xAxisKey: "Months",
+          yAxisKey: "Celsius",
         },
-        {
-          label: "Monthly Southern Degrees",
-          data: crutData.map(hadcrut => hadcrut.MonthlySouthC),
-          borderColor: "red",
-          backgroundColor: "white",
-          yAxisID: "C",
-          parsing: {
-            xAxisKey: "Months",
-            yAxisKey: "Celsius",
-          },
-          pointRadius: 1,
+        pointRadius: 1,
+      },
+      {
+        label: "Monthly Southern Degrees",
+        data: crutData.map(hadcrut => hadcrut.MonthlySouthC),
+        borderColor: "red",
+        backgroundColor: "white",
+        yAxisID: "C",
+        parsing: {
+          xAxisKey: "Months",
+          yAxisKey: "Celsius",
         },
-      ],
-    };
-    const options = {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: "top",
-        },
+        pointRadius: 1,
+      },
+    ],
+  };
+  
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Temperature Anomalies From 1850",
+      },
+    },
+    scales: {
+      C: {
+        type: "linear",
+        min: -2.0,
+        max: 2.0,
+        display: true,
+        position: "right",
         title: {
           display: true,
-          text: "Temperature Anomalies From 1850",
+          text: "Degrees (°C)"
         },
       },
-      scales: {
-        C: {
-          type: "linear",
-          min: -2.0,
-          max: 2.0,
-          display: true,
-          position: "right",
-          title: {
-            display: true,
-            text: "Degrees (°C)"
-          },
-        },
-        x: {
-          type: "time",
-          time: {
-            unit: "month",
-          },
+      x: {
+        type: "time",
+        time: {
+          unit: "month",
         },
       },
-    };
+    },
+  };
 
-    return(
-    <div className = "V1" style = {{ width: "65%" }} >
-        <Line options={options} data={data} />
-        <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br/>
+  return (
+    <div className="V1" style={{ width: "65%" }} >
+      <Line options={options} data={data} />
+      <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
     </div >
   );
 }
