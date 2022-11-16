@@ -29,7 +29,7 @@ function V1() {
       })
   }, [])
 
-  const ShowVisual = () => {
+   /*const ShowVisual = () => {
     const handleClick = () => {
       nhdata()
     };
@@ -40,10 +40,10 @@ function V1() {
         </button>
       </div>
     );
-  };
+  };*/
 
-  const nhdata = {
-    labels: crutData.map(hadcrut => hadcrut.Months),
+  /*const nhdata = {
+    labels: nhemisphereData.map(v2 => v2.Years),
     datasets: [
       {
         label: "Northern Hemisphere 2,000-year temperature reconstruction",
@@ -59,7 +59,7 @@ function V1() {
         pointRadius: 1,
       },
     ],
-  };
+  };*/
 
   const data = {
     labels: crutData.map(hadcrut => hadcrut.Months),
@@ -69,6 +69,20 @@ function V1() {
         data: crutData.map(hadcrut => hadcrut.AnnualGlobalC),
         spanGaps: true,
         borderColor: "black",
+        backgroundColor: "white",
+        yAxisID: "C",
+        parsing: {
+          xAxisKey: "Months",
+          yAxisKey: "Celsius",
+        },
+        pointRadius: 1,
+      },
+
+      {
+        label: "Northern Hemisphere 2,000-year temperature reconstruction (V2)",
+        data: nhemisphereData.map(v2 => v2.T),
+        spanGaps: true,
+        borderColor: "purple",
         backgroundColor: "white",
         yAxisID: "C",
         parsing: {
