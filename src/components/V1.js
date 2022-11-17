@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
+import { Link } from 'react-router-dom';
 
 const URL = 'http://localhost:3001/'
 const URL2 = 'http://localhost:3001/v2'
@@ -200,6 +201,7 @@ function V1() {
       <Line options={options} data={data} />
       <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
       <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a><br />
+				<Link to='/V2desc'>V2 description</Link>
     </div >
     </div>
   );
