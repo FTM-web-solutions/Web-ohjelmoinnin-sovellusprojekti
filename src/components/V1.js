@@ -199,6 +199,7 @@ function V1() {
     <div className="V1" style={{ width: "50%" }} >
       <Line options={options} data={data} />
       <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
+      <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a><br />
     </div >
     </div>
   );
