@@ -191,10 +191,16 @@ function V1() {
   };
 
   return (
-    <div className="V1" style={{ width: "65%" }} >
+    <div className='V1'>
+      <h3>Hadcrut temperature data</h3>
+      <p>
+        This chart is about global historical surface temperature anomalies from january 1850 onwards...
+      </p>
+    <div className="V1" style={{ width: "50%" }} >
       <Line options={options} data={data} />
       <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
     </div >
+    </div>
   );
 }
 

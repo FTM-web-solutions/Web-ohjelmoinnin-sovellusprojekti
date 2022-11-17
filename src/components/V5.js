@@ -8,25 +8,44 @@ const URL = 'http://localhost:3001/v5'
 
 function V5() {
 
-    const [vostokData, setvostokData] = useState([])
+    // const [vostokData, setvostokData] = useState([])
+    const [Age, setAge] = useState([])
+    const [Co2, setCo2] = useState([])
+
+    // useEffect(() => {
+    //   axios.get(URL)
+    //   .then((response)=>{
+    //     setvostokData(response.data)
+    //   }).catch(error=>{
+    //     alert(error.response.data.error)
+    //   })
+    // }, [])
 
     useEffect(() => {
-      axios.get(URL)
-      .then((response)=>{
-        setvostokData(response.data)
-      }).catch(error=>{
-        alert(error.response.data.error)
-      })
-    }, [])
+      try {
+        axios.get(URL)
+        .then((response) =>{
+          let ageArray = response.data.map(v5=>v5.age_of_ice);
+          setAge(ageArray);
+
+          let co2Array = response.data.map(v5=>v5.co2_ppmv);
+          setCo2(co2Array);
+        });
+      } catch (error) {
+        console.log(error)
+      }
+  }, [])
+    
     
     const data = {
-      labels: vostokData.map(v5=>v5.age_of_ice),
+      labels: Age,
       datasets: [
         {
           label: "CO2 concentration",
-          data: vostokData.map(v5=>v5.co2_ppmv),
-          borderColor: "blue",
-          yAxisID: "co2",
+          data: Co2,
+          borderColor: "red",
+          backgroundColor: "white",
+          yAxisID: "y",
           parsing: {
             xAxisKey: "TimeYrBP",
             yAxisKey: "Co2ppm",
@@ -46,7 +65,7 @@ function V5() {
         },
       },
       scales: {
-        co2: {
+        y: {
           type: "linear",
           position: "right",
           min: 180,
@@ -57,19 +76,28 @@ function V5() {
           },
         },
         x: {
+          reverse: true,
+          type: "linear",
+          min: 0,
+          max: 425000,
           title: {
             display: true,
-            text: "Years",
+            text: "Years Before Present",
           },
         },
       },
     };
 
   return (
-    <div className='V5' style={{ width: "65%"}}>
+    <div className='V5text'>
+      <h3>Vostok ice core CO2 measurements</h3>
+      <p>Line graph of atmospheric carbon dioxide concentrations based on ice drilling conducted at Vostok station in the Soviet Antarctic.
+         Time period ~400000 years...</p>
+    <div className='V5' style={{ width: "50%"}}>
         <Line options={options} data={data} />
         <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2'>Dataset source</a><br/>
         <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html'>Description source</a>
+    </div>
     </div>
   )
 }
