@@ -12,8 +12,19 @@ import LoginHome from './components/LoginHome';
 import LoginView from './components/LoginView'
 import SignupView from './components/SignupView'
 import ProtectedView from './components/ProtectedView'
+import { useState } from 'react';
 
 function App() {
+  const [userJwt, setUserJwt] = useState(null)
+
+  let authRoutes = <>
+  <Route path="/loginforuser" element={ <LoginView login={ newJwt => setUserJwt(newJwt)} />} />
+  <Route path="/signup" element={ <SignupView />} />
+  </>
+
+  if(userJwt != null) {
+    authRoutes = <Route path="/protected" element={ <ProtectedView />} />
+  } 
 
   return (
     <>
@@ -23,11 +34,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<LoginHome/>} />
-          <Route path="/login/loginforuser" element={ <LoginView />} />
-          <Route path="/login/signup" element={ <SignupView />} />
-          <Route path="/login/protected" element={ <ProtectedView />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/login" element={<LoginHome userLoggedIn={userJwt != null}/>} />
+         { authRoutes } 
+        <Route path="*" element={<LoginHome userLoggedIn={userJwt != null} />} />
       </Routes>
     {/* <Footer /> */}
     </>
