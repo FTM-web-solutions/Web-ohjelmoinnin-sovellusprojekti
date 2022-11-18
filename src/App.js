@@ -24,7 +24,7 @@ function App() {
   </>
 
   if(userJwt != null) {
-    authRoutes = <Route path="/protected" element={ <ProtectedView />} />
+    authRoutes = <Route path="/protected" element={ <ProtectedView jwt={userJwt}/>} />
   } 
 
   return (
