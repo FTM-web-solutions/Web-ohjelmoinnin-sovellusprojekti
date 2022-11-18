@@ -11,11 +11,11 @@ export default function LoginHome(props) {
       </div>
       <div>
         { props.userLoggedIn ?
-         <Link to="protected">Go to protected view</Link>
+         <Link to="/protected">Go to protected view</Link>
          :
          <>
-         <Link to="signup">Sign up</Link><br />
-         <Link to="loginforuser">Login</Link><br />
+         <Link to="/signup">Sign up</Link><br />
+         <Link to="/loginforuser">Login</Link><br />
          </>
         }
         
@@ -24,4 +24,4 @@ export default function LoginHome(props) {
   )
 }
 
-//<Route path="/login" element={ <LoginHome />} />
+{/* <Route path="/login" element={ <LoginHome />} /> */}

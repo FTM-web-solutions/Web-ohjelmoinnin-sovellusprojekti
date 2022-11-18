@@ -61,8 +61,8 @@ function V6() {
         x: {
           reverse: true,
           type: "linear",
-          min: -1000,
-          max: 815000,
+          min: -2000,
+          max: 810000,
           title: {
             display: true,
             text: "Years Before Present",
