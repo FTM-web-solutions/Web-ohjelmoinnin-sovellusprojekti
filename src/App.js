@@ -15,16 +15,25 @@ import SignupView from './components/SignupView'
 import ProtectedView from './components/ProtectedView'
 import { useState } from 'react';
 
+const jwtFromStorage = window.localStorage.getItem('appAuthData')
+
 function App() {
-  const [userJwt, setUserJwt] = useState(null)
+  const [userJwt, setUserJwt] = useState(jwtFromStorage)
 
   let authRoutes = <>
-  <Route path="/loginforuser" element={ <LoginView login={ newJwt => setUserJwt(newJwt)} />} />
+  <Route path="/loginforuser" element={ <LoginView login={ newJwt => {
+    setUserJwt(newJwt)
+    window.localStorage.setItem('appAuthData', newJwt)
+    } }/> } />
   <Route path="/signup" element={ <SignupView />} />
   </>
 
   if(userJwt != null) {
-    authRoutes = <Route path="/protected" element={ <ProtectedView jwt={userJwt}/>} />
+    authRoutes = <Route path="/protected" element={ <ProtectedView jwt={userJwt} logout={() => {
+    setUserJwt(null)
+    window.localStorage.removeItem('appAuthData')
+    
+    } } />} />
   } 
 
   return (
