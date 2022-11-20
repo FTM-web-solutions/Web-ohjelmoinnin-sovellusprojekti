@@ -13,8 +13,28 @@ import LoginHome from './components/LoginHome';
 import LoginView from './components/LoginView'
 import SignupView from './components/SignupView'
 import ProtectedView from './components/ProtectedView'
+import { useState } from 'react';
+
+const jwtFromStorage = window.localStorage.getItem('appAuthData')
 
 function App() {
+  const [userJwt, setUserJwt] = useState(jwtFromStorage)
+
+  let authRoutes = <>
+  <Route path="/loginforuser" element={ <LoginView login={ newJwt => {
+    setUserJwt(newJwt)
+    window.localStorage.setItem('appAuthData', newJwt)
+    } }/> } />
+  <Route path="/signup" element={ <SignupView />} />
+  </>
+
+  if(userJwt != null) {
+    authRoutes = <Route path="/protected" element={ <ProtectedView jwt={userJwt} logout={() => {
+    setUserJwt(null)
+    window.localStorage.removeItem('appAuthData')
+    
+    } } />} />
+  } 
 
   return (
     <>
@@ -25,11 +45,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/V2desc" element={<V2desc />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<LoginHome/>} />
-          <Route path="/login/loginforuser" element={ <LoginView />} />
-          <Route path="/login/signup" element={ <SignupView />} />
-          <Route path="/login/protected" element={ <ProtectedView />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/login" element={<LoginHome userLoggedIn={userJwt != null}/>} />
+         { authRoutes } 
+        <Route path="*" element={<LoginHome userLoggedIn={userJwt != null} />} />
       </Routes>
     {/* <Footer /> */}
     </>

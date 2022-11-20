@@ -1,147 +1,248 @@
-const express = require('express')
-const app = express()
-const port = 5000
-const passport = require('passport')
-const BasicStrategy = require('passport-http').BasicStrategy
-const jwt = require('jsonwebtoken')
-const jwt_decode = require('jwt-decode')
-const JwtStrategy = require('passport-jwt').Strategy,
-    ExtractJwt = require('passport-jwt').ExtractJwt
-const bodyParser = require('body-parser')
-const { v4: uuidv4 } = require('uuid');
-const bcrypt = require('bcryptjs')
+const express = require('express');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+const cors = require('cors');
 
-// npm run devRun to start this one in port 5000
+const app = express();
+const todos = require('./services/todos');
+const users = require('./services/users');
+const port = (process.env.PORT || 5000);
 
-app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json());
 
-app.use((req, res, next) => {
-    console.log('Demo middleware executing...');
 
-    next();
+app.get('/', (req, res) => res.send('This route is not protected'));
+
+
+/*********************************************
+ * API KEY DEMO
+ ********************************************/
+app.get('/apiKeyGenerate/:userId', (req, res) => {
+  const userId = req.params.userId;
+  let apiKey = users.getApiKey(userId);
+  if(apiKey === false) // user not found
+  {
+    res.sendStatus(400);
+  }
+  if(apiKey === null)
+  {
+    apiKey = users.resetApiKey(userId)
+  }
+  res.json({
+    apiKey
+  })
 });
 
-const users = [
-    {
-        id: uuidv4(),
-        username: "demouser",
-        password: "123456"
-    },
-    {
-        id: uuidv4(),
-        username: "testuser",
-        password: "98765"
-    }
-];
+function checkForApiKey(req, res, next)
+{
+  const receivedKey = req.get('X-Api-Key');
+  if(receivedKey === undefined) {
+    return res.status(400).json({ reason: "X-Api-Key header missing"});
+  }
+
+  const user = users.getUserWithApiKey(receivedKey);
+  if(user === undefined) {
+    return res.status(400).json({ reason: "Incorrect api key"});
+  }
+
+  req.user = user;
+
+  // pass the control to the next handler in line
+  next();
+}
+
+app.get('/apiKeyProtectedResource', checkForApiKey, (req, res) => {
+  res.json({
+    yourResource: "foo"
+  })
+});
+
+/*********************************************
+ * HTTP Basic Authentication
+ * Passport module used
+ * http://www.passportjs.org/packages/passport-http/
+ ********************************************/
+const passport = require('passport');
+const BasicStrategy = require('passport-http').BasicStrategy;
 
 passport.use(new BasicStrategy(
-    function (username, password, done) {
-        console.log('username: ' + username)
-        console.log('password: ' + password)
+  function(username, password, done) {
 
-        // search matching username from our user storage
-        const user = users.find(u => u.username === username)
-
-        // if match is found, compare the passwords
-        if (user != null) {
-            // if passwords match, then proceed to route handler (the protected resource)  
-            if (bcrypt.compareSync(password, user.password)) {
-                done(null, user)
-            } else {
-                done(null, false)
-            }
-        } else {
-            // reject the request
-            done(null, false)
-        }
-
+    const user = users.getUserByName(username);
+    if(user == undefined) {
+      // Username not found
+      console.log("HTTP Basic username not found");
+      return done(null, false, { message: "HTTP Basic username not found" });
     }
+
+    /* Verify password match */
+    if(bcrypt.compareSync(password, user.password) == false) {
+      // Password does not match
+      console.log("HTTP Basic password not matching username");
+      return done(null, false, { message: "HTTP Basic password not found" });
+    }
+    return done(null, user);
+  }
 ));
 
-const jwtOptions = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: "MyVerySecretSigningKey"
-};
-
-passport.use(new JwtStrategy(jwtOptions, function (jwt_payload, done) {
-    console.log('JWT is valid')
-    console.log('payload is as follows')
-    console.log(jwt_payload)
-
-    done(null, jwt_payload)
-}))
+app.get('/httpBasicProtectedResource',
+        passport.authenticate('basic', { session: false }),
+        (req, res) => {
+  res.json({
+    yourProtectedResource: "profit"
+  });
+});
 
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+/*******************************
+  Here expectation is that body is of following structure
+  {
+    "username": "foo",
+    "email": "foo@bar.com",
+    "password": "somepassword"
+  }
+*/
+app.post('/registerBasic',
+        (req, res) => {
 
-app.post('/register', (req, res) => {
-    console.log(req.body)
+  if('username' in req.body == false ) {
+    res.status(400);
+    res.json({status: "Missing username from body"})
+    return;
+  }
+  if('password' in req.body == false ) {
+    res.status(400);
+    res.json({status: "Missing password from body"})
+    return;
+  }
+  if('email' in req.body == false ) {
+    res.status(400);
+    res.json({status: "Missing email from body"})
+    return;
+  }
 
-    // create hash of the password
-    const salt = bcrypt.genSaltSync(6)
-    const passwordHash = bcrypt.hashSync(req.body.password, salt)
+  const salt = bcrypt.genSaltSync(6);
+  const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+  console.log(hashedPassword);
+  users.addUser(req.body.username, req.body.email, hashedPassword);
 
-    const newUser = {
-        id: uuidv4(),
-        username: req.body.username,
-        password: passwordHash,
-        email: req.body.email
-    }
+  res.status(201).json({ status: "created" });
+});
 
-    users.push(newUser)
 
-    console.log(users)
-    res.send("OK")
+/*********************************************
+ * JWT authentication
+ * Passport module is used, see documentation
+ * http://www.passportjs.org/packages/passport-jwt/
+ ********************************************/
+const jwt = require('jsonwebtoken');
+const JwtStrategy = require('passport-jwt').Strategy,
+      ExtractJwt = require('passport-jwt').ExtractJwt;
+let jwtSecretKey = null;
+if(process.env.JWTKEY === undefined) {
+  jwtSecretKey = require('./jwt-key.json').secret;
+} else {
+  jwtSecretKey = process.env.JWTKEY;
+}
+
+
+let options = {}
+
+/* Configure the passport-jwt module to expect JWT
+   in headers from Authorization field as Bearer token */
+options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+
+/* This is the secret signing key.
+   You should NEVER store it in code  */
+options.secretOrKey = jwtSecretKey;
+
+passport.use(new JwtStrategy(options, function(jwt_payload, done) {
+  console.log("Processing JWT payload for token content:");
+  console.log(jwt_payload);
+
+
+  /* Here you could do some processing based on the JWT payload.
+  For example check if the key is still valid based on expires property.
+  */
+  const now = Date.now() / 1000;
+  if(jwt_payload.exp > now) {
+    done(null, jwt_payload.user);
+  }
+  else {// expired
+    done(null, false);
+  }
+}));
+
+
+app.get(
+  '/jwtProtectedResource',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    console.log("jwt");
+    res.json(
+      {
+        status: "Successfully accessed protected resource with JWT",
+        user: req.user
+      }
+    );
+  }
+);
+
+app.get('/todosJWT',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    console.log('GET /todosJWT')
+    const t = todos.getAllUserTodos(req.user.id);
+    console.log('User Id: ' + req.user.id);
+    res.json(t);
 })
 
 /*
-    {
-        "username": "foo",
-        "password": "123456",
-        "email": "foo@bar.com"
-    }
+Body JSON structure example
+{
+	"description": "Example todo",
+	"dueDate": "25-02-2020"
+}
 */
-app.get('/my-protected-resource', passport.authenticate('basic', { session: false }), (req, res) => {
-    console.log("Protected resource accessed")
+app.post('/todosJWT',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    console.log('POST /todosJWT');
+    console.log(req.body);
+    if(('description' in req.body) && ( 'dueDate' in req.body)) {
+      todos.insertTodo(req.body.description, req.body.dueDate, req.user.id);
+      res.json(todos.getAllUserTodos(req.user.id));
+    }
+    else {
+      res.sendStatus(400);
+    }
 
-    res.send("Hello protected world!")
 })
 
-app.get('/my-other-protected-resource', passport.authenticate('basic', { session: false }), function (req, res) {
-    res.send('Other protected resource accessed')
-})
-
-app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, res) => {
-
-    console.log(req)
-
-    const payload = {
-        user: {
-            id: req.user.id,
-            username: req.user.username
-        }
+app.post(
+  '/loginForJWT',
+  passport.authenticate('basic', { session: false }),
+  (req, res) => {
+    const body = {
+      id: req.user.id,
+      email : req.user.email
     };
 
-    const secretKey = "MyVerySecretSigningKey"
+    const payload = {
+      user : body
+    };
 
     const options = {
-        expiresIn: '1d'
+      expiresIn: '1d'
     }
 
-    const generatedJWT = jwt.sign(payload, secretKey, options)
+    /* Sign the token with payload, key and options.
+       Detailed documentation of the signing here:
+       https://github.com/auth0/node-jsonwebtoken#readme */
+    const token = jwt.sign(payload, jwtSecretKey, options);
 
-    // send JWT as a response
-    res.json({ jwt: generatedJWT })
+    return res.json({ token });
 })
 
-app.get('/jwt-protected-resource', passport.authenticate('jwt', { session: false }), (req, res) => {
-    //console.log(req.user)
-    console.log('User ID from JWT is ' + req.user.user.id)
-    res.send("OK, for user " + req.user.user.username)
-})
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
