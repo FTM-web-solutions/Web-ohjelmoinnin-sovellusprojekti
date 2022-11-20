@@ -11,6 +11,8 @@ const URL2 = 'http://localhost:3001/v2'
 function V1() {
   const [crutData, setcrutData] = useState([])
   const [nhemisphereData, setnhemisphereData] = useState([])
+  const [b1, setb1] = useState(true);
+  const [b2, setb2] = useState(true);
 
   useEffect(() => {
     axios.get(URL)
@@ -30,40 +32,8 @@ function V1() {
       })
   }, [])
 
-   /*const ShowVisual = () => {
-    const handleClick = () => {
-      nhdata()
-    };
-    return (
-      <div>
-        <button type="button" onClick={handleClick}>
-          Show v2
-        </button>
-      </div>
-    );
-  };*/
-
-  /*const nhdata = {
-    labels: nhemisphereData.map(v2 => v2.Years),
-    datasets: [
-      {
-        label: "Northern Hemisphere 2,000-year temperature reconstruction",
-        data: nhemisphereData.map(v2 => v2.T),
-        spanGaps: true,
-        borderColor: "green",
-        backgroundColor: "white",
-        yAxisID: "C",
-        parsing: {
-          xAxisKey: "Months",
-          yAxisKey: "Celsius",
-        },
-        pointRadius: 1,
-      },
-    ],
-  };*/
-
   const data = {
-    labels: crutData.map(hadcrut => hadcrut.Months),
+    labels: crutData.map(crutData => crutData.Months),
     datasets: [
       {
         label: "Annual Global Degrees",
@@ -87,10 +57,12 @@ function V1() {
         backgroundColor: "white",
         yAxisID: "C",
         parsing: {
-          xAxisKey: "Months",
-          yAxisKey: "Celsius",
+          xAxisKey: 'Year',
+          yAxisKey: 'T'
         },
         pointRadius: 1,
+        b1,
+        hidden: b2
       },
 
       {
@@ -158,7 +130,7 @@ function V1() {
       },
     ],
   };
-  
+
   const options = {
     responsive: true,
     plugins: {
@@ -183,13 +155,22 @@ function V1() {
         },
       },
       x: {
-        type: "time",
+        type: 'time',
         time: {
-          unit: "month",
+          unit: 'year'
         },
-      },
+      }
     },
   };
+
+  const v2ClickHandle1 = event => {
+    event.preventDefault()
+    setb1()
+  }
+  const v2ClickHandle2 = event => {
+    event.preventDefault()
+    setb2()
+  }
 
   return (
     <div className='V1'>
@@ -197,12 +178,16 @@ function V1() {
       <p>
         This chart is about global historical surface temperature anomalies from january 1850 onwards...
       </p>
-    <div className="V1" style={{ width: "50%" }} >
-      <Line options={options} data={data} />
-      <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
-      <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a><br />
-				<Link to='/V2desc'>V2 description</Link>
-    </div >
+      <div className="V1" style={{ width: "50%" }} >
+        <Line options={options} data={data} />
+        <form>
+          <button style={{ background: 'lightblue' }} onClick={!v2ClickHandle1}>V2-OFF</button>
+          <button style={{ background: 'lightblue' }} onClick={v2ClickHandle2}>V2-ON</button>
+        </form>
+        <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
+        <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a><br />
+        <Link to='/V2desc'>V2 description</Link>
+      </div>
     </div>
   );
 }
