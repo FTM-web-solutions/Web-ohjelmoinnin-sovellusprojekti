@@ -93,10 +93,6 @@ app.get("/user",async function (req,res)    {
 
 //Login hökälehtiminen alkaa tästä näin
 
-/*********************************************
- * API KEY DEMO
- ********************************************/
-
  app.get('/user', (req, res) => res.send('This route is not protected'));
 
  app.get('/apiKeyGenerate/:userId', (req, res) => {
