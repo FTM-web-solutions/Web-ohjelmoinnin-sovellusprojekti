@@ -15,11 +15,11 @@ function V3() {
         axios.get(URL)
             .then((response) => {
                 console.log(response.data)
-                for(let i = 0; i < response.data.length; i++){
-                    if(response.data[i].year != null){
+                for (let i = 0; i < response.data.length; i++) {
+                    if (response.data[i].year != null) {
                         response.data[i].year = response.data[i].year.toString();
                     }
-                    
+
                 }
                 setmaunaData(response.data)
                 console.log(response.data);
@@ -36,11 +36,11 @@ function V3() {
                 spanGaps: true,
                 borderColor: "blue",
                 hidden: visible,
-                parsing:{
+                parsing: {
                     xAxisKey: 'year',
                     yAxisKey: 'mean'
+                },
             },
-        },
 
             {
                 label: "CO2 monthly mean data",
@@ -48,11 +48,11 @@ function V3() {
                 spanGaps: true,
                 borderColor: "red",
                 hidden: !visible,
-                parsing:{
+                parsing: {
                     xAxisKey: 'month',
                     yAxisKey: 'average'
-            },
-        }
+                },
+            }
         ]
     };
 
@@ -79,12 +79,19 @@ function V3() {
 
     }
 
+    const ClickHandle = event => {
+        event.preventDefault()
+        setVisible()
+    }
+
     return (
         <div className="V3">
             <div style={{ width: "75%" }}>
-                <button onClick={() => setVisible(!visible)}>Change view</button>
+                <form>
+                    <button style={{ background: 'lightblue' }} onClick={ClickHandle}>Change view</button>
+                </form>
                 <Line options={options} data={data} />
-                <a href='https://gml.noaa.gov/ccgg/trends/data.html'>Dataset source</a><br/>
+                <a href='https://gml.noaa.gov/ccgg/trends/data.html'>Dataset source</a><br />
                 <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>Description source</a>
             </div>
         </div>
