@@ -186,7 +186,7 @@ function V1() {
         </form>
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
         <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a><br />
-        <Link to='/V2desc'>V2 description</Link>
+        <em>The official name for V2's data is "2,000-Year Northern Hemisphere Temperature". The graph shows reconstructed northern hemisphere temperatures for the past 2,000 years with purple color. Just like in V1 (other labels), it visualizes the temperature in relation to time.</em>
       </div>
     </div>
   );
