@@ -68,7 +68,7 @@ export default function SignupView() {
                 </div>
                 <div>
                     Password <br />
-                    <input type="text" name="password" />
+                    <input type="password" name="password" />
                 </div>
                 <div>
                     { signupUIControls }
