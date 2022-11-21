@@ -45,7 +45,7 @@ export default function LoginView(props) {
         </div>
         <div>
           Password<br />
-          <input type="text" name="password" />
+          <input type="password" name="password" />
         </div>
         <div>
           <button type="submit">Login</button>
