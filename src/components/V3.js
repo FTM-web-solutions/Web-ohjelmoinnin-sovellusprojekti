@@ -94,7 +94,7 @@ function V3() {
         <div className="V3">
             <div style={{ width: "75%" }}>
                 <form>
-                    <button style={{ background: 'lightblue' }} onClick={ClickHandle}>Change view</button>
+                    <button className="Buttons" onClick={ClickHandle}>Change View</button>
                 </form>
                 <Line options={options} data={data} />
                 <a href='https://gml.noaa.gov/ccgg/trends/data.html'>Dataset source</a><br />
