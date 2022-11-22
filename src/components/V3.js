@@ -8,8 +8,7 @@ const URL = 'http://localhost:3001/v3'
 
 function V3() {
     const [maunaData, setmaunaData] = useState([])
-
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState();
 
     useEffect(() => {
         axios.get(URL)
@@ -79,9 +78,16 @@ function V3() {
 
     }
 
+    var first_click = true;
     const ClickHandle = event => {
-        event.preventDefault()
-        setVisible()
+        if (first_click) {
+            event.preventDefault()
+            setVisible(true)
+            first_click = false;
+        } else {
+            event.preventDefault()
+            setVisible(false)
+        }
     }
 
     return (

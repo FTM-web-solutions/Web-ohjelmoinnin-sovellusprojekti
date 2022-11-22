@@ -11,8 +11,7 @@ const URL2 = 'http://localhost:3001/v2'
 function V1() {
   const [crutData, setcrutData] = useState([])
   const [nhemisphereData, setnhemisphereData] = useState([])
-  const [b1, setb1] = useState(true);
-  const [b2, setb2] = useState(true);
+  const [visible, setVisible] = useState();
 
   useEffect(() => {
     axios.get(URL)
@@ -61,8 +60,7 @@ function V1() {
           yAxisKey: 'T'
         },
         pointRadius: 1,
-        b1,
-        hidden: b2
+        hidden: visible
       },
 
       {
@@ -162,14 +160,17 @@ function V1() {
       }
     },
   };
-
-  const v2ClickHandle1 = event => {
-    event.preventDefault()
-    setb1()
-  }
-  const v2ClickHandle2 = event => {
-    event.preventDefault()
-    setb2()
+  
+  var first_click = true;
+  const ClickHandle = event => {
+    if (first_click) {
+      event.preventDefault()
+      setVisible(true)
+      first_click = false;
+    } else {
+      event.preventDefault()
+      setVisible(false)
+    }
   }
 
   return (
@@ -178,11 +179,10 @@ function V1() {
       <p>
         This chart is about global historical surface temperature anomalies from january 1850 onwards...
       </p>
-      <div className="V1" style={{ width: "50%" }} >
+      <div className="V1" style={{ width: "65%" }} >
         <Line options={options} data={data} />
         <form>
-          <button style={{ background: 'lightblue' }} onClick={!v2ClickHandle1}>V2-OFF</button>
-          <button style={{ background: 'lightblue' }} onClick={v2ClickHandle2}>V2-ON</button>
+          <button style={{ background: 'lightblue' }} onClick={ClickHandle}>V2Toggle</button>
         </form>
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
         <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a><br />
