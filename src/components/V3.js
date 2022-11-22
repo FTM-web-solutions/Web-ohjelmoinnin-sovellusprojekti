@@ -9,6 +9,7 @@ const URL = 'http://localhost:3001/v3'
 function V3() {
     const [maunaData, setmaunaData] = useState([])
     const [visible, setVisible] = useState();
+    const [timetype, settimetype] = useState();
 
     useEffect(() => {
         axios.get(URL)
@@ -71,7 +72,7 @@ function V3() {
             x: {
                 type: 'time',
                 time: {
-                    unit: 'year'
+                    unit: timetype,
                 },
             }
         },
@@ -84,9 +85,11 @@ function V3() {
             event.preventDefault()
             setVisible(true)
             first_click = false;
+            settimetype("month");
         } else {
             event.preventDefault()
             setVisible(false)
+            settimetype("year");
         }
     }
 

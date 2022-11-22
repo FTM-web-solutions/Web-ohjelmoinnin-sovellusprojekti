@@ -8,18 +8,8 @@ const URL = 'http://localhost:3001/v5'
 
 function V5() {
 
-    // const [vostokData, setvostokData] = useState([])
     const [Age, setAge] = useState([])
     const [Co2, setCo2] = useState([])
-
-    // useEffect(() => {
-    //   axios.get(URL)
-    //   .then((response)=>{
-    //     setvostokData(response.data)
-    //   }).catch(error=>{
-    //     alert(error.response.data.error)
-    //   })
-    // }, [])
 
     useEffect(() => {
       try {
