@@ -104,7 +104,7 @@ function V1() {
           yAxisKey: 'T'
         },
         pointRadius: 1,
-        hidden: visible
+        hidden: !visible
       },
 
       {
