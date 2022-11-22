@@ -29,51 +29,51 @@ function V1() {
   useEffect(() => {
     try {
       axios.get(URL)
-      .then((response) =>{
+        .then((response) => {
 
-        let v1MonthsArray = response.data.map(hadcrut=>hadcrut.Months);
-        setv1Months(v1MonthsArray);
+          let v1MonthsArray = response.data.map(hadcrut => hadcrut.Months);
+          setv1Months(v1MonthsArray);
 
-        let aGlobalCArray = response.data.map(hadcrut=>hadcrut.AnnualGlobalC);
-        setaGlobalC(aGlobalCArray);
+          let aGlobalCArray = response.data.map(hadcrut => hadcrut.AnnualGlobalC);
+          setaGlobalC(aGlobalCArray);
 
-        let aNorthCArray = response.data.map(hadcrut=>hadcrut.AnnualNorthC);
-        setaNorthC(aNorthCArray);
+          let aNorthCArray = response.data.map(hadcrut => hadcrut.AnnualNorthC);
+          setaNorthC(aNorthCArray);
 
-        let aSouthCArray = response.data.map(hadcrut=>hadcrut.AnnualSouthC);
-        setaSouthC(aSouthCArray);
+          let aSouthCArray = response.data.map(hadcrut => hadcrut.AnnualSouthC);
+          setaSouthC(aSouthCArray);
 
-        let mGlobalCArray = response.data.map(hadcrut=>hadcrut.MonthlyGlobalC);
-        setmGlobalC(mGlobalCArray);
+          let mGlobalCArray = response.data.map(hadcrut => hadcrut.MonthlyGlobalC);
+          setmGlobalC(mGlobalCArray);
 
-        let mNorthCArray = response.data.map(hadcrut=>hadcrut.MonthlyNorthC);
-        setmNorthC(mNorthCArray);
+          let mNorthCArray = response.data.map(hadcrut => hadcrut.MonthlyNorthC);
+          setmNorthC(mNorthCArray);
 
-        let mSouthCArray = response.data.map(hadcrut=>hadcrut.MonthlySouthC);
-        setmSouthC(mSouthCArray);
+          let mSouthCArray = response.data.map(hadcrut => hadcrut.MonthlySouthC);
+          setmSouthC(mSouthCArray);
 
-      });
+        });
     } catch (error) {
       console.log(error)
     }
-}, [])
+  }, [])
 
   useEffect(() => {
     try {
       axios.get(URL2)
-      .then((response) =>{
+        .then((response) => {
 
-        let v2YearsArray = response.data.map(v2=>v2.Year);
-        setv2Years(v2YearsArray);
+          let v2YearsArray = response.data.map(v2 => v2.Year);
+          setv2Years(v2YearsArray);
 
-        let TArray = response.data.map(v2=>v2.T);
-        setT(TArray);
+          let TArray = response.data.map(v2 => v2.T);
+          setT(TArray);
 
-      });
+        });
     } catch (error) {
       console.log(error)
     }
-}, [])
+  }, [])
 
   const data = {
     labels: v1Months,
@@ -201,7 +201,7 @@ function V1() {
         time: {
           unit: "month"
         }
-        },
+      },
     },
   };
 
@@ -221,8 +221,8 @@ function V1() {
     <div className='V1'>
       <h3>Hadcrut temperature data</h3>
       <p>
-        This chart is about global historical surface temperature anomalies from january 1850 onwards...<br/>
-        The official name for V2's data is "2,000-Year Northern Hemisphere Temperature". The graph shows reconstructed northern hemisphere temperatures for the past 2,000 years with purple color.<br/> Just like in V1 (other labels), it visualizes the temperature in relation to time.
+        This chart is about global historical surface temperature anomalies from january 1850 onwards...<br />
+        The official name for V2's data is "2,000-Year Northern Hemisphere Temperature". The graph shows reconstructed northern hemisphere temperatures for the past 2,000 years with purple color.<br /> Just like in V1 (other labels), it visualizes the temperature in relation to time.
       </p>
       <div className="V1" style={{ width: "65%" }} >
         <Line options={options} data={data} />
