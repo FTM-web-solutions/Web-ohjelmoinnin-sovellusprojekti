@@ -9,9 +9,8 @@ const URL = 'http://localhost:3001/'
 const URL2 = 'http://localhost:3001/v2'
 
 function V1() {
-  const [visible, setVisible] = useState();
-  // const [xAxisTime, setxAxisTime] = useState([])
-  // const [type, settype] = useState()
+  const [v1State, setv1State] = useState(true)
+  const [v2State, setv2State] = useState(true)
 
   const [v1Months, setv1Months] = useState([])
   const [v2Years, setv2Years] = useState([])
@@ -85,6 +84,7 @@ function V1() {
         borderColor: "black",
         backgroundColor: "white",
         yAxisID: "C",
+        hidden: v1State,
         parsing: {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
@@ -99,12 +99,12 @@ function V1() {
         borderColor: "purple",
         backgroundColor: "white",
         yAxisID: "C",
+        hidden: v2State,
         parsing: {
           xAxisKey: 'Year',
           yAxisKey: 'T'
         },
         pointRadius: 1,
-        hidden: !visible
       },
 
       {
@@ -114,6 +114,7 @@ function V1() {
         borderColor: "blue",
         backgroundColor: "white",
         yAxisID: "C",
+        hidden: v1State,
         parsing: {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
@@ -128,6 +129,7 @@ function V1() {
         borderColor: "red",
         backgroundColor: "white",
         yAxisID: "C",
+        hidden: v1State,
         parsing: {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
@@ -140,6 +142,7 @@ function V1() {
         borderColor: "black",
         backgroundColor: "white",
         yAxisID: "C",
+        hidden: !v1State,
         parsing: {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
@@ -152,6 +155,7 @@ function V1() {
         borderColor: "blue",
         backgroundColor: "white",
         yAxisID: "C",
+        hidden: !v1State,
         parsing: {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
@@ -164,6 +168,7 @@ function V1() {
         borderColor: "red",
         backgroundColor: "white",
         yAxisID: "C",
+        hidden: !v1State,
         parsing: {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
@@ -205,17 +210,22 @@ function V1() {
     },
   };
 
-  var first_click = true;
-  const ClickHandle = event => {
-    if (first_click) {
-      event.preventDefault()
-      setVisible(true)
-      first_click = false;
-    } else {
-      event.preventDefault()
-      setVisible(false)
-    }
+  var v2_click = true;
+  const v2Handle = event => {
+      if (v2_click) {
+          event.preventDefault()
+          setv2State(!v2State)
+      }
   }
+
+  var v1_click = true;
+  const v1Handle = event => {
+      if (v1_click) {
+          event.preventDefault()
+          setv1State(!v1State)
+      }
+  }
+
 
   return (
     <div className='V1'>
@@ -227,7 +237,9 @@ function V1() {
       <div className="V1" style={{ width: "65%" }} >
         <Line options={options} data={data} />
         <form>
-          <button className="Buttons" onClick={ClickHandle}>V2Toggle</button>
+          <button className="Buttons" onClick={v1Handle}>Change view</button>
+          <button className="Buttons" onClick={v2Handle}>V2Toggle</button>
+
         </form>
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
         <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a><br />

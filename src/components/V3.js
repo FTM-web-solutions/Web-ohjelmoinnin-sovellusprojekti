@@ -10,8 +10,8 @@ const URL2 =  'http://localhost:3001/v4'
 function V3() {
     const [maunaData, setmaunaData] = useState([])
     const [iceData, seticeData] = useState([])
-    const [visible, setVisible] = useState();
-    const [timetype, settimetype] = useState();
+    const [v4State, setv4State] = useState(true)
+    const [v3State, setv3State] = useState(true)
 
     useEffect(() => {
         axios.get(URL)
@@ -24,7 +24,7 @@ function V3() {
 
                 }
                 setmaunaData(response.data)
-                console.log(response.data);
+                console.log("veeeeeee kolmonen",response.data);
             }).catch(error => {
                 alert(error.response.data.error)
             })
@@ -38,6 +38,7 @@ function V3() {
             alert(error.response.data.error)
           })
       }, [])
+      
 
     const data = {
         datasets: [
@@ -46,7 +47,7 @@ function V3() {
                 data: maunaData,
                 spanGaps: true,
                 borderColor: "blue",
-                hidden: visible,
+                hidden: !v3State,
                 parsing: {
                     xAxisKey: 'year',
                     yAxisKey: 'mean'
@@ -58,7 +59,7 @@ function V3() {
                 data: maunaData,
                 spanGaps: true,
                 borderColor: "red",
-                hidden: !visible,
+                hidden: v3State,
                 parsing: {
                     xAxisKey: 'month',
                     yAxisKey: 'average'
@@ -70,7 +71,7 @@ function V3() {
                 data: iceData,
                 spanGaps: true,
                 borderColor: "green",
-                hidden: visible,
+                hidden: v4State,
                 parsing: {
                     xAxisKey: 'yearDE08',
                     yAxisKey: 'Co2MixRatioDE08'
@@ -82,7 +83,7 @@ function V3() {
                 data: iceData,
                 spanGaps: true,
                 borderColor: "yellow",
-                hidden: visible,
+                hidden: v4State,
                 parsing: {
                     xAxisKey: 'yearDE082',
                     yAxisKey: 'Co2MixRatioDE082'
@@ -94,7 +95,7 @@ function V3() {
                 data: iceData,
                 spanGaps: true,
                 borderColor: "purple",
-                hidden: visible,
+                hidden: v4State,
                 parsing: {
                     xAxisKey: 'yearDSS',
                     yAxisKey: 'Co2MixRatioDSS'
@@ -128,28 +129,30 @@ function V3() {
             x: {
                 type: 'time',
                 time: {
-                    unit: timetype,
+                    unit: "month",
                 },
                 title: {
                     display: true,
-                    text: "Years"
+                    text: "Time (monthly)"
                 }
             }
         },
 
     }
 
-    var first_click = true;
-    const ClickHandle = event => {
-        if (first_click) {
+    var v4_click = true;
+    const v4Handle = event => {
+        if (v4_click) {
             event.preventDefault()
-            setVisible(true)
-            first_click = false;
-            settimetype("month");
-        } else {
+            setv4State(!v4State)
+        }
+    }
+
+    var v3_click = true;
+    const v3Handle = event => {
+        if (v3_click) {
             event.preventDefault()
-            setVisible(false)
-            settimetype("year");
+            setv3State(!v3State)
         }
     }
 
@@ -157,7 +160,8 @@ function V3() {
         <div className="V3">
             <div style={{ width: "75%" }}>
                 <form>
-                    <button className="Buttons" onClick={ClickHandle}>Change View</button>
+                    <button className="Buttons" onClick={v4Handle}>Show v4</button>  
+                    <button className="Buttons" onClick={v3Handle}>Change view</button>
                 </form>
                 <Line options={options} data={data} />
                 <a href='https://gml.noaa.gov/ccgg/trends/data.html'>Dataset source</a><br />
