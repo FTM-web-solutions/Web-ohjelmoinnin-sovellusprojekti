@@ -3,6 +3,7 @@ import V1 from './V1'
 import V3 from './V3'
 import V5 from './V5'
 import V6 from './V6'
+import V7 from './V7'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <V3/><br/>
         <V5/><br/>
         <V6/><br/>
+        <V7/><br/>
     </div>
     </form>
   )
