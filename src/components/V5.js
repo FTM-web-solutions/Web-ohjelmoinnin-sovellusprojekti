@@ -83,7 +83,7 @@ function V5() {
       <h3>Vostok ice core CO2 measurements</h3>
       <p>Line graph of atmospheric carbon dioxide concentrations based on ice drilling conducted at Vostok station in the Soviet Antarctic.
          Time period ~400000 years...</p>
-    <div className='V5' style={{ width: "50%"}}>
+    <div className='V5' style={{ width: "60%"}}>
         <Line options={options} data={data} />
         <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2'>Dataset source</a><br/>
         <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html'>Description source</a>

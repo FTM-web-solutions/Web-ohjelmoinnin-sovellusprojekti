@@ -78,7 +78,7 @@ function V6() {
       A line graph of atmospheric carbon dioxide concentrations based on a combined study of ice cores in the southern hemisphere.
       Time period ~800000 years...
       </p>
-    <div className='V6' style={{ width: "50%"}}>
+    <div className='V6' style={{ width: "60%"}}>
         <Line options={options} data={data} />
         <a href='https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt'>Dataset source</a><br/>
         <a href='https://www.ncei.noaa.gov/access/paleo-search/study/17975'>Description source</a>

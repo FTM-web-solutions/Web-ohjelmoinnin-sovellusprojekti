@@ -158,7 +158,7 @@ function V3() {
 
     return (
         <div className="V3">
-            <div style={{ width: "75%" }}>
+            <div style={{ width: "60%" }}>
                 <form>
                     <button className="Buttons" onClick={v4Handle}>Show v4</button>  
                     <button className="Buttons" onClick={v3Handle}>Change view</button>
