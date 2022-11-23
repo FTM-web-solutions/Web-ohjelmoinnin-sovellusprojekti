@@ -5,9 +5,11 @@ import { Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
 
 const URL = 'http://localhost:3001/v3'
+const URL2 =  'http://localhost:3001/v4'
 
 function V3() {
     const [maunaData, setmaunaData] = useState([])
+    const [iceData, seticeData] = useState([])
     const [visible, setVisible] = useState();
 
     useEffect(() => {
@@ -27,10 +29,19 @@ function V3() {
             })
     }, [])
 
+    useEffect(() => {
+        axios.get(URL2)
+          .then((response) => {
+            seticeData(response.data)
+          }).catch(error => {
+            alert(error.response.data.error)
+          })
+      }, [])
+
     const data = {
         datasets: [
             {
-                label: "CO2 annual mean data",
+                label: "Annual mean data",
                 data: maunaData,
                 spanGaps: true,
                 borderColor: "blue",
@@ -42,7 +53,7 @@ function V3() {
             },
 
             {
-                label: "CO2 monthly mean data",
+                label: "Monthly mean data",
                 data: maunaData,
                 spanGaps: true,
                 borderColor: "red",
@@ -51,7 +62,43 @@ function V3() {
                     xAxisKey: 'month',
                     yAxisKey: 'average'
                 },
-            }
+            },
+
+            {
+                label: "DE08",
+                data: iceData,
+                spanGaps: true,
+                borderColor: "green",
+                hidden: visible,
+                parsing: {
+                    xAxisKey: 'yearDE08',
+                    yAxisKey: 'Co2MixRatioDE08'
+                },
+            },
+
+            {
+                label: "DE082",
+                data: iceData,
+                spanGaps: true,
+                borderColor: "yellow",
+                hidden: visible,
+                parsing: {
+                    xAxisKey: 'yearDE082',
+                    yAxisKey: 'Co2MixRatioDE082'
+                },
+            },
+
+            {
+                label: "DSS",
+                data: iceData,
+                spanGaps: true,
+                borderColor: "purple",
+                hidden: visible,
+                parsing: {
+                    xAxisKey: 'yearDSS',
+                    yAxisKey: 'Co2MixRatioDSS'
+                },
+            },
         ]
     };
 
@@ -64,15 +111,28 @@ function V3() {
             },
             title: {
                 display: true,
-                text: "Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958",
+                text: "Atmospheric CO2 concentrations from Mauna Loa measurements",
             },
         },
         scales: {
+            C: {
+                type: "linear", 
+                display: true,
+                position: "right",
+                title: {
+                  display: true,
+                  text: "Mean data"
+                },
+              },
             x: {
                 type: 'time',
                 time: {
                     unit: 'year'
                 },
+                title: {
+                    display: true,
+                    text: "Years"
+                }
             }
         },
 
@@ -98,7 +158,10 @@ function V3() {
                 </form>
                 <Line options={options} data={data} />
                 <a href='https://gml.noaa.gov/ccgg/trends/data.html'>Dataset source</a><br />
-                <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>Description source</a>
+                <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>Description source</a><br />
+                <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html'> V4 Description source</a><br />
+                <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets source</a>
+
             </div>
         </div>
     );

@@ -79,6 +79,18 @@ app.get("/v3",async function (req,res)    {
     }
 })
 
+app.get("/v4",async function (req,res)    {
+  try {
+      const connection = await mysql.createConnection(config.db)
+      const[result,] = await connection.execute('select * from v4')
+      
+      if (!result) result=[]
+      res.status(200).json(result)
+  }   catch(err) {
+      res.status(500).json({error: err.message})
+  }
+})
+
 app.get("/user",async function (req,res)    {
     try {
         const connection = await mysql.createConnection(config.db)
