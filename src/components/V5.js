@@ -8,86 +8,86 @@ const URL = 'http://localhost:3001/v5'
 
 function V5() {
 
-    const [Age, setAge] = useState([])
-    const [Co2, setCo2] = useState([])
+  const [Age, setAge] = useState([])
+  const [Co2, setCo2] = useState([])
 
-    useEffect(() => {
-      try {
-        axios.get(URL)
-        .then((response) =>{
-          let ageArray = response.data.map(v5=>v5.age_of_ice);
+  useEffect(() => {
+    try {
+      axios.get(URL)
+        .then((response) => {
+          let ageArray = response.data.map(v5 => v5.age_of_ice);
           setAge(ageArray);
 
-          let co2Array = response.data.map(v5=>v5.co2_ppmv);
+          let co2Array = response.data.map(v5 => v5.co2_ppmv);
           setCo2(co2Array);
         });
-      } catch (error) {
-        console.log(error)
-      }
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
-    
-    
-    const data = {
-      labels: Age,
-      datasets: [
-        {
-          label: "CO2 concentration",
-          data: Co2,
-          borderColor: "red",
-          backgroundColor: "white",
-          yAxisID: "y",
-          parsing: {
-            xAxisKey: "TimeYrBP",
-            yAxisKey: "Co2ppm",
-          },
+
+
+  const data = {
+    labels: Age,
+    datasets: [
+      {
+        label: "CO2 concentration",
+        data: Co2,
+        borderColor: "red",
+        backgroundColor: "white",
+        yAxisID: "y",
+        parsing: {
+          xAxisKey: "TimeYrBP",
+          yAxisKey: "Co2ppm",
         },
-      ],
-    };
-    const options = {
-      reponsive: true,
-      plugins: {
-        legend: {
-          position: "top",
-        },
+      },
+    ],
+  };
+  const options = {
+    reponsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Historical CO2 Record from the Vostok Ice Core, 417160 - 2342 years BP",
+      },
+    },
+    scales: {
+      y: {
+        type: "linear",
+        position: "right",
+        min: 180,
+        max: 300,
         title: {
           display: true,
-          text: "Historical CO2 Record from the Vostok Ice Core, 417160 - 2342 years BP",
+          text: "CO2 concentration"
         },
       },
-      scales: {
-        y: {
-          type: "linear",
-          position: "right",
-          min: 180,
-          max: 300,
-          title: {
-            display: true,
-            text: "CO2 concentration"
-          },
-        },
-        x: {
-          reverse: true,
-          type: "linear",
-          min: 0,
-          max: 425000,
-          title: {
-            display: true,
-            text: "Years Before Present",
-          },
+      x: {
+        reverse: true,
+        type: "linear",
+        min: 0,
+        max: 425000,
+        title: {
+          display: true,
+          text: "Years Before Present",
         },
       },
-    };
+    },
+  };
 
   return (
     <div className='V5text'>
       <h3>Vostok ice core CO2 measurements</h3>
       <p>Line graph of atmospheric carbon dioxide concentrations based on ice drilling conducted at Vostok station in the Soviet Antarctic.
-         Time period ~400000 years...</p>
-    <div className='V5' style={{ width: "60%"}}>
+        Time period ~400000 years...</p>
+      <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2'>Dataset source</a><br />
+      <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html'>Description source</a>
+      <div className='V5' style={{ width: "60%" }}>
         <Line options={options} data={data} />
-        <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2'>Dataset source</a><br/>
-        <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html'>Description source</a>
-    </div>
+      </div>
     </div>
   )
 }

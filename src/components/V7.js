@@ -12,7 +12,7 @@ function V7() {
     const [co2_ppmv, setco2_ppmv] = useState([])
     //const [mean_co2_ppmv, setmean_co2_ppmv] = useState([])
     const [v7, setv7] = useState([])
-    const [age_gas, setAge_gas] = useState([]);
+    const [age_gas, setage_gas] = useState([]);
 
     useEffect(() => {
         try {
@@ -26,7 +26,7 @@ function V7() {
                     setmean_co2_ppmv(mean_co2_ppmvArray);*/
 
                     let age_gasArray = response.data.map(v6 => v6.age_gas);
-                    setAge_gas(age_gasArray);
+                    setage_gas(age_gasArray);
 
                 });
         } catch (error) {
@@ -70,7 +70,7 @@ function V7() {
         scales: {
             y1: {
                 position: 'right',
-                min: -5,
+                min: -10,
                 max: 15,
                 title: {
                     display: true,
@@ -107,17 +107,19 @@ function V7() {
                 data: v7,
                 showLine: true,
                 borderColor: 'blue',
-                borderWidth: 2,
-                yAxisID: 'y1',
-                xAxisID: 'x1'
+                backgroundColor: "white",
+                parsing: {
+                    yAxisID: 'y1',
+                    xAxisID: 'x1'
+                }
             },
             {
                 label: "C02 measurements from the 800k year period",
                 data: co2_ppmv,
                 showLine: true,
                 borderColor: 'red',
-                borderWidth: 2,
-                yAxisID: 'y2',
+                backgroundColor: "white",
+                yAxisID: 'y2'
             },
             /*
             {
@@ -125,7 +127,10 @@ function V7() {
                 data: mean_co2_ppmv,
                 showLine: true,
                 borderColor: 'purple',
-                borderWidth: 2,
+                backgroundColor: "white",
+                parsing: {
+
+                }
             },
             */
         ]
