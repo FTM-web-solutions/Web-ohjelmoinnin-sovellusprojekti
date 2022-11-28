@@ -2,6 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "devStart": "nodemon index.js",
     "devRun": "nodemon login.js",

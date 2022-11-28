@@ -1,15 +1,35 @@
-const express = require('express')
-const cors = require('cors')
-const mysql = require('mysql2/promise')
-const config = require('./config')
+// const express = require('express')
+// const cors = require('cors')
+import mysql from "mysql2/promise";
+import config from "./config.js";
+
+import express from "express";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import db from "./config/Database.js";
+import router from "./routes/index.js";
+dotenv.config();
 
 const app = express()
 
-app.use(cors())
-app.use(express.json())
+// app.use(cors())
+// app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
+app.use(cors({ credentials:true, origin:'http://localhost:3000' }));
+app.use(cookieParser());
+app.use(express.json());
+app.use(router);
+
 const port = 3001
+
+try {
+    await db.authenticate();
+    console.log('Database Connected...');
+} catch (error) {
+    console.error(error);
+}
 
 //GET Visualizations here
 
