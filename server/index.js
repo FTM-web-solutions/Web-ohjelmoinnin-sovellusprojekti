@@ -3,12 +3,6 @@ const cors = require('cors')
 const mysql = require('mysql2/promise')
 const config = require('./config')
 
-const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
-
-const todos = require('./services/todos');
-const users = require('./services/users');
-
 const app = express()
 
 app.use(cors())
@@ -104,6 +98,18 @@ app.get("/v4",async function (req,res)    {
   }
 })
 
+app.get("/v8",async function (req,res)    {
+  try {
+      const connection = await mysql.createConnection(config.db)
+      const[result,] = await connection.execute('select * from v8')
+      
+      if (!result) result=[]
+      res.status(200).json(result)
+  }   catch(err) {
+      res.status(500).json({error: err.message})
+  }
+})
+
 app.get("/user",async function (req,res)    {
     try {
         const connection = await mysql.createConnection(config.db)
@@ -115,3 +121,5 @@ app.get("/user",async function (req,res)    {
         res.status(500).json({error: err.message})
     }
 })
+  
+  app.listen(port, () => console.log(`Example app listening on port ${port}!`))
