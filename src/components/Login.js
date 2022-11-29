@@ -7,6 +7,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
 
     const Auth = async (e) => {
@@ -18,11 +19,14 @@ const Login = () => {
             });
             // navigate('/loginforuser', { replace: true });
             navigate('/dashboard', { replace: true });
+            setIsLoggedIn(true)
+            console.log(setIsLoggedIn)
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
             }
         }
+        
     }
 
     return (
@@ -49,7 +53,7 @@ const Login = () => {
                                     <button className="button is-success is-fullwidth">Login</button>
                                 </div>
                                 <div className="field mt-5">
-                                    <Link to="/register">Sign up</Link><br />
+                                    <Link to="/register">Signup</Link><br />
                                 </div>
                             </form>
                         </div>

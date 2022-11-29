@@ -57,10 +57,21 @@ const Dashboard = () => {
         setUsers(response.data);
     }
 
+    // const logOut = async () => {
+    //     try {
+    //         const response = await axios.get('http://localhost:3001/token');
+    //         const decoded = jwt_decode(response.data.accessToken);
+    //         console.log(decoded);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
     return (
         <div className="container mt-5">
             <h1>Welcome Back: {name}</h1>
             <button onClick={getUsers} className="button is-info">Get Users</button>
+            {/* <button onClick={logOut} className="button">Logout</button> */}
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>
