@@ -45,6 +45,11 @@ function V5() {
   };
   const options = {
     reponsive: true,
+    elements: {
+      point: {
+        radius: 1
+      }
+    },
     plugins: {
       legend: {
         position: "top",
@@ -69,7 +74,7 @@ function V5() {
         reverse: true,
         type: "linear",
         min: 0,
-        max: 425000,
+        max: 200000,
         title: {
           display: true,
           text: "Years Before Present",
