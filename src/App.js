@@ -4,15 +4,13 @@ import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
-// import NotFound from './components/NotFound';
-// import Footer from './components/Footer';
+import NotFound from './components/NotFound';
+import Footer from './components/Footer';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
 import { Routes, Route } from 'react-router-dom';
-// import Login from './components/LoginHome';
-// import LoginHome from './components/LoginHome';
-// import LoginView from './components/LoginView'
-// import SignupView from './components/SignupView'
-// import ProtectedView from './components/ProtectedView'
-// import { useState } from 'react';
+import { useState } from 'react';
 
 // const jwtFromStorage = window.localStorage.getItem('appAuthData')
 
@@ -43,9 +41,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/login" element={<LoginHome userLoggedIn={userJwt != null}/>} />
-         { authRoutes } 
-        <Route path="*" element={<LoginHome userLoggedIn={userJwt != null} />} /> */}
+        <Route path="/login" element={<Login />} /> 
+        <Route path="/register" element={<Register/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
+        {/* <Route path="*" element={<LoginHome />} /> */}
       </Routes>
     {/* <Footer /> */}
     </>
