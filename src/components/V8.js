@@ -10,11 +10,11 @@ function V8() {
     const [V8Data, setV8Data] = useState([]);
     const [V8Years, setV8Years] = useState([]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         try {
             axios.get(URL)
                 .then((response) => {
-                    //let V8DataArray = response.data.map(v8 => v8.Democratic_Republic_of_the_Congo);
+                    //let V8DataArray = response.data.map(v8 => v8.Finland);
                     //setV8Data(V8DataArray);
                     setV8Data(response.data);
                     let TempYears = response.data.map(v8 => v8.Year);
@@ -23,9 +23,9 @@ function V8() {
         } catch (error) {
             console.log(error)
         }
-    }, [])
+    }, [])*/
 
-    /*useEffect(() => {
+    useEffect(() => {
         axios.get(URL)
             .then((response) => {
                 console.log(response.data)
@@ -37,50 +37,51 @@ function V8() {
                 let TempYears = response.data.map(v8 => v8.Year);
                 setV8Years(TempYears);
                 setV8Data(response.data);
-                console.log("veeeeeee kasi", response.data);
+                console.log("veee kasi", response.data);
             }).catch(error => {
                 alert(error.response.data.error)
             })
-    }, [])*/
+    }, [])
 
     /*const data = {
         labels: V8Years,
         datasets: [
             {
-                label: "V8 CO2 emissions by country",
+                label: "C02 emissions by country",
                 data: V8Data,
-                showLine: true,
-                spanGaps: true,
-                borderColor: 'black',
-                backgroundColor: "white",
-                parsing: {
-                    xAxisKey: 'year',
-                    yAxisKey: 'y'
-                },
+                yAxisKey: 'y'
             },
         ]
     }*/
 
     const options = {
-        animation: false,
-        borderColor: 'darkred',
         spanGaps: true,
-        showLine: false,
+        showLine: true,
+        responsive: true,
         interaction: {
             mode: 'index',
             intersect: false,
         },
+
         elements: {
             point: {
                 radius: 0
             }
         },
-        responsive: true,
+
         scales: {
-            y: {
+            yAxisKey: {
+                position: 'left',
                 stacked: true,
+                min: 0,
+                max: 40000,
+                title: {
+                    display: true,
+                    text: "MtC02yr",
+                }
             },
         },
+
         layout: {
             padding: 20
         },
@@ -90,20 +91,28 @@ function V8() {
             },
             title: {
                 display: true,
-                text: "V8 C02 emissions by country",
+                text: "C02 emissions by country",
             },
         }
     };
 
     return (
-        <div className='V8' style={{ width: "60%" }}>
-            <Line
-                options={options}
-                data={{
-                    labels: V8Years,
-                    datasets: V8Data,
-                }}
-            />
+        <div className='V8text'>
+            <h3>C02 emissions by country</h3>
+            <p>
+                ...
+            </p>
+            <div className='V8' style={{ width: "60%" }}>
+                <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">Description source<br /></a>
+                <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Dataset source</a>
+                <Line
+                    options={options}
+                    data={{
+                        labels: V8Years,
+                        datasets: V8Data
+                    }}
+                />
+            </div>
         </div>
     )
 }

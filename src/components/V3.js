@@ -21,7 +21,6 @@ function V3() {
                     if (response.data[i].year != null) {
                         response.data[i].year = response.data[i].year.toString();
                     }
-
                 }
                 setmaunaData(response.data)
                 console.log("veeeeeee kolmonen", response.data);
@@ -105,7 +104,6 @@ function V3() {
     };
 
     const options = {
-
         responsive: true,
         plugins: {
             legend: {
@@ -137,7 +135,6 @@ function V3() {
                 }
             }
         },
-
     }
 
     var v4_click = true;
