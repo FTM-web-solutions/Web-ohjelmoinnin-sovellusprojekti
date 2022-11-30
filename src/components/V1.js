@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Chart } from "chart.js/auto";
+import { Chart, TimeScale } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
 import { Link } from 'react-router-dom';
@@ -89,7 +89,6 @@ function V1() {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
         },
-        pointRadius: 1,
       },
 
       {
@@ -104,7 +103,6 @@ function V1() {
           xAxisKey: 'Year',
           yAxisKey: 'T'
         },
-        pointRadius: 1,
       },
 
       {
@@ -119,7 +117,6 @@ function V1() {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
         },
-        pointRadius: 1,
       },
 
       {
@@ -134,8 +131,8 @@ function V1() {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
         },
-        pointRadius: 1,
       },
+
       {
         label: "Monthly Global Degrees",
         data: mGlobalC,
@@ -147,8 +144,8 @@ function V1() {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
         },
-        pointRadius: 1,
       },
+
       {
         label: "Monthly Northern Degreens",
         data: mNorthC,
@@ -160,8 +157,8 @@ function V1() {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
         },
-        pointRadius: 1,
       },
+
       {
         label: "Monthly Southern Degrees",
         data: mSouthC,
@@ -173,13 +170,17 @@ function V1() {
           xAxisKey: "Months",
           yAxisKey: "Celsius",
         },
-        pointRadius: 1,
       },
     ],
   };
 
   const options = {
     responsive: true,
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
     plugins: {
       legend: {
         position: "top",
@@ -240,8 +241,8 @@ function V1() {
         <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a>
         <Line options={options} data={data} />
         <form>
+          <button className="Buttons" onClick={v2Handle}>Show V2</button>
           <button className="Buttons" onClick={v1Handle}>Change view</button>
-          <button className="Buttons" onClick={v2Handle}>V2Toggle</button>
         </form>
       </div>
     </div>

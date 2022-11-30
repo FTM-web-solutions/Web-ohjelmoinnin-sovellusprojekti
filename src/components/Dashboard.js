@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
+// import { Logout } from '../../server/controllers/Users';
 
-const Dashboard = () => {
+
+const Dashboard = (props) => {
     const [name, setName] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
@@ -21,6 +23,7 @@ const Dashboard = () => {
             const response = await axios.get('http://localhost:3001/token');
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
+            console.log(response.data.accessToken);
             setName(decoded.name);
             setExpire(decoded.exp);
         } catch (error) {
@@ -67,11 +70,21 @@ const Dashboard = () => {
     //     }
     // }
 
+    
+    const Logout = async () => {
+        try {
+            await axios.delete('http://localhost:3001/logout');
+            navigate('/', { replace: true });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="container mt-5">
             <h1>Welcome Back: {name}</h1>
             <button onClick={getUsers} className="button is-info">Get Users</button>
-            {/* <button onClick={logOut} className="button">Logout</button> */}
+            <button onClick={Logout} className="button">Logout</button>
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>

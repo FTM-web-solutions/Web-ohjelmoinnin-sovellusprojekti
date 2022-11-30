@@ -140,7 +140,8 @@ function V7() {
         <div className='V7text'>
             <h3>Evolution of global temperature over the past two million years</h3>
             <p>
-                A multiaxis and combination line chart of the temperature record from the available 2m year period with the available co2 measurements from the previous (atmospheric carbon dioxide concentrations) 800k year period.
+                A multiaxis and combination line chart of the temperature record from the available 2m year period
+                with the available co2 measurements from the previous (atmospheric carbon dioxide concentrations) 800k year period.
             </p>
             <div className='V7' style={{ width: "60%" }}>
                 <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Dataset source</a><br />
