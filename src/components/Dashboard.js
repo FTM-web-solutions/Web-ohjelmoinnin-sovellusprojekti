@@ -80,11 +80,21 @@ const Dashboard = (props) => {
         }
     }
 
+    const deleteUser = async () => {
+        try {
+            await axios.delete('http://localhost:3001/deleteuser');
+            navigate('/', { replace: true });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className="container mt-5">
             <h1>Welcome Back: {name}</h1>
             <button onClick={getUsers} className="button is-info">Get Users</button>
             <button onClick={Logout} className="button">Logout</button>
+            <button onClick={deleteUser} className="button">Delete user</button>
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>
