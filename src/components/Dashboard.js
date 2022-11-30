@@ -15,7 +15,7 @@ const Dashboard = (props) => {
 
     useEffect(() => {
         refreshToken();
-        getUsers();
+        // getUsers();
     }, []);
 
     const refreshToken = async () => {
@@ -51,26 +51,6 @@ const Dashboard = (props) => {
         return Promise.reject(error);
     });
 
-    const getUsers = async () => {
-        const response = await axiosJWT.get('http://localhost:3001/users', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        setUsers(response.data);
-    }
-
-    // const logOut = async () => {
-    //     try {
-    //         const response = await axios.get('http://localhost:3001/token');
-    //         const decoded = jwt_decode(response.data.accessToken);
-    //         console.log(decoded);
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    
     const Logout = async () => {
         try {
             await axios.delete('http://localhost:3001/logout');
@@ -92,28 +72,8 @@ const Dashboard = (props) => {
     return (
         <div className="container mt-5">
             <h1>Welcome Back: {name}</h1>
-            <button onClick={getUsers} className="button is-info">Get Users</button>
             <button onClick={Logout} className="button">Logout</button>
             <button onClick={deleteUser} className="button">Delete user</button>
-            <table className="table is-striped is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map((user, index) => (
-                        <tr key={user.id}>
-                            <td>{index + 1}</td>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                        </tr>
-                    ))}
-
-                </tbody>
-            </table>
         </div>
     )
 }

@@ -11,7 +11,6 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
-    //const [/*isLoggedIn,*/ setIsLoggedIn] = useState(false)
     const navigate = useNavigate();
 
     const Auth = async (e) => {
@@ -33,26 +32,26 @@ const Login = () => {
     
 
     return (
-<body className="text-center">
-<main className="form-signin-w-100-m-auto">
-  <form onSubmit={Auth}>
-    <h1 className="h3 mb-3 fw-normal">Sign in</h1>
+      <body className="text-center">
+        <main className="form-signin-w-100-m-auto">
+          <form onSubmit={Auth}>
+            <h1 className="h3 mb-3 fw-normal">Sign in</h1>
 
-    <div className="form-floating">
-      <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <label for="floatingInput">Email address</label><br></br>
-    </div>
-    <div className="form-floating">
-      <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <label for="floatingPassword">Password</label>
-    </div>
-    <br></br><br></br>
-    <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <Link className="login-link" to="/Register">Create account</Link>
-    
-  </form>
-</main>
-</body>
+            <div className="form-floating">
+              <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <label for="floatingInput">Email address</label><br></br>
+            </div>
+            <div className="form-floating">
+              <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <br></br><br></br>
+            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <Link className="login-link" to="/Register">Create account</Link>
+
+          </form>
+        </main>
+      </body>
 );
 }
 export default Login;
