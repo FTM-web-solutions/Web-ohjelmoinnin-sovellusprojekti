@@ -9529,3 +9529,5 @@ INSERT INTO v9(Sector,Share1,Subsector,Share2,Subsector_Further,Share3) VALUES (
 INSERT INTO v9(Sector,Share1,Subsector,Share2,Subsector_Further,Share3) VALUES (NULL,NULL,NULL,NULL,'Grassland',0.1);
 INSERT INTO v9(Sector,Share1,Subsector,Share2,Subsector_Further,Share3) VALUES (NULL,NULL,NULL,NULL,'Landfills',1.9);
 INSERT INTO v9(Sector,Share1,Subsector,Share2,Subsector_Further,Share3) VALUES (NULL,NULL,NULL,NULL,'Wastewater',1.3);
+
+CREATE TABLE `climate`.`users` ( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` VARCHAR(25) NOT NULL , `email` VARCHAR(64) NOT NULL , `password` VARCHAR(255) NOT NULL , `refresh_token` TEXT NULL , `createdAt` DATETIME NOT NULL , `updatedAt` DATETIME NOT NULL , UNIQUE (`id`, `name`), UNIQUE (`id`, `email`)) ENGINE = InnoDB;
