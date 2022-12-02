@@ -357,7 +357,7 @@ function V8() {
                 }
             },
             {
-                label: 'Burkina_Faso',
+                label: 'Burkina Faso',
                 data: V8Data.map(v8 => v8.Burkina_Faso),
                 borderColor: '#99C68E',
                 backgroundColor: 'white',
@@ -511,7 +511,7 @@ function V8() {
                 }
             },
             {
-                label: 'Côte dIvoire',
+                label: 'Côte d´Ivoire',
                 data: V8Data.map(v8 => v8.Côte_dIvoire),
                 borderColor: '#F5DEB3',
                 backgroundColor: 'white',
@@ -931,7 +931,7 @@ function V8() {
             {
                 label: 'Guyana',
                 data: V8Data.map(v8 => v8.Guyana),
-                borderColor: '#DA70D6',
+                borderColor: '#5985A3',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -942,7 +942,7 @@ function V8() {
             {
                 label: 'Haiti',
                 data: V8Data.map(v8 => v8.Haiti),
-                borderColor: '#FF77FF',
+                borderColor: '#4FB256',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -953,7 +953,7 @@ function V8() {
             {
                 label: 'Honduras',
                 data: V8Data.map(v8 => v8.Honduras),
-                borderColor: '#E238EC',
+                borderColor: '#56646E',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -964,7 +964,7 @@ function V8() {
             {
                 label: 'Hong Kong',
                 data: V8Data.map(v8 => v8.Hong_Kong),
-                borderColor: '#BA55D3',
+                borderColor: '#B6CA47',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -975,7 +975,7 @@ function V8() {
             {
                 label: 'Hungary',
                 data: V8Data.map(v8 => v8.Hungary),
-                borderColor: '#B048B5',
+                borderColor: '#C66D94',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -986,7 +986,7 @@ function V8() {
             {
                 label: 'Iceland',
                 data: V8Data.map(v8 => v8.Iceland),
-                borderColor: '#6A5ACD',
+                borderColor: '#E06F33',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -997,7 +997,7 @@ function V8() {
             {
                 label: 'India',
                 data: V8Data.map(v8 => v8.India),
-                borderColor: '#7B68EE',
+                borderColor: '#27E5AE',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -1008,7 +1008,7 @@ function V8() {
             {
                 label: 'Indonesia',
                 data: V8Data.map(v8 => v8.Indonesia),
-                borderColor: '#6667AB',
+                borderColor: '#F9C0CC',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -1019,7 +1019,7 @@ function V8() {
             {
                 label: 'Iraq',
                 data: V8Data.map(v8 => v8.Iraq),
-                borderColor: '#6F2DA8',
+                borderColor: '#DFB61F',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -1787,7 +1787,7 @@ function V8() {
                 }
             },
             {
-                label: 'South_Sudan',
+                label: 'South Sudan',
                 data: V8Data.map(v8 => v8.South_Sudan),
                 borderColor: '#C04D23',
                 backgroundColor: 'white',
@@ -2372,7 +2372,7 @@ function V8() {
             {
                 label: 'Venezuela',
                 data: V8Data.map(v8 => v8.Venezuela),
-                borderColor: '#255030',
+                borderColor: '#755030',
                 backgroundColor: 'white',
                 fill: false,
                 parsing: {
@@ -2457,15 +2457,15 @@ function V8() {
 
         elements: {
             point: {
-                radius: 0
-            }
+                radius: 0,
+            },
         },
 
         scales: {
             y: {
                 position: 'left',
                 stacked: true,
-                min: 1,
+                min: 0,
                 max: 40000,
 
                 title: {
@@ -2496,9 +2496,9 @@ function V8() {
         <div className='V8text'>
             <h3>C02 emissions by country</h3>
             <p>
-                A stacked line chart of country-specific co2 emissions over time, time period is about 60 years.
+                A stacked line chart of country-specific co2 emissions over time, time period is ~60 years.
             </p>
-            <div className='V8' style={{ width: "60%" }}>
+            <div className='V8' style={{ width: "100%" }}>
                 <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Dataset source<br /></a>
                 <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">Description source</a>
                 <Line

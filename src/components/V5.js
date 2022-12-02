@@ -90,7 +90,7 @@ function V5() {
         Time period ~400000 years...</p>
       <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2'>Dataset source</a><br />
       <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html'>Description source</a>
-      <div className='V5' style={{ width: "60%" }}>
+      <div className='V5' style={{ width: "100%" }}>
         <Line options={options} data={data} />
       </div>
     </div>
