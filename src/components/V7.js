@@ -10,7 +10,6 @@ const URL2 = 'http://localhost:3001/v6'
 function V7() {
 
     const [co2_ppmv, setco2_ppmv] = useState([])
-    //const [mean_co2_ppmv, setmean_co2_ppmv] = useState([])
     const [v7, setv7] = useState([])
     const [age_gas, setage_gas] = useState([]);
 
@@ -21,9 +20,6 @@ function V7() {
 
                     let co2_ppmvArray = response.data.map(v6 => v6.co2_ppmv);
                     setco2_ppmv(co2_ppmvArray);
-
-                    /*let mean_co2_ppmvArray = response.data.map(v6 => v6.mean_co2_ppmv);
-                    setmean_co2_ppmv(mean_co2_ppmvArray);*/
 
                     let age_gasArray = response.data.map(v6 => v6.age_gas);
                     setage_gas(age_gasArray);
@@ -121,18 +117,6 @@ function V7() {
                 backgroundColor: "white",
                 yAxisID: 'y2'
             },
-            /*
-            {
-                label: "2nd C02 measurements from the 800k year period",
-                data: mean_co2_ppmv,
-                showLine: true,
-                borderColor: 'purple',
-                backgroundColor: "white",
-                parsing: {
-
-                }
-            },
-            */
         ]
     }
 
@@ -143,7 +127,7 @@ function V7() {
                 A multiaxis and combination line chart of the temperature record from the available 2m year period
                 with the available co2 measurements from the previous (atmospheric carbon dioxide concentrations) 800k year period.
             </p>
-            <div className='V7' style={{ width: "60%" }}>
+            <div className='V7' style={{ width: "100%" }}>
                 <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Dataset source</a><br />
                 <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer">Description source</a>
                 <Line

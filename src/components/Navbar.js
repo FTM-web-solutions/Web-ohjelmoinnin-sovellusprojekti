@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
+
+    const auth = localStorage.getItem("LoggedIn")
+
     return (
         <nav id="nav" className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
             <div className="container-fluid">
@@ -10,19 +13,18 @@ export default function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
+                    
                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/About">About</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/Contact">Contact Us</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/Login">Login</Link>
-                        </li>
+                        <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/About">About</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/Contact">Contact Us</Link></li>
+                            {
+                            auth ? <li className="nav"><Link className="btn btn-outline-light me-2" to="/Login">Logout</Link></li>
+                            :<>
+                            <li className="nav"><Link className="btn btn-outline-light me-2" to="/Login">Login</Link></li>
+                            <li className="nav"><Link className="btn btn-warning" to="/Register">Sign-in</Link></li>
+                            </>
+                            }
                     </ul>
                 </div>
             </div>

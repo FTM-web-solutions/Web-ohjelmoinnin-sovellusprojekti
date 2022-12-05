@@ -154,19 +154,21 @@ function V3() {
     }
 
     return (
-        <div className='V3text'>
+        <div className='V3V4text'>
             <h3>Atmospheric CO2 concentrations</h3>
-            <p>A line graph of atmospheric carbon dioxide concentrations taken at Mauna Loa, Hawaii. Time period is about 65 years.</p>
+            <p>A line graph of atmospheric carbon dioxide concentrations taken at Mauna Loa, Hawaii. Time period is about 65 years. <br />
+                The second (V4) graph is about atmospheric carbon dioxide concentrations based on Antarctic ice cores.
+                Time period is ~1000 years.</p>
             <div className="V3">
-                <div style={{ width: "60%" }}>
+                <div style={{ width: "100%" }}>
                     <div>
                         <a href='https://gml.noaa.gov/ccgg/trends/data.html'>Dataset source</a>
                         <br /><a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>Description source</a><br />
                         <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html'> V4 Description source</a><br />
                         <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets source</a><br /><br />
                         <form>
-                            <button className="Buttons" onClick={v4Handle}>Show V4</button>
-                            <button className="Buttons" onClick={v3Handle}>Change view</button>
+                            <button className="Buttons" onClick={v4Handle}>V4 ON/OFF</button>
+                            <button className="Buttons" onClick={v3Handle}>Change View</button>
                         </form>
                     </div>
                     <Line options={options} data={data} />

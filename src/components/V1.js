@@ -203,13 +203,17 @@ function V1() {
         },
       },
       x: {
-        type: "time",
+        type: 'time',
         time: {
-          unit: "month"
+          unit: "month",
+        },
+        title: {
+          display: true,
+          text: "Time (monthly)"
         }
-      },
+      }
     },
-  };
+  }
 
   var v2_click = true;
   const v2Handle = event => {
@@ -232,17 +236,17 @@ function V1() {
     <div className='V1V2text'>
       <h3>Hadcrut temperature data</h3>
       <p>
-        This chart is about global historical surface temperature anomalies from january 1850 onwards...<br />
-        The official name for V2's data is "2,000-Year Northern Hemisphere Temperature". The graph shows reconstructed northern hemisphere temperatures for the past 2,000 years with purple color.<br />
-        Just like in V1 (other labels), it visualizes the temperature in relation to time.
+        The main line chart is about global historical surface temperature anomalies from January 1850 onwards.<br />
+        The second (v2) graph shows reconstructed northern hemisphere temperatures for the past 2,000 years with purple color.<br />
+        Just like before, it visualizes the temperature in relation to time.
       </p>
-      <div className="V1" style={{ width: "60%" }} >
+      <div className="V1" style={{ width: "100%" }} >
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
         <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a>
         <Line options={options} data={data} />
         <form>
-          <button className="Buttons" onClick={v2Handle}>Show V2</button>
-          <button className="Buttons" onClick={v1Handle}>Change view</button>
+          <button className="Buttons" onClick={v2Handle}>V2 ON/OFF</button>
+          <button className="Buttons" onClick={v1Handle}>Change View</button>
         </form>
       </div>
     </div>
