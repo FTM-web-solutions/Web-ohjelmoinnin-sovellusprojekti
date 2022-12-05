@@ -20,6 +20,8 @@ const Login = () => {
                 email: email,
                 password: password
             });
+            localStorage.setItem("LoggedIn", true)
+            // window.location.reload(false)
             navigate('/dashboard', { replace: true });
             
         } catch (error) {

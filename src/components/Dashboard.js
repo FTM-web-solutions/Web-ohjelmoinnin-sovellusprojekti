@@ -5,7 +5,6 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
 // import { Logout } from '../../server/controllers/Users';
 
-
 const Dashboard = (props) => {
     const [name, setName] = useState('');
     const [token, setToken] = useState('');
@@ -55,6 +54,7 @@ const Dashboard = (props) => {
         try {
             await axios.delete('http://localhost:3001/logout');
             navigate('/', { replace: true });
+            localStorage.clear()
         } catch (error) {
             console.log(error);
         }
