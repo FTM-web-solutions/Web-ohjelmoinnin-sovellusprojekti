@@ -9,8 +9,12 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import N1 from './components/N1';
+import N2 from './components/N2';
+import N3 from './components/N3';
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+
 
 function App() {
   return (
@@ -20,7 +24,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/N1" element={<N1 />} />
+        <Route path="/N2" element={<N2 />} />
+        <Route path="/N3" element={<N3 />} /> 
         <Route path="/login" element={<Login />} /> 
         <Route path="/register" element={<Register/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
