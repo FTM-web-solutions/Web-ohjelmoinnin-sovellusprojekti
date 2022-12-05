@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
-// import { Logout } from '../../server/controllers/Users';
+import { Link } from 'react-router-dom';
+//  import { Logout } from '../../server/controllers/Users';
 
 
 const Dashboard = (props) => {
@@ -11,6 +12,7 @@ const Dashboard = (props) => {
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
     const [users, setUsers] = useState([]);
+    const [charts, setCharts] = useState('')
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -74,6 +76,17 @@ const Dashboard = (props) => {
             <h1>Welcome Back: {name}</h1>
             <button onClick={Logout} className="button">Logout</button>
             <button onClick={deleteUser} className="button">Delete user</button>
+            {/* <div>
+                <label>Charts</label>
+                <select name="charts" value={charts} onChange={e => setCharts(e.target.value)} >
+                    <option value="1.3">V1</option>
+                    <option value="1.5">V2</option>
+                    <option value="1.7">V3</option>
+                    <option value="2">V4</option>
+                    <option value="2.2">V5</option>
+                </select>
+            </div> */}
+            <Link className="testLink" to="/Checkbox">go to checkbox</Link>
         </div>
     )
 }
