@@ -1,3 +1,7 @@
+main {
+  min-height: 100hv;
+}
+
 .container {
   margin-top: 50px;
 }
@@ -7,14 +11,15 @@ footer .container {
 }
 
 footer {
-  position: fixed;
+  position:fixed;
   bottom: 0;
-  padding-top: 10px;
+  padding-top: auto;
   width: 100%;
   height: 60px;
   border-top: 2px solid #f5f5f5;
   background-color: #333;
   color: #fff;
+  text-align: center;
 }
 
 #nav {
@@ -69,4 +74,8 @@ footer {
 
 .login-link {
   text-decoration: none;
+}
+
+.dropdown{
+  margin-right:8ch;
 }

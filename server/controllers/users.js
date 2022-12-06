@@ -15,7 +15,7 @@ export const getUsers = async(req, res) => {
 
 export const Register = async(req, res) => {
     const { name, email, password, confPassword } = req.body;
-    if(password !== confPassword) return res.status(400).json({msg: "Password dan Confirm Password tidak cocok"});
+    if(password !== confPassword) return res.status(400).json({msg: "Password and confirm password does not match"});
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
     try {
@@ -24,8 +24,9 @@ export const Register = async(req, res) => {
             email: email,
             password: hashPassword
         });
-        res.json({msg: "Register Berhasil"});
+        res.json({msg: "Register successful"});
     } catch (error) {
+        res.status(404).json({msg:"Username or email already in use."});
         console.log(error);
     }
 }
@@ -38,15 +39,15 @@ export const Login = async(req, res) => {
             }
         });
         const match = await bcrypt.compare(req.body.password, user[0].password);
-        if(!match) return res.status(400).json({msg: "Wrong Password"});
+        if(!match) return res.status(400).json({msg: "Incorrect email or password."});
         const userId = user[0].id;
         const name = user[0].name;
         const email = user[0].email;
         const accessToken = jwt.sign({userId, name, email}, process.env.ACCESS_TOKEN_SECRET,{
-            expiresIn: '20s'
+            expiresIn: '10s'
         });
         const refreshToken = jwt.sign({userId, name, email}, process.env.REFRESH_TOKEN_SECRET,{
-            expiresIn: '1d'
+            expiresIn: '20s'
         });
         await Users.update({refresh_token: refreshToken},{
             where:{
@@ -59,7 +60,7 @@ export const Login = async(req, res) => {
         });
         res.json({ accessToken });
     } catch (error) {
-    res.status(404).json({msg:"Wrong email!"});
+    res.status(404).json({msg:"Incorrect email or password."});
     }
 }
 
