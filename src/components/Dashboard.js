@@ -30,7 +30,8 @@ const Dashboard = (props) => {
         } catch (error) {
             if (error.response) {
                 navigate('/Login', { replace: true });
-                // history.push("/");
+                localStorage.clear()
+                navigate(0);
             }
         }
     }
@@ -57,6 +58,7 @@ const Dashboard = (props) => {
             await axios.delete('http://localhost:3001/logout');
             navigate('/', { replace: true });
             localStorage.clear()
+            navigate(0);
         } catch (error) {
             console.log(error);
         }
@@ -66,6 +68,8 @@ const Dashboard = (props) => {
         try {
             await axios.delete('http://localhost:3001/deleteuser');
             navigate('/', { replace: true });
+            localStorage.clear()
+            navigate(0);
         } catch (error) {
             console.log(error)
         }

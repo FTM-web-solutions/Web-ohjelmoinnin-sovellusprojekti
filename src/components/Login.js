@@ -4,14 +4,12 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 
-
-
-
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
     const navigate = useNavigate();
+    const [ref, setref] = useState()
 
     const Auth = async (e) => {
         e.preventDefault();
@@ -21,8 +19,8 @@ const Login = () => {
                 password: password
             });
             localStorage.setItem("LoggedIn", true)
-            // window.location.reload(false)
-            navigate('/dashboard', { replace: true });
+            navigate('/', { replace: true });
+            navigate(0);
             
         } catch (error) {
             if (error.response) {
@@ -38,7 +36,9 @@ const Login = () => {
         <main className="form-signin-w-100-m-auto">
           <form onSubmit={Auth}>
             <h1 className="h3 mb-3 fw-normal">Sign in</h1>
-
+            <p>
+              {msg}
+            </p>
             <div className="form-floating">
               <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
               <label for="floatingInput">Email address</label><br></br>

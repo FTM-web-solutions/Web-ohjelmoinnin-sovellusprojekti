@@ -19,7 +19,6 @@ const Register = () => {
                 password: password,
                 confPassword: confPassword
             });
-            // history.push("/");
             navigate('/login', { replace: true });
         } catch (error) {
             if (error.response) {
@@ -33,7 +32,9 @@ const Register = () => {
         <main className="form-signin-w-100-m-auto">
           <form onSubmit={Register}>
             <h1 className="h3 mb-3 fw-normal">Sign up</h1>
-
+            <p>
+              {msg}
+            </p>
             <div className="form-floating">
               <input type="text" className="form-control" id="floatingInput" placeholder="Username" value={name} onChange={(e) => setName(e.target.value)} required />
               <label for="floatingInput">Username</label><br></br>
