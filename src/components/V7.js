@@ -1,29 +1,29 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Chart } from "chart.js/auto";
-import { Line } from "react-chartjs-2";
+import { Bubble, Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
 
 const URL = 'http://localhost:3001/v7'
 const URL2 = 'http://localhost:3001/v6'
+const URL3 = 'http://localhost:3001/v10'
 
 function V7() {
 
     const [co2_ppmv, setco2_ppmv] = useState([])
     const [v7, setv7] = useState([])
     const [age_gas, setage_gas] = useState([]);
+    const [v10State, setv10State] = useState(true)
+    const [v10Data, setv10Data] = useState([])
 
     useEffect(() => {
         try {
             axios.get(URL2)
                 .then((response) => {
-
                     let co2_ppmvArray = response.data.map(v6 => v6.co2_ppmv);
                     setco2_ppmv(co2_ppmvArray);
-
                     let age_gasArray = response.data.map(v6 => v6.age_gas);
                     setage_gas(age_gasArray);
-
                 });
         } catch (error) {
             console.log(error)
@@ -34,10 +34,19 @@ function V7() {
         try {
             axios.get(URL)
                 .then((response) => {
-
                     let v7Array = response.data.map(v7 => v7.p50);
                     setv7(v7Array);
+                });
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
 
+    useEffect(() => {
+        try {
+            axios.get(URL3)
+                .then((response) => {
+                    setv10Data(response.data)
                 });
         } catch (error) {
             console.log(error)
@@ -58,11 +67,13 @@ function V7() {
             mode: 'index',
             intersect: false,
         },
+
         elements: {
             point: {
                 radius: 1
             }
         },
+
         scales: {
             y1: {
                 position: 'right',
@@ -82,10 +93,9 @@ function V7() {
                     text: "C02 ppm",
                 }
             },
-            x1: {
-                reverse: true,
-                min: -2000,
-                max: 810000,
+            x: {
+                min: -500000,
+                max: 1000000,
                 type: "linear",
                 title: {
                     display: true,
@@ -100,24 +110,58 @@ function V7() {
         datasets: [
             {
                 label: "Change in global temperature (C)",
+                type: 'line',
                 data: v7,
                 showLine: true,
                 borderColor: 'blue',
                 backgroundColor: "white",
                 parsing: {
                     yAxisID: 'y1',
-                    xAxisID: 'x1'
+                    xAxisID: 'x'
                 }
             },
+
             {
                 label: "C02 measurements from the 800k year period",
+                type: 'line',
                 data: co2_ppmv,
                 showLine: true,
                 borderColor: 'red',
                 backgroundColor: "white",
                 yAxisID: 'y2'
             },
+
+            {
+                label: "Human Evolution and Activities",
+                type: 'bubble',
+                data: {
+                    // X Value
+                    x: v10Data.map(v10 => v10.Year),
+                    // Y Value
+                    y: v10Data.map(v10 => v10.Event),
+                    // Bubble radius in pixels (not scaled).
+                    r: 500,
+                },
+
+                /* data: v10Data, */
+                borderColor: "green",
+                backgroundColor: "lightgreen",
+                showLine: false,
+                hidden: v10State,
+                parsing: {
+                    yAxisID: 'y2',
+                    xAxisID: 'x'
+                }
+            },
         ]
+    }
+
+    var v10_click = true;
+    const v10Handle = event => {
+        if (v10_click) {
+            event.preventDefault()
+            setv10State(!v10State)
+        }
     }
 
     return (
@@ -127,9 +171,12 @@ function V7() {
                 A multiaxis and combination line chart of the temperature record from the available 2m year period
                 with the available co2 measurements from the previous (atmospheric carbon dioxide concentrations) 800k year period.
             </p>
-            <div className='V7' style={{ width: "100%" }}>
-                <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Dataset source</a><br />
-                <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer">Description source</a>
+            <div className='V7' style={{ width: "100%", margin: "auto" }}>
+                <a href="http://carolynsnyder.com/publications.php">Dataset source</a><br />
+                <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Description source</a><br /><br />
+                <form>
+                    <button className="Buttons" onClick={v10Handle}>V10 ON/OFF</button>
+                </form>
                 <Line
                     options={options}
                     data={data}

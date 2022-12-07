@@ -9530,4 +9530,24 @@ INSERT INTO v9(Sector,Share1,Subsector,Share2,Subsector_Further,Share3) VALUES (
 INSERT INTO v9(Sector,Share1,Subsector,Share2,Subsector_Further,Share3) VALUES (NULL,NULL,NULL,NULL,'Landfills',1.9);
 INSERT INTO v9(Sector,Share1,Subsector,Share2,Subsector_Further,Share3) VALUES (NULL,NULL,NULL,NULL,'Wastewater',1.3);
 
+DROP TABLE IF EXISTS v10;
+CREATE TABLE v10(
+   Year  INTEGER  NOT NULL PRIMARY KEY 
+  ,Event VARCHAR(178) NOT NULL
+);
+INSERT INTO v10(Year,Event) VALUES (200000,'earliest adhesive: birch tar used by Neanderthals for hafting stone tools (Campitello, Italy) → pyrotechnology');
+INSERT INTO v10(Year,Event) VALUES (250000,'replacement of Homo heidelbergensis by Homo neanderthalensis in Europe, and by Homo sapiens in Africa over the subsequent 100,000 years');
+INSERT INTO v10(Year,Event) VALUES (315000,'earliest representatives of our species, Homo sapiens (Jebel Irhoud, Morocco): facial and dental structure similar to modern humans, yet still archaic elongation of the braincase');
+INSERT INTO v10(Year,Event) VALUES (400000,'earliest evidence of food storage for later consumption: bone marrow (Qesem Cave, Israel) → food economy, incentivised by anticipation of future need');
+INSERT INTO v10(Year,Event) VALUES (430000,'Denisovans diverge from Neanderthals (southern Siberia) → Tibetan Plateau and Laos by 160,000 years ago; subsequent interbreeding, possibly also with Homo erectus');
+INSERT INTO v10(Year,Event) VALUES (500000,'earliest use of stone-tipped spears, by Homo heidelbergensis (South Africa) for hunting large game');
+INSERT INTO v10(Year,Event) VALUES (700000,'rise of Homo heidelbergensis in Africa and Europe, possible ancestor of Homo sapiens and Homo neanderthalensis; supplementing meat with starchy plants');
+INSERT INTO v10(Year,Event) VALUES (11600,'earliest monumental ritual art (Shigir, Siberia): 5-m tall larchwood plank carved with human forms and signs → complex ideas expressed by hunter-gatherers');
+INSERT INTO v10(Year,Event) VALUES (11700,'in the Mojave desert a seed germinates and grows into a deadly creosote bush, which segments to sprout new stems, sprouting and segmenting for 11,700 years');
+INSERT INTO v10(Year,Event) VALUES (12000,'extinction of megafauna including woolly mammoths from continental Eurasia and North America, caused by human hunting and climate change');
+INSERT INTO v10(Year,Event) VALUES (12800,'climate shift contributing to megafaunal extinctions and human cultural changes (Younger Dryas): triggered by a comet airburst over North America and Europe?');
+INSERT INTO v10(Year,Event) VALUES (14000,'earliest lime plaster, used as an adhesive for hafting (Kebaran, Levant) → mortar by 3,000 years ago');
+INSERT INTO v10(Year,Event) VALUES (15000,'earliest thaumatrope (Laugerie-Basse, France): an optical toy, creating movement by juxtaposition of images');
+INSERT INTO v10(Year,Event) VALUES (19000,'replacement of early modern humans across Eurasia by the ancestors of today’s populations');
+
 CREATE TABLE `climate`.`users` ( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` VARCHAR(25) NOT NULL , `email` VARCHAR(64) NOT NULL , `password` VARCHAR(255) NOT NULL , `refresh_token` TEXT NULL , `createdAt` DATETIME NOT NULL , `updatedAt` DATETIME NOT NULL , UNIQUE (`id`, `name`), UNIQUE (`id`, `email`)) ENGINE = InnoDB;

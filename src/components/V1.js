@@ -231,7 +231,6 @@ function V1() {
     }
   }
 
-
   return (
     <div className='V1V2text'>
       <h3>Hadcrut temperature data</h3>
@@ -240,7 +239,7 @@ function V1() {
         The second (v2) graph shows reconstructed northern hemisphere temperatures for the past 2,000 years with purple color.<br />
         Just like before, it visualizes the temperature in relation to time.
       </p>
-      <div className="V1" style={{ width: "100%" }} >
+      <div className="V1" style={{ width: "100%", margin: "auto" }} >
         <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
         <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a>
         <Line options={options} data={data} />
