@@ -33,9 +33,7 @@ function V9() {
       setOpenEnergy(false);
     }
     const onClick = (event) => {
-      console.log(event)
       let element = getElementAtEvent(chartRef.current,event)
-      console.log(element)
 
       if (element[0].index === 0) {
         setOpenEnergy(true);
@@ -54,14 +52,11 @@ function V9() {
     useEffect(() => {
         axios.get(URL)
           .then((response) => {
-            console.log(response.data)
 
             let sector1 = response.data.map(x=>x.Sector)
             setSector(sector1)
-            console.log(sector)
             let  share1= response.data.map(x=>x.Share1)
             setShare1(share1)
-            console.log(share1)
 
             let subSector = response.data.map(x=>x.Subsector)
             setSubSector(subSector)
@@ -70,11 +65,9 @@ function V9() {
 
             let subSectorFurther1 = response.data.map(x=>x.Subsector_Further)
             setSubSectorFurther(subSectorFurther1)
-            console.log(subSectorFurther)
             let share3 = response.data.map(x=>x.Share3)
             setShare3(share3)
 
-            console.log(response.data)
           }).catch(error => {
             alert(error.response.data.error)
           })

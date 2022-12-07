@@ -16,14 +16,12 @@ function V3() {
     useEffect(() => {
         axios.get(URL)
             .then((response) => {
-                console.log(response.data)
                 for (let i = 0; i < response.data.length; i++) {
                     if (response.data[i].year != null) {
                         response.data[i].year = response.data[i].year.toString();
                     }
                 }
                 setmaunaData(response.data)
-                console.log("veeeeeee kolmonen", response.data);
             }).catch(error => {
                 alert(error.response.data.error)
             })

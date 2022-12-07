@@ -24,7 +24,6 @@ const Dashboard = (props) => {
             const response = await axios.get('http://localhost:3001/token');
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
-            console.log(response.data.accessToken);
             setName(decoded.name);
             setExpire(decoded.exp);
         } catch (error) {
