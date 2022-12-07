@@ -78,7 +78,6 @@ const Dashboard = (props) => {
     return (
         <div className="container mt-5">
             <h1>Welcome Back: {name}</h1>
-            <button onClick={Logout} className="button">Logout</button>
             <button onClick={deleteUser} className="button">Delete user</button>
             {/* <div>
                 <label>Charts</label>
@@ -90,7 +89,6 @@ const Dashboard = (props) => {
                     <option value="2.2">V5</option>
                 </select>
             </div> */}
-            <Link className="testLink" to="/Checkbox">go to checkbox</Link>
         </div>
     )
 }

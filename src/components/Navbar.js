@@ -49,7 +49,7 @@ export default function Navbar() {
                     :    
                     <ul className="navbar-nav">    
                         <li className="nav-item-nav-right"><Link className="btn btn-outline-light me-2" to="/Login">Login</Link></li>
-                        <li className="nav-item-nav-right"><Link className="btn btn-warning" to="/Register">Sign-in</Link></li>
+                        <li className="nav-item-nav-right"><Link className="btn btn-warning" to="/Register">Sign-up</Link></li>
                     </ul>
                     }
                 </div>

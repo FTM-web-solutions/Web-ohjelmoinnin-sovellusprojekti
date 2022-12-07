@@ -19,7 +19,7 @@ const Login = () => {
                 password: password
             });
             localStorage.setItem("LoggedIn", true)
-            navigate('/', { replace: true });
+            navigate('/dashboard', { replace: true });
             navigate(0);
             
         } catch (error) {
