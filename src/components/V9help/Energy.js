@@ -8,7 +8,6 @@ import Transport from './EnergyHelp/Transport';
 import FuelCombustion from './EnergyHelp/FuelCombustion';
 
 function Energy ({subSector, share2, subSectorFurther, share3}) {
-    console.log(subSectorFurther,share3)
 
     const [openAgriFish, setopenAgriFish] = useState(false);
     const [openBuildings, setOpenBuildings] = useState(false);

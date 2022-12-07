@@ -31,7 +31,7 @@ const Register = () => {
       <body className="text-center">
         <main className="form-signin-w-100-m-auto">
           <form onSubmit={Register}>
-            <h1 className="h3 mb-3 fw-normal">Sign up</h1>
+            <h1 className="h3 mb-3 fw-normal">Sign-up</h1>
             <p>
               {msg}
             </p>

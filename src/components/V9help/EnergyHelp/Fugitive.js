@@ -1,5 +1,4 @@
 function Fugitive ({subSectorFurther, share3}) {
-    console.log(subSectorFurther,share3)
     let subSectorFurtherData = subSectorFurther.map((x, i) => {
         return {subSectorFurther: x, share3: share3[i]}
     })
