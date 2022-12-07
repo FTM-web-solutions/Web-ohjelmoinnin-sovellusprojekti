@@ -15,7 +15,11 @@ export const getUsers = async(req, res) => {
 
 export const Register = async(req, res) => {
     const { name, email, password, confPassword } = req.body;
-    if(password !== confPassword) return res.status(400).json({msg: "Password and confirm password does not match"});
+    if(password !== confPassword) return res.status(400).json({msg: "Password and confirm password does not match."});
+    if(name.length < 4) return res.status(400).json({msg: "Username must be atleast 4 characters long."});
+    if(name.length > 30) return res.status(400).json({msg: "Username cannot be more than 30 characters long."});
+    if(password.length < 6) return res.status(400).json({msg: "Password must be atleast 6 characters long."});
+    if(password.length > 255) return res.status(400).json({msg: "Password cannot be more than 255 characters long."});
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
     try {
@@ -38,6 +42,7 @@ export const Login = async(req, res) => {
                 email: req.body.email
             }
         });
+        
         const match = await bcrypt.compare(req.body.password, user[0].password);
         if(!match) return res.status(400).json({msg: "Incorrect email or password."});
         const userId = user[0].id;

@@ -4,9 +4,9 @@ export default function Home() {
   return (
     <form>
     <div>
-      <h1>Temperature data and co2 concentration</h1>
+      <h1>This is the home page</h1>
       <p>
-        On this page you will find graphs about studies based on temperature data and co2 concentration...
+        Konaapa konaa...
       </p>
     </div>
     </form>
