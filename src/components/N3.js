@@ -46,9 +46,8 @@ import { useState } from 'react'
 	<div className="container-fluid top ">
 		<div className="container mt-5 pb-5 pt-5">
 		<h3 className="form-head-contact-h3 ">
-			Your programming expertise lies in what languages?{" "}
+			Select your custom Chart view!
 		</h3>
-		<form>
 			 <div className="row">
 			<div className="col-md-6">
 				<div className="form-check m-3">
@@ -78,7 +77,6 @@ import { useState } from 'react'
 			</label>
       {userinfo.response}
 			</div>
-		</form>
 		</div>
 	</div>
 	</>
