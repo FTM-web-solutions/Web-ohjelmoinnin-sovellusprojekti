@@ -36,7 +36,7 @@ try {
 app.get("/",async function (req,res)    {
     try {
         const connection = await mysql.createConnection(config.db)
-        const[result,] = await connection.execute('select * from hadcrut')
+        const[result,] = await connection.execute('select * from v1')
         
         if (!result) result=[]
         res.status(200).json(result)

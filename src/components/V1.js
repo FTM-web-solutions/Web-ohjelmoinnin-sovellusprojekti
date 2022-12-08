@@ -12,175 +12,168 @@ function V1() {
   const [v1State, setv1State] = useState(true)
   const [v2State, setv2State] = useState(true)
 
-  const [v1Months, setv1Months] = useState([])
-  const [v2Years, setv2Years] = useState([])
-
-  const [aGlobalC, setaGlobalC] = useState([])
-  const [aNorthC, setaNorthC] = useState([])
-  const [aSouthC, setaSouthC] = useState([])
-
-  const [mGlobalC, setmGlobalC] = useState([])
-  const [mNorthC, setmNorthC] = useState([])
-  const [mSouthC, setmSouthC] = useState([])
-
-  const [T, setT] = useState([])
+  const [V1Data, setV1Data] = useState([])
+  const [V2Data, setV2Data] = useState([])
 
   useEffect(() => {
-    try {
       axios.get(URL)
         .then((response) => {
-
-          let v1MonthsArray = response.data.map(hadcrut => hadcrut.Months);
-          setv1Months(v1MonthsArray);
-
-          let aGlobalCArray = response.data.map(hadcrut => hadcrut.AnnualGlobalC);
-          setaGlobalC(aGlobalCArray);
-
-          let aNorthCArray = response.data.map(hadcrut => hadcrut.AnnualNorthC);
-          setaNorthC(aNorthCArray);
-
-          let aSouthCArray = response.data.map(hadcrut => hadcrut.AnnualSouthC);
-          setaSouthC(aSouthCArray);
-
-          let mGlobalCArray = response.data.map(hadcrut => hadcrut.MonthlyGlobalC);
-          setmGlobalC(mGlobalCArray);
-
-          let mNorthCArray = response.data.map(hadcrut => hadcrut.MonthlyNorthC);
-          setmNorthC(mNorthCArray);
-
-          let mSouthCArray = response.data.map(hadcrut => hadcrut.MonthlySouthC);
-          setmSouthC(mSouthCArray);
-
-        });
-    } catch (error) {
-      console.log(error)
-    }
+          for (let i = 0; i < response.data.length; i++) {
+            if (response.data[i].Years != null) {
+              response.data[i].Years = response.data[i].Years.toString();
+            }
+          }
+          setV1Data(response.data)
+        }).catch (error => {
+      alert(error.response.data.error)
+    })
   }, [])
 
   useEffect(() => {
-    try {
-      axios.get(URL2)
-        .then((response) => {
+    axios.get(URL2)
+            .then((response) => {
+              for(let i = 0; i < response.data.length; i++) {
+                response.data[i].Year = response.data[i].Year.toString();
+                response.data[i].T = response.data[i].T.toString();
 
-          let v2YearsArray = response.data.map(v2 => v2.Year);
-          setv2Years(v2YearsArray);
+                if (response.data[i].Year.length < 2) {
+                  response.data[i].Year = "000" + response.data[i].Year;
+                }
 
-          let TArray = response.data.map(v2 => v2.T);
-          setT(TArray);
+                if (response.data[i].Year.length < 3) {
+                  response.data[i].Year = "00" + response.data[i].Year;
+                }
 
-        });
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+                if (response.data[i].Year.length < 4) {
+                  response.data[i].Year = "0" + response.data[i].Year;
+                }
+              }
+                setV2Data(response.data)
+            }).catch(error => {
+                alert(error.response.data.error)
+            })
+    }, [])
 
   const data = {
-    labels: v1Months,
     datasets: [
       {
-        label: "Annual Global Degrees",
-        data: aGlobalC,
-        spanGaps: true,
-        borderColor: "black",
-        backgroundColor: "white",
-        yAxisID: "C",
-        hidden: v1State,
-        parsing: {
-          xAxisKey: "Months",
-          yAxisKey: "Celsius",
-        },
-      },
-
-      {
         label: "Northern Hemisphere 2,000-year temperature reconstruction (V2)",
-        data: T,
+        data: V2Data,
         spanGaps: true,
         borderColor: "purple",
         backgroundColor: "white",
         yAxisID: "C",
         hidden: v2State,
         parsing: {
-          xAxisKey: 'Year',
-          yAxisKey: 'T'
+          xAxisKey: "Year",
+          yAxisKey: "T"
         },
+        pointRadius: 0,
+      },
+
+      {
+        label: "Annual Global Degrees",
+        data: V1Data,
+        spanGaps: true,
+        borderColor: "black",
+        backgroundColor: "white",
+        yAxisID: "C",
+        hidden: v1State,
+        parsing: {
+          xAxisKey: "Years",
+          yAxisKey: "AnnualGlobalC",
+        },
+        pointRadius: 0,
       },
 
       {
         label: "Annual Northern Degrees",
-        data: aNorthC,
+        data: V1Data,
         spanGaps: true,
         borderColor: "blue",
         backgroundColor: "white",
         yAxisID: "C",
         hidden: v1State,
         parsing: {
-          xAxisKey: "Months",
-          yAxisKey: "Celsius",
+          xAxisKey: "Years",
+          yAxisKey: "AnnualNorthC",
         },
+        pointRadius: 0,
       },
 
       {
         label: "Annual Southern Degrees",
-        data: aSouthC,
+        data: V1Data,
         spanGaps: true,
         borderColor: "red",
         backgroundColor: "white",
         yAxisID: "C",
         hidden: v1State,
         parsing: {
-          xAxisKey: "Months",
-          yAxisKey: "Celsius",
+          xAxisKey: "Years",
+          yAxisKey: "AnnualSouthC",
         },
+        pointRadius: 0,
       },
 
       {
         label: "Monthly Global Degrees",
-        data: mGlobalC,
+        data: V1Data,
         borderColor: "black",
         backgroundColor: "white",
         yAxisID: "C",
         hidden: !v1State,
         parsing: {
           xAxisKey: "Months",
-          yAxisKey: "Celsius",
+          yAxisKey: "MonthlyGlobalC",
         },
+        pointRadius: 0,
       },
 
       {
         label: "Monthly Northern Degreens",
-        data: mNorthC,
+        data: V1Data,
         borderColor: "blue",
         backgroundColor: "white",
         yAxisID: "C",
         hidden: !v1State,
         parsing: {
           xAxisKey: "Months",
-          yAxisKey: "Celsius",
+          yAxisKey: "MonthlyNorthC",
         },
+        pointRadius: 0,
       },
 
       {
         label: "Monthly Southern Degrees",
-        data: mSouthC,
+        data: V1Data,
         borderColor: "red",
         backgroundColor: "white",
         yAxisID: "C",
         hidden: !v1State,
         parsing: {
           xAxisKey: "Months",
-          yAxisKey: "Celsius",
+          yAxisKey: "MonthlySouthC",
         },
+        pointRadius: 0,
       },
     ],
   };
 
   const options = {
     responsive: true,
-    elements: {
-      point: {
-        radius: 0
-      }
-    },
+    interaction: {
+      mode: "index",
+      intersect: false,
+  },
+  tooltips: {
+      mode: "index",
+      intersect: false,
+  },
+  hover: {
+      mode: "nearest",
+      intersect: true,
+  },
     plugins: {
       legend: {
         position: "top",
@@ -193,25 +186,23 @@ function V1() {
     scales: {
       C: {
         type: "linear",
-        min: -2.0,
-        max: 2.0,
         display: true,
         position: "right",
         title: {
-          display: true,
-          text: "Degrees (°C)"
+            display: true,
+            text: "Mean data"
         },
-      },
-      x: {
-        type: 'time',
-        time: {
+    },
+    x: {
+      type: 'time',
+      time: {
           unit: "month",
-        },
-        title: {
+      },
+      title: {
           display: true,
           text: "Time (monthly)"
-        }
       }
+  },
     },
   }
 
