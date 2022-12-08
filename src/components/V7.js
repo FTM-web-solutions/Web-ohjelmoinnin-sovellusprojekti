@@ -134,23 +134,16 @@ function V7() {
             {
                 label: "Human Evolution and Activities",
                 type: 'bubble',
-                data: {
-                    // X Value
-                    x: v10Data.map(v10 => v10.Year),
-                    // Y Value
-                    y: v10Data.map(v10 => v10.Event),
-                    // Bubble radius in pixels (not scaled).
-                    r: 500,
-                },
-
-                /* data: v10Data, */
+                data: v10Data,
+                borderWidth: 10,
+                radius: 10,
                 borderColor: "green",
                 backgroundColor: "lightgreen",
                 showLine: false,
                 hidden: v10State,
                 parsing: {
-                    yAxisID: 'y2',
-                    xAxisID: 'x'
+                    yAxisID: 'Event',
+                    xAxisID: 'Year'
                 }
             },
         ]
