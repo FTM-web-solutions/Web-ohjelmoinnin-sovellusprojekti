@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import V1 from "./V1"
 import V3 from "./V3"
 import V5 from "./V5"
@@ -30,8 +30,17 @@ function N3() {
   const [v9state, setv9state] = useState(false)
   const [v9, setv9] = useState([])
 
+  const navigate = useNavigate();
 
+  const clear = (e) => {
+	e.preventDefault();
+	navigate(0)
+  }
 
+  const save = (e) => {
+	e.preventDefault();
+
+  }
 
   const v1handler = () => {
     setv1state(!v1state)
@@ -107,6 +116,8 @@ function N3() {
               <li><input type="checkbox" id="v7" name="v7" value="v7" checked={v7state} onChange={v7handler} />Global temp data</li>
               <li><input type="checkbox" id="v8" name="v8" value="v8" checked={v8state} onChange={v8handler} />Co2 emission by country</li>
               <li><input type="checkbox" id="v9" name="v9" value="v9" checked={v9state} onChange={v9handler} />Co2 emission by sector</li>
+			  <button onClick={clear}>Clear</button>
+			  <button onClick={save}>Save</button>
             </ul>
           </li>
         </ul>
