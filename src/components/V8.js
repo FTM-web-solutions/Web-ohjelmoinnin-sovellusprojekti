@@ -2494,7 +2494,7 @@ function V8() {
 
     return (
         <div className='V8text'>
-            <h3>C02 emissions by country</h3>
+            <h3>CO2 emissions by country</h3>
             <p>
                 A stacked line chart of country-specific co2 emissions over time, time period is ~60 years.
             </p>
