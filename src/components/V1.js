@@ -190,7 +190,7 @@ function V1() {
         position: "right",
         title: {
             display: true,
-            text: "Mean data"
+            text: "Degrees (°C)"
         },
     },
     x: {

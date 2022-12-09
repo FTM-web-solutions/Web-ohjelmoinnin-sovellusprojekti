@@ -1,85 +1,60 @@
-import React from 'react'
-import * as ReactDOM from 'react-dom/client'; 
-import V1 from './V1'
-import { Component } from 'react'
-import V3 from './V3'
-import V5 from './V5'
-import V6 from './V6'
-import V7 from './V7'
-import V8 from './V8'
-import V9 from './V9'
-// import Form from 'react-bootstrap/Form';
-// import Button from "react-bootstrap/Button";
-import { useState } from 'react'
+import React, { useState } from "react";
+import V1 from "./V1"
+import V3 from "./V3";
 
-  export default function N3() {
-    const [userinfo, setUserInfo] = useState({
-      Charts: [<V1 />],
-      // response: [],
-    });
+function N3() {
+  const [v1state, setv1state] = useState(false)
+  const [v1, setv1] = useState([])
 
-    const handleChange = (e) => {
-      // Destructuring
-      const { value, checked } = e.target;
-      const { Charts } = userinfo;
-      
-      console.log(`${value} is ${checked}`);
-      
-      // Case 1 : The user checks the box
-      if (!checked) {
-      setUserInfo({
-        Charts: [...Charts, value],
-        // response: [...Charts, value],
-      });
-      }
+  const [v3state, setv3state] = useState(false)
+  const [v3, setv3] = useState([])
+
+  const v1handler = () => {
+    setv1state(!v1state)
+    setv1([<V1/>])
+    if(v1state == true) {
+      setv1([])
+    }
+  }
+
+  const v3handler = () => {
+    setv3state(!v3state)
+    setv3([<V3/>])
+    if(v3state == true) {
+      setv3([])
+    }
+  }
     
-      // Case 2 : The user unchecks the box
-      else {
-      setUserInfo({
-        Charts: Charts.filter((e) => e !== value),
-        response: Charts.filter((e) => e !== value),
-      });
-      }
-    };
-    return (
+  return (
     <>
-	<div className="container-fluid top ">
-		<div className="container mt-5 pb-5 pt-5">
-		<h3 className="form-head-contact-h3 ">
-			Select your custom Chart view!
-		</h3>
-			 <div className="row">
-			<div className="col-md-6">
-				<div className="form-check m-3">
-				</div>
-				<div className="form-check m-3">
-				<input
-					className="form-check-input"
-					type="checkbox"
-					name="Charts"
-					value="v1"
-					id="flexCheckDefault"
-					onChange={handleChange}
-				/>
-				<label
-					className="form-check-label"
-					htmlFor="flexCheckDefault"
-				>
-					 V1
-				</label>
-				</div>
-			</div>
-			</div>
-
-			<div className="form-floating mt-3 mb-3 text-center">
-			<label htmlFor="exampleFormControlTextarea1">
-				{/* You're proficient in the following languages :{" "} */}
-			</label>
-      {userinfo.response}
-			</div>
-		</div>
-	</div>
-	</>
-);
-    
+    <div>
+          <h3 className="form-head-contact-h3 ">
+            Your programming expertise lies in what languages?{" "}
+          </h3>
+          <input
+          type="checkbox"
+          id="v1"
+          name="v1"
+          value="v1"
+          checked={v1state}
+          onChange={v1handler}
+          />
+          V1
+          <input
+          type="checkbox"
+          id="v3"
+          name="v3"
+          value="v3"
+          checked={v3state}
+          onChange={v3handler}
+          />
+          V3
+          </div>
+          <div>
+            {v1}{v3}
+          </div>
+    </>
+  );
 }
+  
+export default N3;
