@@ -36,7 +36,7 @@ try {
 app.get("/",async function (req,res)    {
     try {
         const connection = await mysql.createConnection(config.db)
-        const[result,] = await connection.execute('select * from hadcrut')
+        const[result,] = await connection.execute('select * from v1')
         
         if (!result) result=[]
         res.status(200).json(result)
@@ -134,6 +134,18 @@ app.get("/v9",async function (req,res)    {
     try {
         const connection = await mysql.createConnection(config.db)
         const[result,] = await connection.execute('select * from v9')
+        
+        if (!result) result=[]
+        res.status(200).json(result)
+    }   catch(err) {
+        res.status(500).json({error: err.message})
+    }
+  })
+
+  app.get("/v10",async function (req,res)    {
+    try {
+        const connection = await mysql.createConnection(config.db)
+        const[result,] = await connection.execute('select * from v10')
         
         if (!result) result=[]
         res.status(200).json(result)

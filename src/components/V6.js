@@ -80,7 +80,7 @@ function V6() {
       </p>
       <a href='https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt'>Dataset source</a><br />
       <a href='https://www.ncei.noaa.gov/access/paleo-search/study/17975'>Description source</a>
-      <div className='V6' style={{ width: "100%" }}>
+      <div className='V6' style={{ width: "100%", margin: "auto" }}>
         <Line options={options} data={data} />
       </div>
     </div>
