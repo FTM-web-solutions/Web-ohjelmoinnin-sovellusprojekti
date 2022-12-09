@@ -11,9 +11,8 @@ const URL3 = 'http://localhost:3001/v10'
 function V3() {
     const [maunaData, setmaunaData] = useState([])
     const [iceData, seticeData] = useState([])
-    const [v4State, setv4State] = useState(true)
+    const [v410State, setv410State] = useState(true)
     const [v3State, setv3State] = useState(true)
-    const [v10State, setv10State] = useState(true)
     const [v10Data, setv10Data] = useState([])
 
     useEffect(() => {
@@ -79,7 +78,7 @@ function V3() {
                 data: iceData,
                 spanGaps: true,
                 borderColor: "green",
-                hidden: v4State,
+                hidden: v410State,
                 parsing: {
                     xAxisKey: 'yearDE08',
                     yAxisKey: 'Co2MixRatioDE08'
@@ -91,7 +90,7 @@ function V3() {
                 data: iceData,
                 spanGaps: true,
                 borderColor: "yellow",
-                hidden: v4State,
+                hidden: v410State,
                 parsing: {
                     xAxisKey: 'yearDE082',
                     yAxisKey: 'Co2MixRatioDE082'
@@ -103,7 +102,7 @@ function V3() {
                 data: iceData,
                 spanGaps: true,
                 borderColor: "purple",
-                hidden: v4State,
+                hidden: v410State,
                 parsing: {
                     xAxisKey: 'yearDSS',
                     yAxisKey: 'Co2MixRatioDSS'
@@ -111,16 +110,20 @@ function V3() {
             },
 
             {
-                label: "Human Evolution and Activities",
-                data: v10Data,
-                borderColor: "black",
-                showLine: false,
-                hidden: v10State,
-                parsing: {
-                    xAxisKey: 'year',
-                    yAxisKey: 'C'
-                },
-            },
+                type: 'bubble',
+                label: "History",
+                data: v10Data.map((x) => {
+                    return {
+                        x: x.Year,
+                        y: 10,
+                        r: 10,
+                        description: x.Event,
+                    }
+                }),
+                borderColor: '#FF10F0',
+                borderWidth: 2,
+                hidden: v410State,
+            }
         ]
     };
 
@@ -138,7 +141,36 @@ function V3() {
             mode: "nearest",
             intersect: true,
         },
+        elements: {
+            point: {
+                radius: 0
+            }
+        },
         plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function (context) {
+                        var title = context[0].dataset.title;
+                        if (context[0].dataset.type === "bubble") {
+                            title = "Year: " + context[0].parsed.x;
+                        }
+                        else {
+                            title = "Year: " + context[0].label;
+                        }
+                        return title;
+                    },
+                    label: function (context) {
+                        var label = context.dataset.label;
+                        if (context.dataset.type === "bubble") {
+                            label = context.raw.description;
+                        }
+                        else {
+                            label = label + ": " + context.formattedValue;
+                        }
+                        return label;
+                    }
+                },
+            },
             legend: {
                 position: "top",
             },
@@ -159,6 +191,8 @@ function V3() {
             },
             x: {
                 type: 'time',
+                /* min: 0,
+                max: 800000, */
                 time: {
                     unit: "month",
                 },
@@ -170,19 +204,11 @@ function V3() {
         },
     }
 
-    var v10_click = true;
-    const v10Handle = event => {
-        if (v10_click) {
+    var v410_click = true;
+    const v410Handle = event => {
+        if (v410_click) {
             event.preventDefault()
-            setv10State(!v10State)
-        }
-    }
-
-    var v4_click = true;
-    const v4Handle = event => {
-        if (v4_click) {
-            event.preventDefault()
-            setv4State(!v4State)
+            setv410State(!v410State)
         }
     }
 
@@ -199,7 +225,7 @@ function V3() {
             <h3>Atmospheric CO2 concentrations</h3>
             <p>A line graph of atmospheric carbon dioxide concentrations taken at Mauna Loa, Hawaii. Time period is about 65 years. <br />
                 The second (V4) graph is about atmospheric carbon dioxide concentrations based on Antarctic ice cores.
-                Time period is ~1000 years.</p>
+                Time period is ~1000 years. The pink bubbles are about major human evolution and culture events.</p>
             <div className="V3">
                 <div style={{ width: "100%", margin: "auto" }}>
                     <div>
@@ -208,8 +234,7 @@ function V3() {
                         <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html'> V4 Description source</a><br />
                         <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets source</a><br /><br />
                         <form>
-                            <button className="Buttons" onClick={v4Handle}>V4 ON/OFF</button>
-                            <button className="Buttons" onClick={v10Handle}>V10 ON/OFF</button>
+                            <button className="Buttons" onClick={v410Handle}>V4 & V10 ON/OFF</button>
                             <button className="Buttons" onClick={v3Handle}>Change View</button>
                         </form>
                     </div>

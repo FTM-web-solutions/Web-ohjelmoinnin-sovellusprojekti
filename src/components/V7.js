@@ -14,6 +14,7 @@ function V7() {
     const [v7, setv7] = useState([])
     const [age_gas, setage_gas] = useState([]);
     const [v10State, setv10State] = useState(true)
+    const [v7State, setv7State] = useState(true)
     const [v10Data, setv10Data] = useState([])
 
     useEffect(() => {
@@ -55,6 +56,30 @@ function V7() {
 
     const options = {
         plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function (context) {
+                        var title = context[0].dataset.title;
+                        if (context[0].dataset.type === "bubble") {
+                            title = "Year: " + context[0].parsed.x;
+                        }
+                        else {
+                            title = "Year: " + context[0].label;
+                        }
+                        return title;
+                    },
+                    label: function (context) {
+                        var label = context.dataset.label;
+                        if (context.dataset.type === "bubble") {
+                            label = context.raw.description;
+                        }
+                        else {
+                            label = label + ": " + context.formattedValue;
+                        }
+                        return label;
+                    }
+                },
+            },
             legend: {
                 position: "top",
             },
@@ -70,7 +95,7 @@ function V7() {
 
         elements: {
             point: {
-                radius: 1
+                radius: 0
             }
         },
 
@@ -94,8 +119,8 @@ function V7() {
                 }
             },
             x: {
-                min: -500000,
-                max: 1000000,
+                min: 0,
+                max: 800000,
                 type: "linear",
                 title: {
                     display: true,
@@ -115,10 +140,12 @@ function V7() {
                 showLine: true,
                 borderColor: 'blue',
                 backgroundColor: "white",
+                hidden: !v7State,
                 parsing: {
                     yAxisID: 'y1',
                     xAxisID: 'x'
                 }
+                
             },
 
             {
@@ -128,24 +155,25 @@ function V7() {
                 showLine: true,
                 borderColor: 'red',
                 backgroundColor: "white",
+                hidden: !v7State,
                 yAxisID: 'y2'
             },
 
             {
-                label: "Human Evolution and Activities",
                 type: 'bubble',
-                data: v10Data,
-                borderWidth: 10,
-                radius: 10,
-                borderColor: "green",
-                backgroundColor: "lightgreen",
-                showLine: false,
+                label: "History",
+                data: v10Data.map((x) => {
+                    return {
+                        x: x.Year,
+                        y: 10,
+                        r: 10,
+                        description: x.Event,
+                    }
+                }),
+                borderColor: '#FF10F0',
+                borderWidth: 2,
                 hidden: v10State,
-                parsing: {
-                    yAxisID: 'Event',
-                    xAxisID: 'Year'
-                }
-            },
+            }
         ]
     }
 
@@ -157,18 +185,28 @@ function V7() {
         }
     }
 
+    var v7_click = true;
+    const v7Handle = event => {
+        if (v7_click) {
+            event.preventDefault()
+            setv7State(!v7State)
+        }
+    }
+
     return (
         <div className='V7text'>
             <h3>Evolution of global temperature over the past two million years</h3>
             <p>
                 A multiaxis and combination line chart of the temperature record from the available 2m year period
                 with the available co2 measurements from the previous (atmospheric carbon dioxide concentrations) 800k year period.
+                The pink bubbles are about major human evolution and culture events.
             </p>
             <div className='V7' style={{ width: "100%", margin: "auto" }}>
                 <a href="http://carolynsnyder.com/publications.php">Dataset source</a><br />
                 <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Description source</a><br /><br />
                 <form>
                     <button className="Buttons" onClick={v10Handle}>V10 ON/OFF</button>
+                    <button className="Buttons" onClick={v7Handle}>Change View</button>
                 </form>
                 <Line
                     options={options}
