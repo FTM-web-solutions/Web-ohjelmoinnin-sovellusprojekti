@@ -231,7 +231,7 @@ function V3() {
                         <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets source</a><br /><br />
                         <form>
                             <button className="Buttons" onClick={v4Handle}>V4 ON/OFF</button>
-                            <button className="Buttons" onClick={v3Handle}>Change View</button> <br /> <br />
+                            <button className="Buttons" onClick={v3Handle}>Change View</button><br/><br/>
                             <button className="Buttons" onClick={v10Handle}>V10 ON/OFF</button>
                         </form>
                     </div>
