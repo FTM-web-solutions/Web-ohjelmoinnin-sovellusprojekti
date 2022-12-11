@@ -55,6 +55,7 @@ function V7() {
     }, [])
 
     const options = {
+        responsive: true,
         plugins: {
             tooltip: {
                 callbacks: {
@@ -165,14 +166,14 @@ function V7() {
                 data: v10Data.map((x) => {
                     return {
                         x: x.Year,
-                        y: 10,
-                        r: 10,
+                        y: 3,
+                        r: 18,
                         description: x.Event,
                     }
-                }),
-                borderColor: '#FF10F0',
-                borderWidth: 2,
+                }), 
+                borderColor: '#F89880',
                 hidden: v10State,
+                borderWidth: 3,
             }
         ]
     }
@@ -199,7 +200,7 @@ function V7() {
             <p>
                 A multiaxis and combination line chart of the temperature record from the available 2m year period
                 with the available co2 measurements from the previous (atmospheric carbon dioxide concentrations) 800k year period.
-                The pink bubbles are about major human evolution and culture events.
+                The pink (V10) bubbles are about major human evolution and culture events.
             </p>
             <div className='V7' style={{ width: "100%", margin: "auto" }}>
                 <a href="http://carolynsnyder.com/publications.php">Dataset source</a><br />

@@ -44,7 +44,7 @@ function V5() {
     ],
   };
   const options = {
-    reponsive: true,
+    responsive: true,
     elements: {
       point: {
         radius: 1

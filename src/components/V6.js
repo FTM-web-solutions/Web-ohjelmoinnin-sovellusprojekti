@@ -37,7 +37,7 @@ function V6() {
     ],
   };
   const options = {
-    reponsive: true,
+    responsive: true,
     plugins: {
       legend: {
         position: "top",

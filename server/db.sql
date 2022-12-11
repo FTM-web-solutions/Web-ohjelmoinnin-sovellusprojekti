@@ -9545,11 +9545,11 @@ INSERT INTO v10(Year,Event) VALUES (430000,'Denisovans diverge from Neanderthals
 INSERT INTO v10(Year,Event) VALUES (500000,'earliest use of stone-tipped spears, by Homo heidelbergensis (South Africa) for hunting large game');
 INSERT INTO v10(Year,Event) VALUES (700000,'rise of Homo heidelbergensis in Africa and Europe, possible ancestor of Homo sapiens and Homo neanderthalensis; supplementing meat with starchy plants');
 INSERT INTO v10(Year,Event) VALUES (11600,'earliest monumental ritual art (Shigir, Siberia): 5-m tall larchwood plank carved with human forms and signs → complex ideas expressed by hunter-gatherers');
-INSERT INTO v10(Year,Event) VALUES (11700,'in the Mojave desert a seed germinates and grows into a deadly creosote bush, which segments to sprout new stems, sprouting and segmenting for 11,700 years');
-INSERT INTO v10(Year,Event) VALUES (12000,'extinction of megafauna including woolly mammoths from continental Eurasia and North America, caused by human hunting and climate change');
-INSERT INTO v10(Year,Event) VALUES (12800,'climate shift contributing to megafaunal extinctions and human cultural changes (Younger Dryas): triggered by a comet airburst over North America and Europe?');
-INSERT INTO v10(Year,Event) VALUES (14000,'earliest lime plaster, used as an adhesive for hafting (Kebaran, Levant) → mortar by 3,000 years ago');
-INSERT INTO v10(Year,Event) VALUES (15000,'earliest thaumatrope (Laugerie-Basse, France): an optical toy, creating movement by juxtaposition of images');
-INSERT INTO v10(Year,Event) VALUES (19000,'replacement of early modern humans across Eurasia by the ancestors of today’s populations');
+INSERT INTO v10(Year,Event) VALUES (20000,'beginning of sea-level rise from deglaciation in a warming global climate; stabilising at today’s 120-m higher levels by c. 10,000 years ago');
+INSERT INTO v10(Year,Event) VALUES (40000,'earliest image of human form: a hand stencil (Maros karsts, Sulawesi)');
+INSERT INTO v10(Year,Event) VALUES (70000,'cooking of crushed pulse seeds by Neanderthals (Shanidar Cave, Iraqi Kurdistan): tolerance of bitter and astringent tastes → food culture');
+INSERT INTO v10(Year,Event) VALUES (100000,'earliest human etchings on rock: cross-hash decorations or symbols (Blombos Cave, South Africa) → conceptual imagination');
+INSERT INTO v10(Year,Event) VALUES (160000,'coastal shellfish harvested by Homo sapiens in southern Africa, and by Neanderthals in the Mediterranean → fatty acids boosting cognitive development');
+INSERT INTO v10(Year,Event) VALUES (176000,'earliest built constructions: underground edifices made from broken stalagmites by Neanderthals (Bruniquel Cave, France) → material culture');
 
 CREATE TABLE `climate`.`users` ( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` VARCHAR(25) NOT NULL , `email` VARCHAR(64) NOT NULL , `password` VARCHAR(255) NOT NULL , `refresh_token` TEXT NULL , `createdAt` DATETIME NOT NULL , `updatedAt` DATETIME NOT NULL , UNIQUE (`id`, `name`), UNIQUE (`id`, `email`)) ENGINE = InnoDB;

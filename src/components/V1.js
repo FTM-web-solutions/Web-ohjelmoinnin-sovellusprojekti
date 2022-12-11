@@ -16,43 +16,43 @@ function V1() {
   const [V2Data, setV2Data] = useState([])
 
   useEffect(() => {
-      axios.get(URL)
-        .then((response) => {
-          for (let i = 0; i < response.data.length; i++) {
-            if (response.data[i].Years != null) {
-              response.data[i].Years = response.data[i].Years.toString();
-            }
+    axios.get(URL)
+      .then((response) => {
+        for (let i = 0; i < response.data.length; i++) {
+          if (response.data[i].Years != null) {
+            response.data[i].Years = response.data[i].Years.toString();
           }
-          setV1Data(response.data)
-        }).catch (error => {
-      alert(error.response.data.error)
-    })
+        }
+        setV1Data(response.data)
+      }).catch(error => {
+        alert(error.response.data.error)
+      })
   }, [])
 
   useEffect(() => {
     axios.get(URL2)
-            .then((response) => {
-              for(let i = 0; i < response.data.length; i++) {
-                response.data[i].Year = response.data[i].Year.toString();
-                response.data[i].T = response.data[i].T.toString();
+      .then((response) => {
+        for (let i = 0; i < response.data.length; i++) {
+          response.data[i].Year = response.data[i].Year.toString();
+          response.data[i].T = response.data[i].T.toString();
 
-                if (response.data[i].Year.length < 2) {
-                  response.data[i].Year = "000" + response.data[i].Year;
-                }
+          if (response.data[i].Year.length < 2) {
+            response.data[i].Year = "000" + response.data[i].Year;
+          }
 
-                if (response.data[i].Year.length < 3) {
-                  response.data[i].Year = "00" + response.data[i].Year;
-                }
+          if (response.data[i].Year.length < 3) {
+            response.data[i].Year = "00" + response.data[i].Year;
+          }
 
-                if (response.data[i].Year.length < 4) {
-                  response.data[i].Year = "0" + response.data[i].Year;
-                }
-              }
-                setV2Data(response.data)
-            }).catch(error => {
-                alert(error.response.data.error)
-            })
-    }, [])
+          if (response.data[i].Year.length < 4) {
+            response.data[i].Year = "0" + response.data[i].Year;
+          }
+        }
+        setV2Data(response.data)
+      }).catch(error => {
+        alert(error.response.data.error)
+      })
+  }, [])
 
   const data = {
     datasets: [
@@ -165,15 +165,7 @@ function V1() {
     interaction: {
       mode: "index",
       intersect: false,
-  },
-  tooltips: {
-      mode: "index",
-      intersect: false,
-  },
-  hover: {
-      mode: "nearest",
-      intersect: true,
-  },
+    },
     plugins: {
       legend: {
         position: "top",
@@ -189,20 +181,20 @@ function V1() {
         display: true,
         position: "right",
         title: {
-            display: true,
-            text: "Degrees (°C)"
+          display: true,
+          text: "Degrees (°C)"
         },
-    },
-    x: {
-      type: 'time',
-      time: {
-          unit: "month",
       },
-      title: {
+      x: {
+        type: 'time',
+        time: {
+          unit: "month",
+        },
+        title: {
           display: true,
           text: "Time (monthly)"
-      }
-  },
+        }
+      },
     },
   }
 
