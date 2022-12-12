@@ -120,6 +120,7 @@ function V7() {
                 }
             },
             x: {
+                reverse: true,
                 min: 0,
                 max: 800000,
                 type: "linear",
@@ -146,7 +147,7 @@ function V7() {
                     yAxisID: 'y1',
                     xAxisID: 'x'
                 }
-                
+
             },
 
             {
@@ -170,7 +171,7 @@ function V7() {
                         r: 18,
                         description: x.Event,
                     }
-                }), 
+                }),
                 borderColor: '#F89880',
                 hidden: v10State,
                 borderWidth: 3,

@@ -183,10 +183,26 @@ function V3() {
                 },
             },
             x: {
+                display: v10State,
+                reverse: !v10State,
+                type: "linear",
+                time: {
+                    unit: "month",
+                },
+                title: {
+                    display: true,
+                    text: "Time",
+                },
+            },
+            x2: {
+                display: !v10State,
+                reverse: true,
+                min: 0,
+                max: 700000,
                 type: 'linear',
                 title: {
                     display: true,
-                    text: "Time"
+                    text: "Years Before Present"
                 }
             },
         },
@@ -231,7 +247,7 @@ function V3() {
                         <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets source</a><br /><br />
                         <form>
                             <button className="Buttons" onClick={v4Handle}>V4 ON/OFF</button>
-                            <button className="Buttons" onClick={v3Handle}>Change View</button><br/><br/>
+                            <button className="Buttons" onClick={v3Handle}>Change View</button><br /><br />
                             <button className="Buttons" onClick={v10Handle}>V10 ON/OFF</button>
                         </form>
                     </div>
