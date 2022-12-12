@@ -15,6 +15,7 @@ function V3() {
     const [v3State, setv3State] = useState(true)
     const [v10State, setv10State] = useState(true)
     const [v10Data, setv10Data] = useState([])
+    const [timetype, settimetype] = useState("time")
 
     useEffect(() => {
         axios.get(URL)
@@ -185,7 +186,7 @@ function V3() {
             x: {
                 display: v10State,
                 reverse: !v10State,
-                type: "linear",
+                type: timetype,
                 time: {
                     unit: "month",
                 },
@@ -227,8 +228,13 @@ function V3() {
     var v10_click = true;
     const v10Handle = event => {
         if (v10_click) {
+            settimetype("linear")
             event.preventDefault()
             setv10State(!v10State)
+            v10_click = false
+        }
+        if (!v10State) {
+            settimetype("time")
         }
     }
 
