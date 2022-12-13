@@ -1,4 +1,4 @@
-import Users from "../models/UserModel.js";
+import Users from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -60,7 +60,7 @@ export const Login = async(req, res) => {
             }
         });
         res.cookie('refreshToken', refreshToken,{
-            httpOnly: true,
+            httpOnly: false,
             maxAge: 24 * 60 * 60 * 1000
         });
         res.json({ accessToken });

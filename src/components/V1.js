@@ -5,8 +5,9 @@ import { Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
 import { Link } from 'react-router-dom';
 
-const URL = 'http://localhost:3001/'
-const URL2 = 'http://localhost:3001/v2'
+
+const URL = process.env.REACT_APP_API_ADDRESS+"/"
+const URL2 = process.env.REACT_APP_API_ADDRESS+"/v2"
 
 function V1() {
   const [v1State, setv1State] = useState(true)

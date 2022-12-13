@@ -1,0 +1,4 @@
+runtime: nodejs16
+service: server
+env_variables:
+  GAE_DB_SOCKET: "/cloudsql/ftmwebproject-371315:europe-west1:climate"

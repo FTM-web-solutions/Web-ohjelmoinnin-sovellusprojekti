@@ -1,8 +1,5 @@
-// const express = require('express')
-// const cors = require('cors')
 import mysql from "mysql2/promise";
 import config from "./config.js";
-
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -13,16 +10,16 @@ dotenv.config();
 
 const app = express()
 
-// app.use(cors())
 // app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-app.use(cors({ credentials:true, origin:'http://localhost:3000' }));
+app.use(cors({ credentials:true, origin: "https://ftmwebproject-371315.ew.r.appspot.com" }));
+// app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(router);
 
-const port = 3001
+const port = process.env.PORT || 3001
 
 try {
     await db.authenticate();

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
 
-const URL = 'http://localhost:3001/v3'
-const URL2 = 'http://localhost:3001/v4'
-const URL3 = 'http://localhost:3001/v10'
+const URL = process.env.REACT_APP_API_ADDRESS+"/v3"
+const URL2 = process.env.REACT_APP_API_ADDRESS+"/v4"
+const URL3 = process.env.REACT_APP_API_ADDRESS+"/v10"
 
 function V3() {
     const [maunaData, setmaunaData] = useState([])

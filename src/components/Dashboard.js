@@ -21,7 +21,7 @@ const Dashboard = (props) => {
 
     const refreshToken = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/token');
+            const response = await axios.get(process.env.REACT_APP_API_ADDRESS+"/token");
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
             setName(decoded.name);
@@ -40,7 +40,7 @@ const Dashboard = (props) => {
     axiosJWT.interceptors.request.use(async (config) => {
         const currentDate = new Date();
         if (expire * 1000 < currentDate.getTime()) {
-            const response = await axios.get('http://localhost:3001/token');
+            const response = await axios.get(process.env.REACT_APP_API_ADDRESS+"/token");
             config.headers.Authorization = `Bearer ${response.data.accessToken}`;
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
@@ -54,7 +54,7 @@ const Dashboard = (props) => {
 
     const Logout = async () => {
         try {
-            await axios.delete('http://localhost:3001/logout');
+            await axios.delete(process.env.REACT_APP_API_ADDRESS+"/logout");
             navigate('/', { replace: true });
             localStorage.clear()
             navigate(0);
@@ -65,7 +65,7 @@ const Dashboard = (props) => {
 
     const deleteUser = async () => {
         try {
-            await axios.delete('http://localhost:3001/deleteuser');
+            await axios.delete(process.env.REACT_APP_API_ADDRESS+"/deleteuser");
             navigate('/', { replace: true });
             localStorage.clear()
             navigate(0);

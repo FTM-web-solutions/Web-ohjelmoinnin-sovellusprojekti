@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Bubble, Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
 
-const URL = 'http://localhost:3001/v7'
-const URL2 = 'http://localhost:3001/v6'
-const URL3 = 'http://localhost:3001/v10'
+const URL = process.env.REACT_APP_API_ADDRESS+"/v7"
+const URL2 = process.env.REACT_APP_API_ADDRESS+"/v6"
+const URL3 = process.env.REACT_APP_API_ADDRESS+"/v10"
 
 function V7() {
 

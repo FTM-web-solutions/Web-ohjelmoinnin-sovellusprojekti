@@ -9,7 +9,7 @@ export default function Navbar() {
 
     const Logout = async () => {
         try {
-            await axios.delete('http://localhost:3001/logout');
+            await axios.delete(process.env.REACT_APP_API_ADDRESS+"/logout");
             navigate('/', { replace: true });
             localStorage.clear()
             navigate(0);
@@ -36,9 +36,9 @@ export default function Navbar() {
                     {
                         auth ?
                     <ul className="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-                            <ul class="dropdown-menu">
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                            <ul className="dropdown-menu">
                                 <li><Link className="dropdown-item" to="/dashboard">Profile</Link></li>
                                 <li><Link className="dropdown-item" to="/n3">Create view</Link></li>
                                 <li><hr className="dropdown-divider"/></li>

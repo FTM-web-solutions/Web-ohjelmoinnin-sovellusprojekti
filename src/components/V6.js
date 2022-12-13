@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-luxon";
 
-const URL = 'http://localhost:3001/v6'
+const URL = process.env.REACT_APP_API_ADDRESS+"/v6"
 
 function V6() {
 

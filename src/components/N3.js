@@ -45,7 +45,7 @@ function N3() {
   const v1handler = () => {
     setv1state(!v1state)
     setv1([<V1/>])
-    if(v1state == true) {
+    if(v1state) {
       setv1([])
     }
   }
@@ -53,7 +53,7 @@ function N3() {
   const v3handler = () => {
     setv3state(!v3state)
     setv3([<V3/>])
-    if(v3state == true) {
+    if(v3state) {
       setv3([])
     }
   }
@@ -61,7 +61,7 @@ function N3() {
   const v5handler = () => {
     setv5state(!v5state)
     setv5([<V5/>])
-    if(v5state == true) {
+    if(v5state) {
       setv5([])
     }
   }
@@ -69,7 +69,7 @@ function N3() {
   const v6handler = () => {
     setv6state(!v6state)
     setv6([<V6/>])
-    if(v6state == true) {
+    if(v6state) {
       setv6([])
     }
   }
@@ -77,7 +77,7 @@ function N3() {
   const v7handler = () => {
     setv7state(!v7state)
     setv7([<V7/>])
-    if(v7state == true) {
+    if(v7state) {
       setv7([])
     }
   }
@@ -85,7 +85,7 @@ function N3() {
   const v8handler = () => {
     setv8state(!v8state)
     setv8([<V8/>])
-    if(v8state == true) {
+    if(v8state) {
       setv8([])
     }
   }
@@ -93,7 +93,7 @@ function N3() {
   const v9handler = () => {
     setv9state(!v9state)
     setv9([<V9/>])
-    if(v9state == true) {
+    if(v9state) {
       setv9([])
     }
   }
@@ -106,9 +106,9 @@ function N3() {
         </h1>
         <p>You can choose the visualizations you want from the dropdown menu.</p>
         <ul className="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Visualizations</a>
-            <ul class="dropdown-menu">
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Visualizations</a>
+            <ul className="dropdown-menu">
               <li><input className="dropdown-padding" type="checkbox" id="v1" name="v1" value="v1" checked={v1state} onChange={v1handler} />Hadcrut temp data</li>
               <li><input className="dropdown-padding" type="checkbox" id="v3" name="v3" value="v3" checked={v3state} onChange={v3handler} />Atmospheric Co2 data</li>
               <li><input className="dropdown-padding" type="checkbox" id="v5" name="v5" value="v5" checked={v5state} onChange={v5handler} />Vostok Co2 data</li>

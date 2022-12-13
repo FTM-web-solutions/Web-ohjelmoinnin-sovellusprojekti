@@ -10,7 +10,7 @@ import "chartjs-adapter-luxon";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-const URL = 'http://localhost:3001/v9'
+const URL = process.env.REACT_APP_API_ADDRESS+"/v9"
 
 function V9() {
     const [sector, setSector] = useState([])
