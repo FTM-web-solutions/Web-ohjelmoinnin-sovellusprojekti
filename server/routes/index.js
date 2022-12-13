@@ -10,6 +10,6 @@ router.post('/users', Register);
 router.post('/login', Login);
 router.get('/token', refreshToken);
 router.delete('/logout', Logout);
-router.delete('/deleteuser', deleteUser);
+router.post('/deleteuser', deleteUser);
 
 export default router;

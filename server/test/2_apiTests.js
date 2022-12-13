@@ -65,9 +65,18 @@ describe('Login API Tests', function() {
         
         it('should delete user when data matches between user and database', function(done) {
             // send http request
+            let token = '';
             chai.request('http://localhost:3001')
-            .delete('/deleteuser')
+            .post('/login')
             .send({
+                email: "test1@gmail.com",
+                password: "123456"
+            })
+            // token = response.body.token
+            // console.log(token)
+            .post('/deleteuser')
+            .send({
+
             })
             .end(function(err, res) {
                 expect(err).to.be.null;
