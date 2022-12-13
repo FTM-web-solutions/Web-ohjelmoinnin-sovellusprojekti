@@ -34,12 +34,8 @@ function N3() {
 
   const clear = (e) => {
 	e.preventDefault();
+  localStorage.removeItem("testiä", true)
 	navigate(0)
-  }
-
-  const save = (e) => {
-	e.preventDefault();
-
   }
 
   const v1handler = () => {
@@ -117,7 +113,7 @@ function N3() {
               <li><input type="checkbox" id="v8" name="v8" value="v8" checked={v8state} onChange={v8handler} />Co2 emission by country</li>
               <li><input type="checkbox" id="v9" name="v9" value="v9" checked={v9state} onChange={v9handler} />Co2 emission by sector</li>
 			  <button onClick={clear}>Clear</button>
-			  <button onClick={save}>Save</button>
+			  {/* <button onClick={save}>Save</button> */}
             </ul>
           </li>
         </ul>
