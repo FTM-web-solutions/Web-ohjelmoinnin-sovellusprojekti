@@ -191,7 +191,7 @@ function V3() {
                 },
                 title: {
                     display: true,
-                    text: "Time",
+                    text: "Time (monthly)",
                 },
             },
             x2: {
@@ -238,27 +238,27 @@ function V3() {
     }
 
     return (
-        <div className='V3V4text'>
+        <div className='visualization'>
             <br></br><h3>Atmospheric CO2 concentrations</h3>
             <p>A line graph of atmospheric carbon dioxide concentrations taken at Mauna Loa, Hawaii. Time period is about 65 years. <br />
                 The second (V4) graph is about atmospheric carbon dioxide concentrations based on Antarctic ice cores.
                 Time period is ~1000 years. The pink (V10) bubbles are about major human evolution and culture events.</p>
-            <div className="V3">
+            <div className="chart">
                 <div style={{ width: "100%", margin: "auto" }}>
-                    <div>
-                        <a href='https://gml.noaa.gov/ccgg/trends/data.html'>Dataset source</a>
-                        <br /><a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>Description source</a><br />
-                        <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html'> V4 Description source</a><br />
-                        <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets source</a><br /><br />
-                        <form>
-                            <button className="Buttons" onClick={v4Handle}>V4 ON/OFF</button>
-                            <button className="Buttons" onClick={v3Handle}>Change View</button><br /><br />
-                            <button className="Buttons" onClick={v10Handle}>V10 ON/OFF</button>
-                        </form>
-                    </div>
                     <Line options={options} data={data} />
+                        <form>
+                            <button className="btn btn-primary btn-gap" onClick={v4Handle}>V4 ON/OFF</button>
+                            <button className="btn btn-primary btn-gap" onClick={v3Handle}>Change View</button>
+                            <button className="btn btn-primary btn-gap" onClick={v10Handle}>V10 ON/OFF</button>
+                        </form>
+                        <div>
+                        <a className='register-link' href='https://gml.noaa.gov/ccgg/trends/data.html'>Dataset source</a><br />
+                        <a className='register-link' href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>Description source</a><br />
+                        <a className='register-link' href='https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html'> V4 Description source</a><br />
+                        <a className='register-link' href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat'> V4 Datasets source</a><br /><br />
+                    </div>
                 </div>
-            </div>
+            </div><br></br><br></br>
         </div>
     );
 }

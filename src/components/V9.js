@@ -103,7 +103,12 @@ function V9() {
     }
 
     return (
-        <div className="V9">
+        <div className="visualization">
+          <h3>CO2 emissions by sectors</h3>
+          <p>
+                A pie chart of sector-specific co2 emissions. Click on the sectors to get more information.
+          </p>
+          <div className="chart">
           <Popup contentStyle={{ width: 1138 }} open={openEnergy} closeOnDocumentClick onClose={closeModal}>
                         <Energy subSector={subSector} share2={share2} subSectorFurther={subSectorFurther}
                             share3={share3} />
@@ -120,11 +125,12 @@ function V9() {
           <Popup open={opneAgriculture} closeOnDocumentClick onClose={closeModal}>
                         <Agriculture subSector={subSector} share2={share2} />
           </Popup>
-            <div style={{ height: "50%", width: "50%", margin: "auto" }}>
+            <div className="pie-chart" style={{ height: "50%", width: "50%" }}>
                 <form>
-                </form>
                 <Doughnut options={options} ref={chartRef} data={data} onClick={(event)=>onClick(event)}/>
-            </div>
+                </form>
+                </div><br></br>
+            </div><br></br>
         </div>
     );
 }

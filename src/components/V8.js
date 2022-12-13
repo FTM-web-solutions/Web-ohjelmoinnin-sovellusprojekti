@@ -2475,7 +2475,7 @@ function V8() {
             x: {
                 title: {
                     display: true,
-                    text: 'Years'
+                    text: 'Time (Years)'
                 }
             },
         },
@@ -2492,19 +2492,21 @@ function V8() {
     };
 
     return (
-        <div className='V8text'>
+        <div className='visualization'>
             <h3>CO2 emissions by country</h3>
             <p>
                 A stacked line chart of country-specific co2 emissions over time, time period is ~60 years.
             </p>
-            <div className='V8' style={{ width: "100%", margin: "auto" }}>
-                <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Dataset source<br /></a>
-                <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">Description source</a>
+            <div className="chart">
+            <div style={{ width: "100%", margin: "auto" }}>
                 <Line
                     options={options}
                     data={data}
                 />
-            </div>
+            <a className='register-link' href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Dataset source<br /></a>
+            <a className='register-link' href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">Description source</a>
+            </div><br></br>
+            </div><br></br><br></br>
         </div>
     )
 }

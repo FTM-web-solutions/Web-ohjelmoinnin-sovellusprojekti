@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function NotFound() {
   return (
-    <div>Address not found</div>
+    <div className='pagelayout'>
+      <h1>Not Found...</h1>
+    </div>
   )
 }

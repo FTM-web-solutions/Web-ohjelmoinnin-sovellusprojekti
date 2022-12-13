@@ -39,7 +39,7 @@ function N3() {
 
   const save = (e) => {
 	e.preventDefault();
-
+  alert("Not yet implemented")
   }
 
   const v1handler = () => {
@@ -100,24 +100,24 @@ function N3() {
     
   return (
     <>
-      <div>
+      <div className="pagelayout">
         <h1 className="form-head-contact-h3 ">
-          Customise your own visualization!
+          Create you own custom view
         </h1>
-        <p>Here you can select your preferred choices from every visualization</p>
+        <p>You can choose the visualizations you want from the dropdown menu.</p>
         <ul className="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Visualizations</a>
             <ul class="dropdown-menu">
-              <li><input type="checkbox" id="v1" name="v1" value="v1" checked={v1state} onChange={v1handler} />Hadcrut temp data</li>
-              <li><input type="checkbox" id="v3" name="v3" value="v3" checked={v3state} onChange={v3handler} />Atmospheric Co2 data</li>
-              <li><input type="checkbox" id="v5" name="v5" value="v5" checked={v5state} onChange={v5handler} />Vostok Co2 data</li>
-              <li><input type="checkbox" id="v6" name="v6" value="v6" checked={v6state} onChange={v6handler} />Ice core composite data</li>
-              <li><input type="checkbox" id="v7" name="v7" value="v7" checked={v7state} onChange={v7handler} />Global temp data</li>
-              <li><input type="checkbox" id="v8" name="v8" value="v8" checked={v8state} onChange={v8handler} />Co2 emission by country</li>
-              <li><input type="checkbox" id="v9" name="v9" value="v9" checked={v9state} onChange={v9handler} />Co2 emission by sector</li>
-			  <button onClick={clear}>Clear</button>
-			  <button onClick={save}>Save</button>
+              <li><input className="dropdown-padding" type="checkbox" id="v1" name="v1" value="v1" checked={v1state} onChange={v1handler} />Hadcrut temp data</li>
+              <li><input className="dropdown-padding" type="checkbox" id="v3" name="v3" value="v3" checked={v3state} onChange={v3handler} />Atmospheric Co2 data</li>
+              <li><input className="dropdown-padding" type="checkbox" id="v5" name="v5" value="v5" checked={v5state} onChange={v5handler} />Vostok Co2 data</li>
+              <li><input className="dropdown-padding" type="checkbox" id="v6" name="v6" value="v6" checked={v6state} onChange={v6handler} />Ice core composite data</li>
+              <li><input className="dropdown-padding" type="checkbox" id="v7" name="v7" value="v7" checked={v7state} onChange={v7handler} />Global temp data</li>
+              <li><input className="dropdown-padding" type="checkbox" id="v8" name="v8" value="v8" checked={v8state} onChange={v8handler} />Co2 emission by country</li>
+              <li><input className="dropdown-padding" type="checkbox" id="v9" name="v9" value="v9" checked={v9state} onChange={v9handler} />Co2 emission by sector</li>
+			  <button className="btn btn-primary btn-sm btn-gap" onClick={clear}>Clear</button>
+			  <button className="btn btn-primary btn-sm " onClick={save}>Save</button>
             </ul>
           </li>
         </ul>

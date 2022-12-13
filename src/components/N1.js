@@ -8,15 +8,17 @@ import V7 from './V7'
 export default function N1() {
   return (
     <>
+    <div className='pagelayout'>
       <h1>Temperature data and co2 concentration</h1>
       <p>
-        On this page you will find graphs about studies based on temperature data and co2 concentration...
+        On this page you will find graphs about studies based on temperature data and co2 concentration
       </p>
         <V1 />
         <V3 />
         <V5 />
         <V6 />
         <V7 />
+        </div>
     </>
   )
 }

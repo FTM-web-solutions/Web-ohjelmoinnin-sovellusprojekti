@@ -20,7 +20,7 @@ export default function Navbar() {
 
 
     return (
-        <nav id="nav" className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <nav id="nav" className="navbar navbar-expand-md navbar-dark navbar-custom">
             <div className="container-fluid">
                 <Link className='navbar-brand' to='/'>Climate Visualization Page</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +29,9 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
                         <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/N1">N1</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/N2">N2</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/N3">N3</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/N1">Temperature data</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/N2">Emission sources</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/N3">Create view</Link></li>
                     </ul>
                     {
                         auth ?
@@ -41,14 +41,15 @@ export default function Navbar() {
                             <ul class="dropdown-menu">
                                 <li><Link className="dropdown-item" to="/dashboard">Profile</Link></li>
                                 <li><Link className="dropdown-item" to="/n3">Create view</Link></li>
-                                <li><Link className="dropdown-item" onClick={Logout}>Logout</Link></li>
+                                <li><hr className="dropdown-divider"/></li>
+                                <li><Link className="dropdown-item divider" onClick={Logout}>Logout</Link></li>
                             </ul>
                         </li>
                     </ul>
                     :    
                     <ul className="navbar-nav">    
                         <li className="nav-item-nav-right"><Link className="btn btn-outline-light me-2" to="/Login">Login</Link></li>
-                        <li className="nav-item-nav-right"><Link className="btn btn-warning" to="/Register">Sign-up</Link></li>
+                        <li className="nav-item-nav-right"><Link className="btn btn-primary" to="/Register">Sign-up</Link></li>
                     </ul>
                     }
                 </div>

@@ -77,17 +77,7 @@ const Dashboard = (props) => {
     return (
         <div className="container mt-5">
             <h1>Welcome Back: {name}</h1>
-            <button onClick={deleteUser} className="button">Delete user</button>
-            {/* <div>
-                <label>Charts</label>
-                <select name="charts" value={charts} onChange={e => setCharts(e.target.value)} >
-                    <option value="1.3">V1</option>
-                    <option value="1.5">V2</option>
-                    <option value="1.7">V3</option>
-                    <option value="2">V4</option>
-                    <option value="2.2">V5</option>
-                </select>
-            </div> */}
+            <button onClick={deleteUser} className="btn btn-primary btn-sm">Delete user</button>
         </div>
     )
 }

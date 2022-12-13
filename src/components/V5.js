@@ -83,15 +83,17 @@ function V5() {
   };
 
   return (
-    <div className='V5text'>
+    <div className='visualization'>
       <h3>Vostok ice core CO2 measurements</h3>
       <p>A line graph of atmospheric carbon dioxide concentrations based on ice drilling conducted at Vostok station in the Soviet Antarctic.
-        Time period ~400000 years...</p>
-      <a href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2'>Dataset source</a><br />
-      <a href='https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html'>Description source</a>
-      <div className='V5' style={{ width: "100%", margin: "auto" }}>
+        Time period ~400000 years.</p>
+      <div className="chart">
+      <div style={{ width: "100%", margin: "auto" }}>
         <Line options={options} data={data} />
-      </div>
+        <a className='register-link' href='https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2'>Dataset source</a><br />
+        <a className='register-link' href='https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html'>Description source</a>
+      </div><br></br>
+    </div><br></br><br></br>
     </div>
   )
 }

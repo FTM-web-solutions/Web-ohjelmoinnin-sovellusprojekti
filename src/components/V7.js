@@ -125,7 +125,7 @@ function V7() {
                 type: "linear",
                 title: {
                     display: true,
-                    text: "Time",
+                    text: "Years Before Present",
                 }
             },
         }
@@ -195,25 +195,27 @@ function V7() {
     }
 
     return (
-        <div className='V7text'>
+        <div className='visualization'>
             <h3>Evolution of global temperature over the past two million years</h3>
             <p>
                 A multiaxis and combination line chart of the temperature record from the available 2m year period
                 with the available co2 measurements from the previous (atmospheric carbon dioxide concentrations) 800k year period.
                 The pink (V10) bubbles are about major human evolution and culture events.
             </p>
-            <div className='V7' style={{ width: "100%", margin: "auto" }}>
-                <a href="http://carolynsnyder.com/publications.php">Dataset source</a><br />
-                <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Description source</a><br /><br />
-                <form>
-                    <button className="Buttons" onClick={v10Handle}>V10 ON/OFF</button>
-                    <button className="Buttons" onClick={v7Handle}>Change View</button>
-                </form>
+            <div className="chart">
+            <div tyle={{ width: "100%", margin: "auto" }}>                
                 <Line
                     options={options}
                     data={data}
                 />
-            </div>
+                <form>
+                    <button className="btn btn-primary btn-gap" onClick={v10Handle}>V10 ON/OFF</button>
+                    <button className="btn btn-primary btn-gap" onClick={v7Handle}>Change View</button>
+                </form>
+                <a className='register-link' href="http://carolynsnyder.com/publications.php">Dataset source</a><br />
+                <a className='register-link' href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Description source</a><br /><br />
+            </div><br></br>
+            </div><br></br><br></br>
         </div>
     )
 }

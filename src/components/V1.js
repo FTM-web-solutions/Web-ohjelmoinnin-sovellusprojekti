@@ -215,22 +215,25 @@ function V1() {
   }
 
   return (
-    <div className='V1V2text'>
+    <div className='visualization'>
       <h3>Hadcrut temperature data</h3>
       <p>
-        The main line chart is about global historical surface temperature anomalies from January 1850 onwards.<br />
-        The second (v2) graph shows reconstructed northern hemisphere temperatures for the past 2,000 years with purple color.<br />
+        The main line chart is about global historical surface temperature anomalies from January 1850 onwards.
+        The second (v2) graph shows reconstructed northern hemisphere temperatures for the past 2,000 years with purple color.
         Just like before, it visualizes the temperature in relation to time.
       </p>
-      <div className="V1" style={{ width: "100%", margin: "auto" }} >
-        <a href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
-        <a href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a>
+      <div className="chart">
+      <div style={{ width: "100%", margin: "auto" }} >
         <Line options={options} data={data} />
         <form>
-          <button className="Buttons" onClick={v2Handle}>V2 ON/OFF</button>
-          <button className="Buttons" onClick={v1Handle}>Change View</button>
+          <button type="button" className="btn btn-primary btn-gap" onClick={v2Handle}>V2 ON/OFF</button>
+          <button type="button" className="btn btn-primary btn-gap" onClick={v1Handle}>Change View</button>
         </form>
-      </div>
+        <a className='register-link' href='https://www.metoffice.gov.uk/hadobs/hadcrut5/'>Datasets source</a><br />
+      <a className='register-link' href='https://gml.noaa.gov/ccgg/about/co2_measurements.html'>V2 data measurement description</a>
+
+      </div><br></br>
+    </div><br></br><br></br>
     </div>
   );
 }

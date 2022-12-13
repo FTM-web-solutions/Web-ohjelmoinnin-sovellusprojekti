@@ -36,7 +36,7 @@ const Login = () => {
         <main className="form-signin-w-100-m-auto">
           <form onSubmit={Auth}>
             <h1 className="h3 mb-3 fw-normal">Sign in</h1>
-            <p>
+            <p className="msg-style">
               {msg}
             </p>
             <div className="form-floating">

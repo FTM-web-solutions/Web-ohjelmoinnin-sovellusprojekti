@@ -71,17 +71,19 @@ function V6() {
   };
 
   return (
-    <div className='V6text'>
+    <div className='visualization'>
       <h3>Ice core composite study CO2 measurement</h3>
       <p>
         A line graph of atmospheric carbon dioxide concentrations based on a combined study of ice cores in the southern hemisphere.
-        Time period ~800000 years...
+        Time period ~800000 years.
       </p>
-      <a href='https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt'>Dataset source</a><br />
-      <a href='https://www.ncei.noaa.gov/access/paleo-search/study/17975'>Description source</a>
-      <div className='V6' style={{ width: "100%", margin: "auto" }}>
+      <div className="chart">
+      <div style={{ width: "100%", margin: "auto" }}>
         <Line options={options} data={data} />
-      </div>
+        <a className='register-link' href='https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt'>Dataset source</a><br />
+        <a className='register-link' href='https://www.ncei.noaa.gov/access/paleo-search/study/17975'>Description source</a>
+      </div><br></br>
+    </div><br></br><br></br>
     </div>
   )
 }
