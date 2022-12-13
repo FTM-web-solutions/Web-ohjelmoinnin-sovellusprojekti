@@ -120,7 +120,7 @@ function V9() {
           <Popup open={opneAgriculture} closeOnDocumentClick onClose={closeModal}>
                         <Agriculture subSector={subSector} share2={share2} />
           </Popup>
-            <div style={{ height: "50%", width: "50%" }}>
+            <div style={{ height: "50%", width: "50%", margin: "auto" }}>
                 <form>
                 </form>
                 <Doughnut options={options} ref={chartRef} data={data} onClick={(event)=>onClick(event)}/>
