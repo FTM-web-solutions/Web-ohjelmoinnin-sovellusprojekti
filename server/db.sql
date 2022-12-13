@@ -9552,4 +9552,4 @@ INSERT INTO v10(Year,Event) VALUES (100000,'earliest human etchings on rock: cro
 INSERT INTO v10(Year,Event) VALUES (160000,'coastal shellfish harvested by Homo sapiens in southern Africa, and by Neanderthals in the Mediterranean → fatty acids boosting cognitive development');
 INSERT INTO v10(Year,Event) VALUES (176000,'earliest built constructions: underground edifices made from broken stalagmites by Neanderthals (Bruniquel Cave, France) → material culture');
 
-CREATE TABLE `climate`.`users` ( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` VARCHAR(25) NOT NULL , `email` VARCHAR(64) NOT NULL , `password` VARCHAR(255) NOT NULL , `refresh_token` TEXT NULL , `createdAt` DATETIME NOT NULL , `updatedAt` DATETIME NOT NULL , UNIQUE (`id`, `name`), UNIQUE (`id`, `email`)) ENGINE = InnoDB;
+CREATE TABLE `climate`.`users` ( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` VARCHAR(25) NOT NULL , `email` VARCHAR(64) NOT NULL , `password` VARCHAR(255) NOT NULL , `refresh_token` TEXT NULL , `createdAt` DATETIME NOT NULL , `updatedAt` DATETIME NOT NULL , UNIQUE (`name`), UNIQUE (`email`)) ENGINE = InnoDB;
