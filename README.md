@@ -1,6 +1,6 @@
 
 
-# Tervetuloa FTM web projektin gittiin.
+# Tervetuloa FTM web projektin gittiin
 
 
 ## Nettisivun linkki
