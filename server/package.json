@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajv": "^8.11.2",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "chai-json-schema-ajv": "^5.2.4",
