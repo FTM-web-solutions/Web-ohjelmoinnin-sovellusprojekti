@@ -60,12 +60,12 @@ export const Login = async(req, res) => {
             }
         });
         res.cookie('refreshToken', refreshToken,{
-            httpOnly: false,
+            httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
         });
         res.json({ accessToken });
     } catch (error) {
-    res.status(404).json({msg:"Incorrect email or password."});
+    res.status(404).json({msg:"Something went wrong try again later."});
     }
 }
 

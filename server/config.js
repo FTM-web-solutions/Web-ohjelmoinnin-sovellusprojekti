@@ -10,10 +10,12 @@ const config = {
     }
 };
 
-if (process.env.NODE_ENV == "production") {
+// if (process.env.NODE_ENV == "production") {
     config.db.socketPath = process.env.GAE_DB_SOCKET;
-}else{
-    config.db.host = "localhost";
-}
+// }else{
+//     config.db.host = "localhost";
+// }
+
+
 
 export default config;
