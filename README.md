@@ -1,6 +1,6 @@
 
 
-# Tervetuloa FTM web projektin gittiin
+# Tervetuloa FTM web projektin gittiin.
 
 
 ## Nettisivun linkki
@@ -15,7 +15,7 @@ Importtaa dumppi tiedosto MySQL Workbenchiin.
 
 Aja npm install juureen ja server kansioon asentaaksesi tarvittavat riippuvaisuudet.
 
-Tee .env tiedosto näillä tiedoilla.
+Tee .env server tiedostoon näillä tiedoilla.
 
 ACCESS_TOKEN_SECRET = jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g225<br/>
 REFRESH_TOKEN_SECRET = 825y8i3hnfjmsbv7gwajbl7fobqrjfvbs7gbfj2q3bgh8f42<br/>
