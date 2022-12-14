@@ -129,6 +129,8 @@ function V9() {
                 <form>
                 <Doughnut options={options} ref={chartRef} data={data} onClick={(event)=>onClick(event)}/>
                 </form>
+                <a className='register-link' href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx">Dataset source<br /></a>
+            <a className='register-link' href=": https://ourworldindata.org/emissions-by-sector#co2-emissions-by-secto">Description source</a>
                 </div><br></br>
             </div><br></br>
         </div>

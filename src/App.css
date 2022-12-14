@@ -35,10 +35,6 @@ h1 {
   font-weight: bold;
 }
 
-.pagelayout {
-  margin: 5ch;
-}
-
 .navbar-custom {
   background-color: #253136;
 }
@@ -48,22 +44,22 @@ h1 {
 }
 
 .chart {
-  margin-inline: 5CH;
-  background-color:rgba(255, 255, 255, 0.829)
+  background-color:rgba(255, 255, 255, 0.829);
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .visualization {
   text-align:center;
-  margin-inline: 5ch;
   background-color:rgba(92, 92, 92, 0.151);
 }
 
 footer {
-  position:fixed;
+  position:relative;
   bottom: 0;
   padding-top: auto;
   width: 100%;
-  height: 60px;
+  height: 50px;
   border-top: 2px solid rgb(27, 27, 27);
   background-color: #253136;
   text-align: center;
@@ -95,7 +91,8 @@ footer {
 }
 
 .form-signin-w-100-m-auto {
-  width: 15%;
+  width: 60%;
+  max-width: 400px;
   margin: auto;
   margin-top: 5ch;
 }
