@@ -73,8 +73,9 @@ describe('Login API Tests', function() {
         })
         
     describe('POST /deleteuser', async function() {
-        it('should delete user when data matches between user and database', async function() {
+        it('should delete user when data matches between user and database', async function(response, done) {
             //  send http request
+            this.timeout(10000);
             let token = '';
             const user = {
                 email: "test1@gmail.com",
@@ -87,15 +88,15 @@ describe('Login API Tests', function() {
             console.log(token)
             .post('/deleteUser')
             .set('Authorization', `Bearer ${token}`)
-            .send(user)
-            
+            .send({user})
+
             .end(function(err, res) {
                 expect(err).to.be.null;
                 // check response status
                 expect(res).to.have.status(200);
                 expect(200)
                 expect('Content-Type', /application\/json/)
-                // done();
+                done();
                 // check response data structure
 
             })    
