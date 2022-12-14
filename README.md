@@ -1,6 +1,6 @@
 
 
-# Tervetuloa FTM web projektin gittiin
+# Tervetuloa FTM web projektin gittiin.
 
 
 ## Nettisivun linkki
@@ -9,7 +9,7 @@ Nettisivulla kaikki toteutukset eivät toimi oikein niin käynnistä sivu locali
 
 https://ftmwebproject-371315.ew.r.appspot.com/
 
-## Käyttöön ottolocalisti.
+## Käyttöönotto lokalisti.
 
 Importtaa dumppi tiedosto MySQL Workbenchiin.
 
@@ -33,6 +33,6 @@ Mene server/index.js ja vaiha 15 rivillä cors origin kommentoinnin mukaan.
 
 Aja server kansiossa npm run devStart.
 
-Aja juuri kansiossa npm start
+Aja juuri kansiossa npm start.
 
-README tiedosto ei ole viimeistelty koska palautus vasta 19.12
+README tiedosto ei ole viimeistelty koska palautus vasta 19.12, joten tässä ohjeet lokaaliin käyttöönottoon.
