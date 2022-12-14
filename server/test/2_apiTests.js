@@ -10,6 +10,11 @@ import chaiJsonSchema from 'chai-json-schema-ajv'
 import chaiJsonSchemaAjv from 'chai-json-schema-ajv';
 import Users from '../models/UserModel.js';
 chai.use(chaiJsonSchemaAjv);
+// import index from "../routes/index"
+// const supertest = require('supertest');
+// import supertest from supertest
+// const api = supertest(app);
+
 
 describe('Login API Tests', function() {
 
@@ -21,15 +26,15 @@ describe('Login API Tests', function() {
         server.close();
     });
     
-    describe('POST /login, /register, /deleteuser', function() {
+    describe('POST /register', function() {
         
         it('should accept register for new user account when the information demanded is valid', function(done) {
             // send http request
             chai.request('http://localhost:3001')
             .post('/users')
             .send({
-                name: "test",
-                email: "test1@gmail.com",
+                name: "korrr",
+                email: "coperre@gmail.com",
                 password: "123456",
                 confPassword: "123456"
             })
@@ -43,7 +48,11 @@ describe('Login API Tests', function() {
 
             })            
         })
+    })
 
+    // fjf
+    describe('POST /login', function() {
+        // jg
         it('should accept the login when the user exists', function(done) {
             // send http request
             chai.request('http://localhost:3001')
@@ -63,30 +72,34 @@ describe('Login API Tests', function() {
             })      
         })
         
-        it('should delete user when data matches between user and database', function(done) {
-            // send http request
+    describe('POST /deleteuser', async function() {
+        it('should delete user when data matches between user and database', async function() {
+            //  send http request
             let token = '';
-            chai.request('http://localhost:3001')
-            .post('/login')
-            .send({
+            const user = {
                 email: "test1@gmail.com",
                 password: "123456"
-            })
-            // token = response.body.token
-            // console.log(token)
-            .post('/deleteuser')
-            .send({
-
-            })
+            }
+            chai.request('http://localhost:3001')
+            .post('/login')
+            .send(user)
+            token = response.body.token
+            console.log(token)
+            .post('/deleteUser')
+            .set('Authorization', `Bearer ${token}`)
+            .send(user)
+            
             .end(function(err, res) {
                 expect(err).to.be.null;
                 // check response status
                 expect(res).to.have.status(200);
-                done();
-
+                expect(200)
+                expect('Content-Type', /application\/json/)
+                // done();
                 // check response data structure
 
-            })            
+            })    
         })
     })
+})
 })
