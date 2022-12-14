@@ -40,3 +40,6 @@ README tiedosto ei ole viimeistelty koska palautus vasta 19.12, joten tässä oh
 ## Tekijät
 Kaikki toimivat full-stack kehittäjinä, tarkemmat työnkuvaukset tulevat lopullisessa README-palautuksessa.
 Leevi Järvinen, Veikka Kursula, Vili Kyrö ja Joona Hautaniemi.
+
+## Testaaminen
+Login-API testaaminen on Login_Testing branchissa. Testikoodi aiheutti konfliktejä pääohjelmaan joita ei kerennyt siistimään.
