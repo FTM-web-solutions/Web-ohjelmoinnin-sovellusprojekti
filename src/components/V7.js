@@ -200,7 +200,7 @@ function V7() {
             <p>
                 A multiaxis and combination line chart of the temperature record from the available 2m year period
                 with the available co2 measurements from the previous (atmospheric carbon dioxide concentrations) 800k year period.
-                The pink (V10) bubbles are about major human evolution and culture events.
+                The Orange (V10) bubbles are about major human evolution and culture events.
             </p>
             <div className="chart">
             <div tyle={{ width: "100%", margin: "auto" }}>                

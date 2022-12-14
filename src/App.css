@@ -19,6 +19,10 @@ footer .container {
   margin-top: 0;
 }
 
+.pagelayout {
+  margin: 5ch;
+}
+
 .divider {
   color: red;
 }
@@ -44,6 +48,7 @@ h1 {
 }
 
 .chart {
+  margin-inline: 5CH;
   background-color:rgba(255, 255, 255, 0.829);
   padding-left: 15px;
   padding-right: 15px;
@@ -55,7 +60,7 @@ h1 {
 }
 
 footer {
-  position:relative;
+  position:fixed;
   bottom: 0;
   padding-top: auto;
   width: 100%;

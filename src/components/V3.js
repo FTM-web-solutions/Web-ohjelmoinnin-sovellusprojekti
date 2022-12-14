@@ -179,7 +179,7 @@ function V3() {
                 position: "right",
                 title: {
                     display: true,
-                    text: "Mean data"
+                    text: "Co2 concentration"
                 },
             },
             x: {
@@ -242,7 +242,7 @@ function V3() {
             <br></br><h3>Atmospheric CO2 concentrations</h3>
             <p>A line graph of atmospheric carbon dioxide concentrations taken at Mauna Loa, Hawaii. Time period is about 65 years. <br />
                 The second (V4) graph is about atmospheric carbon dioxide concentrations based on Antarctic ice cores.
-                Time period is ~1000 years. The pink (V10) bubbles are about major human evolution and culture events.</p>
+                Time period is ~1000 years. The Orange (V10) bubbles are about major human evolution and culture events.</p>
             <div className="chart">
                 <div style={{ width: "100%", margin: "auto" }}>
                     <Line options={options} data={data} />

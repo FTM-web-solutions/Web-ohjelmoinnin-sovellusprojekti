@@ -11,7 +11,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [ref, setref] = useState()
 
-    const Auth = async (e) => {
+    const Auth = async (e) => { //checks if user has given a valid email and password if succes set user logged in else give user a error message
         e.preventDefault();
         try {
             await axios.post(process.env.REACT_APP_API_ADDRESS+"/login", {
@@ -20,7 +20,7 @@ const Login = () => {
             });
             localStorage.setItem("LoggedIn", true)
             navigate('/dashboard', { replace: true });
-            navigate(0);
+            // navigate(0);
             
         } catch (error) {
             if (error.response) {

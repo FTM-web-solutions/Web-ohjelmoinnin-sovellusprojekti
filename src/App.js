@@ -14,7 +14,7 @@ import NotFound from './components/NotFound';
 
 
 function App() {
-  return (
+  return ( 
     <>
     <Navbar />
     <Header />

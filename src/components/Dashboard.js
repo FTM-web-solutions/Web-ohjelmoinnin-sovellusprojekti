@@ -19,7 +19,7 @@ const Dashboard = (props) => {
         // getUsers();
     }, []);
 
-    const refreshToken = async () => {
+    const refreshToken = async () => { //refreshes users token if cannot find a token log user out 
         try {
             const response = await axios.get(process.env.REACT_APP_API_ADDRESS+"/token");
             setToken(response.data.accessToken);
@@ -30,12 +30,12 @@ const Dashboard = (props) => {
             if (error.response) {
                 navigate('/Login', { replace: true });
                 localStorage.clear()
-                navigate(0);
+                // navigate(0);
             }
         }
     }
 
-    const axiosJWT = axios.create();
+    const axiosJWT = axios.create(); //create a token for user
 
     axiosJWT.interceptors.request.use(async (config) => {
         const currentDate = new Date();
@@ -52,23 +52,23 @@ const Dashboard = (props) => {
         return Promise.reject(error);
     });
 
-    const Logout = async () => {
+    const Logout = async () => { //logs user out and clears cookies and localstorage
         try {
             await axios.delete(process.env.REACT_APP_API_ADDRESS+"/logout");
             navigate('/', { replace: true });
             localStorage.clear()
-            navigate(0);
+            // navigate(0);
         } catch (error) {
             console.log(error);
         }
     }
 
-    const deleteUser = async () => {
+    const deleteUser = async () => { //deletes user from database and clears localstorage
         try {
             await axios.delete(process.env.REACT_APP_API_ADDRESS+"/deleteuser");
             navigate('/', { replace: true });
             localStorage.clear()
-            navigate(0);
+            // navigate(0);
         } catch (error) {
             console.log(error)
         }

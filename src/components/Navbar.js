@@ -7,12 +7,12 @@ export default function Navbar() {
     const navigate = useNavigate();
     const auth = localStorage.getItem("LoggedIn")
 
-    const Logout = async () => {
+    const Logout = async () => { //signs user out clears token and localstorage
         try {
             await axios.delete(process.env.REACT_APP_API_ADDRESS+"/logout");
             navigate('/', { replace: true });
             localStorage.clear()
-            navigate(0);
+            // navigate(0);
         } catch (error) {
             console.log(error);
         }

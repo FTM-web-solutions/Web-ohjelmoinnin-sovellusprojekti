@@ -10,20 +10,16 @@ dotenv.config();
 
 const app = express()
 
-// "https://ftmwebproject-371315.ew.r.appspot.com"
-
-// app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-app.use(cors({ credentials:true, origin: "https://ftmwebproject-371315.ew.r.appspot.com" }));
-// app.use(cors());
+app.use(cors({ credentials:true, origin: "https://ftmwebproject-371315.ew.r.appspot.com" })); //change origin value to "http://localhost:3000" if running locally
 app.use(cookieParser());
 app.use(express.json());
 app.use(router);
 
 const port = process.env.PORT || 3001
 
-try {
+try { //check if the database connection is successful
     await db.authenticate();
     console.log('Database Connected...');
 } catch (error) {
@@ -32,13 +28,13 @@ try {
 
 //GET Visualizations here
 
-app.get("/",async function (req,res)    {
+app.get("/",async function (req,res)    { 
     try {
-        const connection = await mysql.createConnection(config.db)
-        const[result,] = await connection.execute('select * from v1')
+        const connection = await mysql.createConnection(config.db) //create a connection to the database
+        const[result,] = await connection.execute('select * from v1') //execute mysql command 
         
         if (!result) result=[]
-        res.status(200).json(result)
+        res.status(200).json(result) //set data into result
     }   catch(err) {
         res.status(500).json({error: err.message})
     }
@@ -153,16 +149,4 @@ app.get("/v9",async function (req,res)    {
     }
   })
 
-app.get("/user",async function (req,res)    {
-    try {
-        const connection = await mysql.createConnection(config.db)
-        const[result,] = await connection.execute('select * from usertable')
-        
-        if (!result) result=[]
-        res.status(200).json(result)
-    }   catch(err) {
-        res.status(500).json({error: err.message})
-    }
-})
-  
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))

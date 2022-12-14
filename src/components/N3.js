@@ -32,17 +32,16 @@ function N3() {
 
   const navigate = useNavigate();
 
-  const clear = (e) => {
-	e.preventDefault();
+  const clear = (e) => { //clears checkboxes
 	navigate(0)
   }
 
-  const save = (e) => {
+  const save = (e) => { //early implementation for save feature
 	e.preventDefault();
   alert("Not yet implemented")
   }
 
-  const v1handler = () => {
+  const v1handler = () => { //if user checks checkbox give v1 value of v1 components if unchecked clear v1
     setv1state(!v1state)
     setv1([<V1/>])
     if(v1state) {

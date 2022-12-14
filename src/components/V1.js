@@ -16,15 +16,15 @@ function V1() {
   const [V1Data, setV1Data] = useState([])
   const [V2Data, setV2Data] = useState([])
 
-  useEffect(() => {
+  useEffect(() => { //get data from database 
     axios.get(URL)
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
           if (response.data[i].Years != null) {
-            response.data[i].Years = response.data[i].Years.toString();
+            response.data[i].Years = response.data[i].Years.toString(); //save year data to a string
           }
         }
-        setV1Data(response.data)
+        setV1Data(response.data) //take the data from database and set it to a variable
       }).catch(error => {
         alert(error.response.data.error)
       })
@@ -33,7 +33,7 @@ function V1() {
   useEffect(() => {
     axios.get(URL2)
       .then((response) => {
-        for (let i = 0; i < response.data.length; i++) {
+        for (let i = 0; i < response.data.length; i++) { //chartjs doesnt like years under 1000 so we add zeros after the values which are under 1000
           response.data[i].Year = response.data[i].Year.toString();
           response.data[i].T = response.data[i].T.toString();
 
@@ -49,7 +49,7 @@ function V1() {
             response.data[i].Year = "0" + response.data[i].Year;
           }
         }
-        setV2Data(response.data)
+        setV2Data(response.data) //take the data from database and set it to a variable
       }).catch(error => {
         alert(error.response.data.error)
       })
@@ -58,16 +58,16 @@ function V1() {
   const data = {
     datasets: [
       {
-        label: "Northern Hemisphere 2,000-year temperature reconstruction (V2)",
-        data: V2Data,
+        label: "Northern Hemisphere 2,000-year temperature reconstruction (V2)", 
+        data: V2Data, //use the data from the database on the chart
         spanGaps: true,
         borderColor: "purple",
         backgroundColor: "white",
         yAxisID: "C",
         hidden: v2State,
         parsing: {
-          xAxisKey: "Year",
-          yAxisKey: "T"
+          xAxisKey: "Year", //set year value same as in the response data
+          yAxisKey: "T" //set anomaly value same as in the response data
         },
         pointRadius: 0,
       },
@@ -199,7 +199,7 @@ function V1() {
     },
   }
 
-  var v2_click = true;
+  var v2_click = true; //if clicked show v2 if clicked again hide v2
   const v2Handle = event => {
     if (v2_click) {
       event.preventDefault()
@@ -207,7 +207,7 @@ function V1() {
     }
   }
 
-  var v1_click = true;
+  var v1_click = true; //if clicked show v1 if clicked again hide v1
   const v1Handle = event => {
     if (v1_click) {
       event.preventDefault()
