@@ -1,70 +1,38 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Tervetuloa FTM web projektin gittiin.
 
-In the project directory, you can run:
 
-### `npm start`
+## Nettisivun linkki
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Nettisivulla kaikki toteutukset eivät toimi oikein niin käynnistä sivu localisti, jotta voit testata toimivuuden täysin!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+https://ftmwebproject-371315.ew.r.appspot.com/
 
-### `npm test`
+## Käyttöön ottolocalisti.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Importtaa dumppi tiedosto MySQL Workbenchiin.
 
-### `npm run build`
+Aja npm install juureen ja server kansioon asentaaksesi tarvittavat riippuvaisuudet.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Tee .env tiedosto näillä tiedoilla.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ACCESS_TOKEN_SECRET = jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g225<br/>
+REFRESH_TOKEN_SECRET = 825y8i3hnfjmsbv7gwajbl7fobqrjfvbs7gbfj2q3bgh8f42<br/>
+DB_HOST = localhost<br/>
+DB_USER = root<br/>
+DB_PASSWORD = root<br/>
+DB_DATABASE = climate<br/>
+DB_DIALECT = mysql<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Mene server/config.js ja vaihda password käyttämään DB_PASSWORD.
 
-### `npm run eject`
+Mene server/config/Database.js ja seuraa kommentointia vaihda myös password käyttämään DB_PASSWORD.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Mene server/index.js ja vaiha 15 rivillä cors origin kommentoinnin mukaan.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Aja server kansiossa npm run devStart.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Aja juuri kansiossa npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+README tiedosto ei ole viimeistelty koska palautus vasta 19.12
