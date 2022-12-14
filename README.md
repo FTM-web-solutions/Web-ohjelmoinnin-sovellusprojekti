@@ -38,5 +38,5 @@ Aja juuri kansiossa npm start.
 README tiedosto ei ole viimeistelty koska palautus vasta 19.12, joten tässä ohjeet lokaaliin käyttöönottoon.
 
 ## Tekijät
-Kaikki toimivat full-stack kehittäjinä, tarkemmat työnkuvaukset tulevat lopullisessa ReadMe-palautuksessa.
+Kaikki toimivat full-stack kehittäjinä, tarkemmat työnkuvaukset tulevat lopullisessa README-palautuksessa.
 Leevi Järvinen, Veikka Kursula, Vili Kyrö ja Joona Hautaniemi.
