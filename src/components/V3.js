@@ -69,7 +69,7 @@ function V3() {
                 borderColor: "red",
                 hidden: v3State,
                 parsing: {
-                    xAxisKey: 'year',
+                    xAxisKey: 'month',
                     yAxisKey: 'average'
                 },
             },
