@@ -1,45 +1,82 @@
 
+# FTM 2022 ilmastoprojekti 
 
-# Tervetuloa FTM web projektin gittiin
+## Projektin aihe ja tarkoitus 
 
+Projektin aiheena oli tehdä ilmastonmuutokseen liittyvä visualisointityökalu, johon tehdään erilaisilla datapaketeilla kuvaajia visualisoimaan ilmaston lämpötilatietoja ja päästölähteitä. Sovelluksessa on mahdollista luoda oma käyttäjä, jolla voi luoda oman visualisointinäkymän asettelemalla tekemiämme kuvaajia omaan tyyliin. 
 
-## Nettisivun linkki
+Projektin tarkoitus oli toteuttaa web-sovellus ryhmässä ja perehtyä käyttämään Kanban-mallia. 
 
-Nettisivulla kaikki toteutukset eivät toimi oikein niin käynnistä sivu localisti, jotta voit testata toimivuuden täysin!
+Tekstin tekoon ja muokkaukseen ovat osallistuneet kaikki ryhmän jäsenet: 
 
-https://ftmwebproject-371315.ew.r.appspot.com/
+Veikka Kursula, Leevi Järvinen, Vili Kyrö ja Joona Hautaniemi 
 
-## Käyttöönotto lokalisti.
+Nettisivun osoite: https://ftmwebproject-371315.ew.r.appspot.com/ 
 
-Importtaa dumppi tiedosto MySQL Workbenchiin.
+Sovelluksen esittely 
 
-Aja npm install juureen ja server kansioon asentaaksesi tarvittavat riippuvaisuudet.
+Esittely video: https://www.youtube.com/watch?v=-71kJFHAIpY 
 
-Tee .env server tiedostoon näillä tiedoilla.
+Mitä teknologioita projektissa on käytetty? 
 
-ACCESS_TOKEN_SECRET = jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g225<br/>
-REFRESH_TOKEN_SECRET = 825y8i3hnfjmsbv7gwajbl7fobqrjfvbs7gbfj2q3bgh8f42<br/>
-DB_HOST = localhost<br/>
-DB_USER = root<br/>
-DB_PASSWORD = root<br/>
-DB_DATABASE = climate<br/>
-DB_DIALECT = mysql<br/>
+### Frontend 
 
-Mene server/config.js ja vaihda password käyttämään DB_PASSWORD.
+Tässä sovelluksessa frontend on toteutettu käyttämällä ReactJS:ää (JavaScript-kirjasto), Bootstrapiä (CSS-kehys) ja CSS:ää HTML-tyylien muokkaamiseen. Erilaisten pakettien asentamiseen käytimme npm:ää (node package manager), joka oli ryhmän työntekijöille entuudestaan tuttu. Näistä asennetuista paketeista eniten käytettyjä olivat React-Chartjs-2, Axios, Bootsrap sekä React-Bootstrap. 
 
-Mene server/config/Database.js ja seuraa kommentointia vaihda myös password käyttämään DB_PASSWORD.
+ 
 
-Mene server/index.js ja vaiha 15 rivillä cors origin kommentoinnin mukaan.
+### Backend 
 
-Aja server kansiossa npm run devStart.
+Sovelluksen backend on toteutettu käyttämällä JavaScriptiä. Muun muassa eri tietokantaan liittyvät pyynnöt ynnä muut hoituvat sen puolella. Paketeista keskeisiä käytettyjä ovat esimerkiksi express, cors ja dotenv. Asentamiseen käytettiin npm:ää (node package manager) totuttuun tapaan. 
 
-Aja juuri kansiossa npm start.
+ 
 
-README tiedosto ei ole viimeistelty koska palautus vasta 19.12, joten tässä ohjeet lokaaliin käyttöönottoon.
+## Tietokanta 
 
-## Tekijät
-Kaikki toimivat full-stack kehittäjinä, tarkemmat työnkuvaukset tulevat lopullisessa README-palautuksessa.
-Leevi Järvinen, Veikka Kursula, Vili Kyrö ja Joona Hautaniemi.
+Projektissa tietokannaksi valittiin MySQL, joka on relaatiotietokanta järjestelmä. MySQL valittiin tietokantajärjestelmäksi sen takia, koska se oli ryhmän jäsenien kesken ennestään tuttu. Tietokanta sisältää kuvaajien datat ja käyttäjätiedot. 
 
-## Testaaminen
-Login-API testaaminen on Login_Testing branchissa. Testikoodi aiheutti konfliktejä pääohjelmaan joita ei kerennyt siistimään.
+## Versionhallinta 
+
+Projektissa versionhallintatyökaluna käytettiin GitHubia, joka oli ryhmän jäsenille ennestään tuttu. 
+
+Ketkä tekivät ja mikä oli kenenkin rooli 
+
+Projektin tekijät ovat Leevi Järvinen (LeeviJarvinen), Joona Hautaniemi (Hakis1), Veikka Kursula (VeikkaK) ja Vili Kyrö (vilikyro). 
+
+Projektissa kaikki toimivat full-stack ohjelmoijina. 
+
+## Sovelluksen käyttöönotto 
+
+- Importtaa dumppi tiedosto MySQL Workbenchiin 
+
+- Aja npm install juureen ja server kansioon asentaaksesi tarvittavat riippuvaisuudet 
+
+- Tee .env server tiedostoon näillä tiedoilla: 
+
+ACCESS_TOKEN_SECRET = jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g22 
+
+REFRESH_TOKEN_SECRET = 825y8i3hnfjmsbv7gwajbl7fobqrjfvbs7gbfj2q3bgh8f4 
+
+DB_HOST = localhost 
+
+DB_USER = root 
+
+DB_PASSWORD = root 
+
+DB_DATABASE = climate 
+
+DB_DIALECT = mysql 
+
+- Mene server/config.js ja vaihda password käyttämään DB_PASSWORD. 
+
+- Mene server/config/Database.js ja seuraa kommentointia vaihda myös password käyttämään DB_PASSWORD 
+
+- Mene server/index.js ja vaiha 15 rivillä cors origin kommentoinnin mukaan 
+
+- Aja server kansiossa “npm run devStart” 
+
+- Aja juuri kansiossa “npm start” 
+
+## Testit 
+
+Login-API testaaminen on Login_Testing branchissa. Testikoodi aiheutti konfliktejä pääohjelmaan joita ei kerennyt siistimään. 
