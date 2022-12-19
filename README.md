@@ -53,12 +53,12 @@ Projektissa kaikki toimivat full-stack ohjelmoijina.
 
 - Tee .env server tiedostoon näillä tiedoilla: 
 ```bash
-ACCESS_TOKEN_SECRET = secret_token <br/>
-REFRESH_TOKEN_SECRET = another_secret_token <br/>
-DB_HOST = localhost <br/>
-DB_USER = root <br/>
-DB_PASSWORD = secret_password <br/>
-DB_DATABASE = climate <br/>
+ACCESS_TOKEN_SECRET = secret_token
+REFRESH_TOKEN_SECRET = another_secret_token
+DB_HOST = localhost
+DB_USER = root
+DB_PASSWORD = secret_password
+DB_DATABASE = climate
 DB_DIALECT = mysql
 ```
 
