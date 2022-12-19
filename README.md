@@ -52,14 +52,15 @@ Projektissa kaikki toimivat full-stack ohjelmoijina.
 - Aja npm install juureen ja server kansioon asentaaksesi tarvittavat riippuvaisuudet 
 
 - Tee .env server tiedostoon näillä tiedoilla: 
-
+```bash
 ACCESS_TOKEN_SECRET = secret_token <br/>
 REFRESH_TOKEN_SECRET = another_secret_token <br/>
 DB_HOST = localhost <br/>
 DB_USER = root <br/>
 DB_PASSWORD = secret_password <br/>
 DB_DATABASE = climate <br/>
-DB_DIALECT = mysql 
+DB_DIALECT = mysql
+```
 
 - Mene server/config.js ja vaihda password käyttämään DB_PASSWORD. 
 
