@@ -53,18 +53,12 @@ Projektissa kaikki toimivat full-stack ohjelmoijina.
 
 - Tee .env server tiedostoon näillä tiedoilla: 
 
-ACCESS_TOKEN_SECRET = jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g22 
-
-REFRESH_TOKEN_SECRET = 825y8i3hnfjmsbv7gwajbl7fobqrjfvbs7gbfj2q3bgh8f4 
-
-DB_HOST = localhost 
-
-DB_USER = root 
-
-DB_PASSWORD = root 
-
-DB_DATABASE = climate 
-
+ACCESS_TOKEN_SECRET = jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g22 <br/>
+REFRESH_TOKEN_SECRET = 825y8i3hnfjmsbv7gwajbl7fobqrjfvbs7gbfj2q3bgh8f4 <br/>
+DB_HOST = localhost <br/>
+DB_USER = root <br/>
+DB_PASSWORD = root <br/>
+DB_DATABASE = climate <br/>
 DB_DIALECT = mysql 
 
 - Mene server/config.js ja vaihda password käyttämään DB_PASSWORD. 
