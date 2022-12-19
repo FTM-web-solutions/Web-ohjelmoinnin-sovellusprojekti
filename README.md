@@ -39,7 +39,7 @@ Projektissa tietokannaksi valittiin MySQL, joka on relaatiotietokanta järjestel
 
 Projektissa versionhallintatyökaluna käytettiin GitHubia, joka oli ryhmän jäsenille ennestään tuttu. 
 
-Ketkä tekivät ja mikä oli kenenkin rooli 
+## Ketkä tekivät ja mikä oli kenenkin rooli 
 
 Projektin tekijät ovat Leevi Järvinen (LeeviJarvinen), Joona Hautaniemi (Hakis1), Veikka Kursula (VeikkaK) ja Vili Kyrö (vilikyro). 
 
