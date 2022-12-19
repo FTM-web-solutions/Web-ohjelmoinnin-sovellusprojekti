@@ -1,35 +1,35 @@
 
 # FTM 2022 ilmastoprojekti 
 
-## Projektin aihe ja tarkoitus 
+## Projektin aihe ja tarkoitus
+
+Projekti on OAMK:n 2-vuoden ohjelmistokehityksen opiskelijoiden harjoitustyö.
 
 Projektin aiheena oli tehdä ilmastonmuutokseen liittyvä visualisointityökalu, johon tehdään erilaisilla datapaketeilla kuvaajia visualisoimaan ilmaston lämpötilatietoja ja päästölähteitä. Sovelluksessa on mahdollista luoda oma käyttäjä, jolla voi luoda oman visualisointinäkymän asettelemalla tekemiämme kuvaajia omaan tyyliin. 
 
 Projektin tarkoitus oli toteuttaa web-sovellus ryhmässä ja perehtyä käyttämään Kanban-mallia. 
 
-Tekstin tekoon ja muokkaukseen ovat osallistuneet kaikki ryhmän jäsenet: 
-
+Tekstin tekoon ja muokkaukseen ovat osallistuneet kaikki ryhmän jäsenet:<br/>
 Veikka Kursula, Leevi Järvinen, Vili Kyrö ja Joona Hautaniemi 
 
+Sovelluksen esittely. <br/>
 Nettisivun osoite: https://ftmwebproject-371315.ew.r.appspot.com/ 
-
-Sovelluksen esittely 
 
 Esittely video: https://www.youtube.com/watch?v=-71kJFHAIpY 
 
-Mitä teknologioita projektissa on käytetty? 
+## Mitä teknologioita projektissa on käytetty? 
 
 ### Frontend 
 
 Tässä sovelluksessa frontend on toteutettu käyttämällä ReactJS:ää (JavaScript-kirjasto), Bootstrapiä (CSS-kehys) ja CSS:ää HTML-tyylien muokkaamiseen. Erilaisten pakettien asentamiseen käytimme npm:ää (node package manager), joka oli ryhmän työntekijöille entuudestaan tuttu. Näistä asennetuista paketeista eniten käytettyjä olivat React-Chartjs-2, Axios, Bootsrap sekä React-Bootstrap. 
 
- 
+![frontend](https://user-images.githubusercontent.com/97738367/208496819-af9d4fc4-e33a-407c-8670-6d395be8c3e9.png)
 
 ### Backend 
 
 Sovelluksen backend on toteutettu käyttämällä JavaScriptiä. Muun muassa eri tietokantaan liittyvät pyynnöt ynnä muut hoituvat sen puolella. Paketeista keskeisiä käytettyjä ovat esimerkiksi express, cors ja dotenv. Asentamiseen käytettiin npm:ää (node package manager) totuttuun tapaan. 
 
- 
+![backend](https://user-images.githubusercontent.com/97738367/208496855-c9a0e389-0266-4f24-8e17-fa09a8bea655.png)
 
 ## Tietokanta 
 
